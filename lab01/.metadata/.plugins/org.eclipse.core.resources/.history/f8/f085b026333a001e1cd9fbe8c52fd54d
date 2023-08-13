@@ -6,18 +6,10 @@ import pessoa.Funcionario;
 import pessoa.Pessoa;
 
 public class main {
-	
-	/*
-	 * Lab01 Contém as classes mais essenciais para o funcionamento
-	 * de uma biblioteca. Estudantes para emprestar livros, e livros para serem
-	 * Emprestados.
-	 * 
-	 * Nessa primeita versão o laboratório suporta um sistema simples
-	 * em que o estudante pode emprestar livros e devolvelos.
-	 */
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Livro[] Biblioteca = new Livro[5];
 		
 		// Criando as pessoas
 		Estudante Estudante_Vitor = new Estudante("245500", "Matemática Aplicada");
@@ -61,7 +53,7 @@ public class main {
 		//Devolve novamente
 		Vitor.getEstudante().devolve_livro(Calculo_1);
 		
-		//Finalizado lab01
+		System.out.println("So far so good");
 		
 	}
 

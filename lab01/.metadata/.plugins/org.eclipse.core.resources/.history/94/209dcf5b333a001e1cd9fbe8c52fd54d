@@ -40,7 +40,7 @@ public class Estudante {
 		if (this.num_emprestimos == 0) {
 			System.out.println("Estudante não tem livros para devolver.");
 		} else {
-			livro.setStatus("disponivel");
+			livro.setStatus("Disponivel");
 			this.livros_emprestados[this.num_emprestimos - 1] = null;
 			this.num_emprestimos--;
 			System.out.println("Livro Devolvido");
