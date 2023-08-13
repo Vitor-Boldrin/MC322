@@ -1,3 +1,0 @@
-INDEX VERSION 1.134+C:\Users\Brasil TecPar\OneDrive\FACUL\MC322\PROJETOS\.metadata\.plugins\org.eclipse.jdt.core
-1828900403.index
-1865797976.index
