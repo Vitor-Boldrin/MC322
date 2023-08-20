@@ -1,7 +1,8 @@
 package pessoa;
 
-import Livros.Livro;
+import java.util.ArrayList;
 import Controle_Livros.Emprestimo;
+import Livros.Livro;
 
 public class Estudante {
 
@@ -9,44 +10,41 @@ public class Estudante {
 	private String ra;
 	private String curso;
 	private short num_emprestimos;
-	private Emprestimo[] emprestimos;
+	private short max_emprestimos;
+	private ArrayList<Emprestimo> emprestimos;
 	
 	// Construtor da Classe
 	public Estudante(String ra, String curso) {
 		this.ra = ra;
 		this.curso = curso;
 		this.num_emprestimos = 0;
-		this.emprestimos = new Emprestimo[1]; // O máximo de empréstimo é 1 (Por enquanto)
+		this.max_emprestimos = 5; //Máximo de 5 empréstimos (padrão por agora)
+		this.emprestimos = new ArrayList<Emprestimo>();
 	}
 	
 	// Métodos
-	public void empresta_livro(Emprestimo emprestimo) {
-		if (emprestimo.getLivro().pode_emprestar() == 1) { // Testa se o livro pode ser emprestado
+	public void devolve_emprestimo(Emprestimo emprestimo) {
+		int pos_emprestimo = encontra_pos_emprestimo(this.getEmprestimos(), emprestimo);
+		if (pos_emprestimo == -1) {
 			
-			if (this.num_emprestimos < emprestimos.length) {
-				this.emprestimos[num_emprestimos] = emprestimo;
-				this.num_emprestimos++;
-				emprestimo.getLivro().setStatus("Emprestado"); //Seta o livro como emprestado
-				System.out.println("Livro emprestado");
-			} else {
-				System.out.println("Estudante atingiu o número máximo de empréstimos.");
-			}
+			System.out.println("O estudante não tem esse livro emprestado.");
+			return;
 			
 		} else {
-			System.out.println("Livro não pode ser emprestado");
+			
+			this.getEmprestimos().remove(pos_emprestimo);  // Remove emprestimo do estudante
+			emprestimo.getLivro().setStatus("disponivel"); // Seta livro como disponível
+			System.out.println("Livro devolvido");
+			
+			
 		}
 	}
 	
-	public void devolve_livro(Emprestimo emprestimo) {
-		if (this.num_emprestimos == 0) {
-			System.out.println("Estudante não tem livros para devolver.");
-		} else {
-			emprestimo.getLivro().setStatus("disponivel");
-			this.emprestimos[this.num_emprestimos - 1] = null;
-			this.num_emprestimos--;
-			System.out.println("Livro Devolvido");
-		}
+	private short encontra_pos_emprestimo(ArrayList<Emprestimo> emprestimos, Emprestimo emprestimo) { //Função encontra o emprestimo dado dentro de uma lista de emprestimos
+		short pos_emprestimo =  (short)emprestimos.indexOf(emprestimo);
+		return pos_emprestimo;
 	}
+
 	
 	// Gatters e Setters
 	public String getRa() {
@@ -73,7 +71,15 @@ public class Estudante {
 		return this.num_emprestimos;
 	}
 	
-	public Emprestimo[] getEmprestimos() {
+	public void setMax_emprestimos(short max_emprestimos) {
+		this.max_emprestimos = max_emprestimos;
+	}
+	
+	public short getMax_Emprestimos() {
+		return this.max_emprestimos;
+	}
+	
+	public ArrayList<Emprestimo> getEmprestimos() {
 		return this.emprestimos;
 	}
 	

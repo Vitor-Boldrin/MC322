@@ -26,19 +26,19 @@ public class Pessoa {
 	}
 	
 	// Métodos
-	public byte e_estudante() {
+	public boolean e_estudante() {
 		if (this.estudante == null) {
-			return 0;
+			return true;
 		} else {
-			return 1;
+			return false;
 		}
 	}
 	
-	public byte e_funcionario() {
+	public boolean e_funcionario() {
 		if (this.funcionario == null) {
-			return 0;
+			return true;
 		} else {
-			return 1;
+			return false;
 		}
 	}
 	

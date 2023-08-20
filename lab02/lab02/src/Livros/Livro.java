@@ -29,11 +29,11 @@ public class Livro {
 	}
 	
 	// Metodos
-	public byte pode_emprestar() {
+	public boolean pode_emprestar() {
 		if (this.status == "disponivel") {
-			return 1;
+			return true;
 		} else {
-			return 0;
+			return false;
 		}
 	}
 	

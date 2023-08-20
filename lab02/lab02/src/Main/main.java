@@ -4,16 +4,21 @@ import Livros.Livro;
 import pessoa.Estudante;
 import pessoa.Funcionario;
 import pessoa.Pessoa;
+import Controle_Livros.Emprestimo;
 
 public class main {
 	
 	/*
-	 * Lab01 Contém as classes mais essenciais para o funcionamento
+	 * Lab02 Contém as classes mais essenciais para o funcionamento
 	 * de uma biblioteca. Estudantes para emprestar livros, e livros para serem
 	 * Emprestados.
 	 * 
-	 * Nessa primeita versão o laboratório suporta um sistema simples
-	 * em que o estudante pode emprestar livros e devolvelos.
+	 * Nessa segunda versão foi aperfeiçoado o sistema de emprestimo de livros, que
+	 * agora, os emprestimos são armazenados em listas e em cima dessas listas foi
+	 * criado métodos para devolver e emprestar livros
+	 * 
+	 * Foi também aperfeiçoado os tipos dos dados necessários para as classes e
+	 * revisto o tipo de modifier para os atributos e métodos.
 	 */
 
 	public static void main(String[] args) {
@@ -46,22 +51,30 @@ public class main {
 									"Editora Unicamp"
 									 );
 		
-		// Emprestando o livro
-		Vitor.getEstudante().empresta_livro(Calculo_1);
+		Livro GA_1 = new Livro("2",
+					"Reginaldo",
+					"Dor",
+					(short)1,
+					(short)2001,
+					"Editora Unicamp"
+					 );
 		
-		//Tenta emprestar o livro novamente
-		Vitor.getEstudante().empresta_livro(Calculo_1);
+		Emprestimo emprestimo_1 = new Emprestimo(Vitor.getEstudante(), Calculo_1);  // Cria emprestimo para o Vitor
 		
-		//Devolve o livro
-		Vitor.getEstudante().devolve_livro(Calculo_1);
+		Ze.getFuncionario().empresta_livro(emprestimo_1); // Empresta Spivak pro Vitor
 		
-		//Empresta novamente
-		Vitor.getEstudante().empresta_livro(Calculo_1);
+		Emprestimo emprestimo_2 = new Emprestimo(Vitor.getEstudante(), Calculo_1); // Cria mesmo emprestimo para o vitor
 		
-		//Devolve novamente
-		Vitor.getEstudante().devolve_livro(Calculo_1);
+		Ze.getFuncionario().empresta_livro(emprestimo_2); // Tenta emprestar o mesmo emprestimo
 		
-		//Finalizado lab01
+		Emprestimo emprestimo_3 = new Emprestimo(Vitor.getEstudante(), GA_1); // Cria segundo emprestimo válido para o vitor
+		
+		Ze.getFuncionario().empresta_livro(emprestimo_3); // Dá o segundo emprestimo
+		
+		Vitor.getEstudante().devolve_emprestimo(emprestimo_1); // Devolve o primeiro emprestimo
+		
+		System.out.println(Calculo_1.getStatus()); // Testa status do livro devolvido
+		
 		
 	}
 
