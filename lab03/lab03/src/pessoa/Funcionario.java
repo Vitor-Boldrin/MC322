@@ -1,28 +1,55 @@
-package pessoa;
+package Pessoa;
 
-import Controle_Livros.Emprestimo;
+import java.util.Iterator;
 
-public class Funcionario {
+import Biblioteca.Item_multimidia;
+import Controle_Itens.Reserva;
+import Controle_Itens.Emprestimo;
 
-	// Atributos da classe
-	private String cargo;
+public class Funcionario extends Pessoa {
+	
+	//Atributos
+	private String matricula;
+	private String nivel;
 	private float salario;
 	
-	// Construtor da Classe
-	public Funcionario(String cargo, float salario) {
-		this.cargo = cargo;
-		this.salario = salario;
+	//Construtor
+	public Funcionario(
+			String nome, 
+			String celular, 
+			String email, 
+			String cpf,
+			String matricula,
+			String nivel,
+			float salario
+			) {
+	super(nome,celular,email,cpf);
+	this.matricula = matricula;
+	this.nivel = nivel;
+	this.salario = salario;
 	}
-	
-	// Métodos
-	public void empresta_livro(Emprestimo emprestimo) {
-		if ( emprestimo.getLivro().pode_emprestar() ) { // Testa se o livro pode ser emprestado
+
+	//metodos
+	public void empresta_item_multimidia(Emprestimo emprestimo) {
+		if ( pode_emprestar(emprestimo.getItem_multimidia(), emprestimo.getMembro()) ) { // Testa se o livro pode ser emprestado
 			
-			if (emprestimo.getEstudate().getEmprestimos().size()
-					< emprestimo.getEstudate().getMax_Emprestimos()) { // Checa se o estudante pode emprestar livros
+			if (emprestimo.getMembro().getEmprestimos().size()
+					< emprestimo.getMembro().getMax_emprestimos()) { // Checa se o estudante pode emprestar livros
 				
-				emprestimo.getEstudate().getEmprestimos().add(emprestimo); // Adiciona o emprestimo
-				emprestimo.getLivro().setStatus("emprestado"); //Muda status do livro
+				emprestimo.getMembro().getEmprestimos().add(emprestimo); // Adiciona o emprestimo
+				
+				short num_emprestimo = emprestimo.getMembro().getNum_emprestimos(); //
+				num_emprestimo ++; 												    // Aumenta contador de números emprestados
+				emprestimo.getMembro().setNum_emprestimos(num_emprestimo);			//	
+				
+				
+				if(emprestimo.getItem_multimidia().getStatus() == 2) {
+					// Se ele estava reservado, então devemos desfazer a reserva do membro
+					desfaz_reserva(emprestimo.getItem_multimidia(), emprestimo.getMembro());
+				}
+				
+				emprestimo.getItem_multimidia().setStatus((byte)3); //Muda status do livro
+				
 				System.out.println("Livro emprestado.");
 				
 				
@@ -35,21 +62,72 @@ public class Funcionario {
 		}
 	}
 	
-	// Gatters e Setters
-	public String getCargo() {
-		return this.cargo;
+
+	private void desfaz_reserva(Item_multimidia item, Membro membro) {
+		//for (final Reserva reserva : membro.getReservas()) {
+		//	if(reserva.getItem_multimidia() == item) { //busca a reserva do item em questão
+		//		System.out.println("Entrei para tirar reserva");
+		//		membro.getReservas().remove(reserva);
+		//	}
+		//}
+		Iterator<Reserva> itr = membro.getReservas().iterator();
+		while (itr.hasNext()) {
+			Reserva reserva = itr.next();
+			if (reserva.getItem_multimidia() == item) {
+				itr.remove();
+			}
+		}
+		
 	}
 	
-	public float getSalario() {
-		return this.salario;
+	private boolean pode_emprestar(Item_multimidia item, Membro membro) {
+		//List<Integer> status_permitidos = Arrays.asList(1,3);
+		
+		if((int)item.getStatus() == 2) { // Checa se o item está reservado
+			// Nesse caso, checar se a reserva é do membro em questão
+			// Olhar todas as reservas do membro e checar se ele quem reservou
+			int aux = 0;
+			for (final Reserva reserva : membro.getReservas()) {
+				if(reserva.getItem_multimidia() == item) { // Se o membro tem esse livro reservado ele pode emprestar
+					aux++;
+				}
+			}
+			if (aux > 0) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} else if ((int)item.getStatus() == 1) { //Disponível 
+			return true;
+			
+		} else {
+			return false; //Não está disponível
+		}
 	}
 	
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-	
-	public void setSalario(float salario) {
-		this.salario = salario;
-	}
-	
+	//Geters e seters
+		public String getMatricula() {
+			return this.matricula;
+		}
+		
+		public void setRa(String matricula) {
+			this.matricula = matricula;
+		}
+		
+		public float getSalario() {
+			return this.salario;
+		}
+		
+		public void setCurso(float salario) {
+			this.salario = salario;
+		}
+		
+		public String getNivel() {
+			return this.nivel;
+		}
+		
+		public void setNivel(String nivel) {
+			this.nivel = nivel;
+		}
 }

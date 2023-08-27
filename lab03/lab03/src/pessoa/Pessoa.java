@@ -1,48 +1,22 @@
-package pessoa;
+package Pessoa;
 
-public class Pessoa {
-	
-	// Atributos da classe
+abstract class Pessoa {
+
+	// Atributos
 	private String nome;
 	private String celular;
 	private String email;
 	private String cpf;
-	private Estudante estudante;
-	private Funcionario funcionario;
 	
-	// Construtor da Classe
-	public Pessoa(String nome,
-					   String celular,
-					   String cpf,
-					   String email,
-					   Estudante estudante,
-					   Funcionario funcionario) {
+	// Construtor
+	public Pessoa(String nome, String celular, String email, String cpf) {
 		this.nome = nome;
 		this.celular = celular;
 		this.email = email;
 		this.cpf = cpf;
-		this.estudante = estudante;
-		this.funcionario = funcionario;
 	}
 	
-	// Métodos
-	public boolean e_estudante() {
-		if (this.estudante == null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean e_funcionario() {
-		if (this.funcionario == null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	// Gatters e Setters
+	//Sets e gets
 	public String getNome() {
 		return this.nome;
 	}
@@ -59,14 +33,6 @@ public class Pessoa {
 		this.celular = celular;
 	}
 	
-	public String getCpf() {
-		return this.cpf;
-	}
-	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
 	public String getEmail() {
 		return this.email;
 	}
@@ -75,20 +41,11 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	public Estudante getEstudante() {
-		return this.estudante;
+	public String getCpf() {
+		return this.cpf;
 	}
 	
-	public void setEstudante(Estudante estudante) {
-		this.estudante = estudante;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-	
-	public Funcionario getFuncionario() {
-		return this.funcionario;
-	}
-	
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-	
 }
