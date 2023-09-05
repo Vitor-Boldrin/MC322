@@ -15,7 +15,7 @@ public class Outros_itens_multimidia extends Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total,
+			Status_item_multimidia status,
 			String tipo_recurso,
 			String formato,
 			String localizacao,
@@ -30,7 +30,7 @@ public class Outros_itens_multimidia extends Item_multimidia {
 				genero,
 				sinopse,
 				capa,
-				numero_total
+				status
 				);
 		this.tipo_recurso = tipo_recurso;
 		this.formato = formato;
@@ -39,6 +39,10 @@ public class Outros_itens_multimidia extends Item_multimidia {
 	}
 	
 	public short numero_disponivel(){
+		return 2;
+	}
+	
+	public short numero_total() {
 		return 2;
 	}
 	

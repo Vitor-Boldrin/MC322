@@ -9,7 +9,7 @@ abstract class Item_multimidia {
 	private String genero;
 	private String sinopse;
 	private String capa;
-	private short numero_total;
+	private Status_item_multimidia status;
 	
 	public Item_multimidia(
 			String titulo,
@@ -19,7 +19,7 @@ abstract class Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total
+			Status_item_multimidia status
 			) {
 		this.titulo = titulo;
 		this.autor = autor;
@@ -28,10 +28,12 @@ abstract class Item_multimidia {
 		this.genero = genero;
 		this.sinopse = sinopse;
 		this.capa = capa;
-		this.numero_total = numero_total;
+		this.status = status;
 	}
 	
 	public abstract short numero_disponivel();
+	
+	public abstract short numero_total();
 	
 	public String getTitulo() {
 	      return this.titulo;
@@ -89,12 +91,12 @@ abstract class Item_multimidia {
 	    this.capa = capa;
 	}
 	
-	public short getNumero_total() {
-	      return this.numero_total;
+	public Status_item_multimidia getStatus() {
+	      return this.status;
 	}
 	
-	public void setNumero_total(short numero_total) {
-	    this.numero_total = numero_total;
+	public void setStatus(Status_item_multimidia status) {
+	    this.status = status;
 	}
 	
 }

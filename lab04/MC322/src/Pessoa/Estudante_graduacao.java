@@ -2,9 +2,9 @@ package Pessoa;
 
 import java.util.Date;
 
-public class Estudante_graducao extends Pessoa {
+public class Estudante_graduacao extends Pessoa {
 
-	public Estudante_graducao(
+	public Estudante_graduacao(
 		   String nome, 
 		   String id_faculdade, 
 		   String endereco, 

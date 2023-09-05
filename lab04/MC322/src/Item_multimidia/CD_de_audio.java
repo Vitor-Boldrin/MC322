@@ -14,10 +14,10 @@ public class CD_de_audio extends Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total,
 			String lista_de_faixas,
 			String duracao,
-			String estado_conservacao
+			String estado_conservacao,
+			Status_item_multimidia status
 			) {
 	
 		super(
@@ -28,7 +28,7 @@ public class CD_de_audio extends Item_multimidia {
 				genero,
 				sinopse,
 				capa,
-				numero_total
+				status
 				);
 		this.lista_de_faixas = lista_de_faixas;
 		this.duracao = duracao;
@@ -36,6 +36,10 @@ public class CD_de_audio extends Item_multimidia {
 	}
 	
 	public short numero_disponivel(){
+		return 2;
+	}
+	
+	public short numero_total() {
 		return 2;
 	}
 	

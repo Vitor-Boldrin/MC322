@@ -15,11 +15,11 @@ public class DVD_de_video extends Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total,
 			String elenco,
 			String duracao,
 			boolean legendas_e_audio,
-			String estado_conservacao
+			String estado_conservacao,
+			Status_item_multimidia status
 			) {
 	
 		super(
@@ -30,7 +30,7 @@ public class DVD_de_video extends Item_multimidia {
 				genero,
 				sinopse,
 				capa,
-				numero_total
+				status
 				);
 		this.elenco = elenco;
 		this.duracao = duracao;
@@ -39,6 +39,10 @@ public class DVD_de_video extends Item_multimidia {
 	}
 	
 	public short numero_disponivel(){
+		return 2;
+	}
+	
+	public short numero_total() {
 		return 2;
 	}
 	

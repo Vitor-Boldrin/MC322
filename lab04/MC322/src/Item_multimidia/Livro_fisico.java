@@ -15,7 +15,7 @@ public class Livro_fisico extends Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total,
+			Status_item_multimidia status,
 			String isbn,
 			int edicao,
 			String localizacao,
@@ -30,7 +30,7 @@ public class Livro_fisico extends Item_multimidia {
 				genero,
 				sinopse,
 				capa,
-				numero_total
+				status
 				);
 		this.isbn = isbn;
 		this.edicao = edicao;
@@ -39,6 +39,10 @@ public class Livro_fisico extends Item_multimidia {
 	}
 	
 	public short numero_disponivel(){
+		return 2;
+	}
+	
+	public short numero_total() {
 		return 2;
 	}
 	

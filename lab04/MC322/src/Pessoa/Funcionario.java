@@ -2,11 +2,11 @@ package Pessoa;
 
 import java.util.Date;
 
-public class Funcionarios extends Pessoa {
+public class Funcionario extends Pessoa {
 	
 	private Nivel_acesso nivel_acesso;
 
-	public Funcionarios(
+	public Funcionario(
 		   String nome, 
 		   String id_faculdade, 
 		   String endereco, 

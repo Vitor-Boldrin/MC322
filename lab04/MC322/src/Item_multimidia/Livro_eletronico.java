@@ -17,7 +17,7 @@ public class Livro_eletronico extends Item_multimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			short numero_total,
+			Status_item_multimidia status,
 			String formato,
 			String fomato_arquivo,
 			String url_acesso,
@@ -33,7 +33,7 @@ public class Livro_eletronico extends Item_multimidia {
 				genero,
 				sinopse,
 				capa,
-				numero_total
+				status
 				);
 		this.formato = formato;
 		this.fomato_arquivo = fomato_arquivo;
@@ -44,6 +44,10 @@ public class Livro_eletronico extends Item_multimidia {
 	}
 	
 	public short numero_disponivel(){
+		return 2;
+	}
+	
+	public short numero_total() {
 		return 2;
 	}
 	
