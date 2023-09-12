@@ -1,7 +1,7 @@
 package Pessoa;
 import java.util.Date;
 
-public abstract class Pessoa {
+abstract class Pessoa {
    private String nome;
    private String id_faculdade;
    private String endereco;

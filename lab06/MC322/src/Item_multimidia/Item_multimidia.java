@@ -1,6 +1,6 @@
 package Item_multimidia;
 
-public abstract class Item_multimidia {
+abstract class Item_multimidia {
 
 	private String titulo;
 	private String autor;

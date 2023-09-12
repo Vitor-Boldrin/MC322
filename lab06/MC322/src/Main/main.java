@@ -4,7 +4,6 @@ import Pessoa.*;
 import Controle_livros.*;
 import Item_multimidia.*;
 import Recursos_Biblioteca.*;
-import java.util.LinkedList;
 
 import java.util.Date;
 
@@ -31,14 +30,6 @@ public class main {
 				   Nivel_acesso.ATENDETE);
 		
 		System.out.println("Gerando funcionario");
-		
-		LinkedList<Pessoa> lista = new LinkedList<Pessoa>();
-		
-		lista.add(Ze);
-		
-		lista.add(Vitor);
-		
-		/*
 		
 		DVD_de_video DVD = new DVD_de_video(
 				"Filme",
@@ -78,7 +69,7 @@ public class main {
 		
 		System.out.println(Palestra_IC.getTopico());
 		
-		System.out.println(Palestra_IC.duracao_evento_minutos()); */
+		System.out.println(Palestra_IC.duracao_evento_minutos());
 		
 	}
 	
