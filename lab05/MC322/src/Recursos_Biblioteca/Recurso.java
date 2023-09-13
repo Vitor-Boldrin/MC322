@@ -1,14 +1,10 @@
 package Recursos_Biblioteca;
 
-import java.util.Date;
-
-import Pessoa.Estudante_graduacao;
-
-public class Recurso_multimidia {
+public class Recurso {
 	
 	private Formato_multimidia formato_multimidia;
 	
-	public Recurso_multimidia(Formato_multimidia formato_multimidia) {
+	public Recurso(Formato_multimidia formato_multimidia) {
 		this.formato_multimidia = formato_multimidia;
 	}
 	
@@ -22,11 +18,11 @@ public class Recurso_multimidia {
 	}
 	
 	//ABSTRACT CLASS para as inner class que são semelhantes
-	abstract class Recurso {
+	public abstract class Recurso_multimidia {
 		private String titulo;
 		private String detalhes;
 		
-		public Recurso(String titulo, String detalhes) {
+		public Recurso_multimidia(String titulo, String detalhes) {
 			this.titulo = titulo;
 			this.detalhes = detalhes;
 		}
@@ -57,7 +53,7 @@ public class Recurso_multimidia {
 	}
 	
 	//INNER CLASSES
-	public class Audio extends Recurso {
+	public class Audio extends Recurso_multimidia {
 		
 		public Audio(String titulo, String detalhes) {
 			super(titulo, detalhes);
@@ -65,7 +61,7 @@ public class Recurso_multimidia {
 		
 	}
 	
-	public class Video extends Recurso {
+	public class Video extends Recurso_multimidia {
 		
 		public Video(String titulo, String detalhes) {
 			super(titulo, detalhes);
@@ -73,7 +69,7 @@ public class Recurso_multimidia {
 		
 	}
 	
-	public class Software extends Recurso {
+	public class Software extends Recurso_multimidia {
 		
 		public Software(String titulo, String detalhes) {
 			super(titulo, detalhes);

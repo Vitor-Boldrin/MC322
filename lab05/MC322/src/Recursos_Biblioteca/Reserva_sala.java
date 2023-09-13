@@ -51,14 +51,10 @@ public class Reserva_sala {
 	    this.status_reserva_sala = status_reserva_sala;
 	}
 	
-	// Inner classes
-	public class Sala_individual {
-		private boolean tem_computador;
-		private int numero_sala;
+	// Parent Class
+	public abstract class Sala_biblioteca {
 		
-		public Sala_individual(boolean tem_computador, int numero_sala) {
-			this.tem_computador = tem_computador;
-			this.numero_sala = numero_sala;
+		public Sala_biblioteca() {
 		}
 		
 		//geters da outer class
@@ -76,6 +72,19 @@ public class Reserva_sala {
 		
 		public Status_reserva_sala getStatus_reserva_sala() {
 			return status_reserva_sala;
+		}
+		
+	}
+	
+	
+	// Inner classes
+	public class Sala_individual extends Sala_biblioteca {
+		private boolean tem_computador;
+		private int numero_sala;
+		
+		public Sala_individual(boolean tem_computador, int numero_sala) {
+			this.tem_computador = tem_computador;
+			this.numero_sala = numero_sala;
 		}
 		
 		//geters e seters
@@ -97,7 +106,7 @@ public class Reserva_sala {
 		
 	}
 	
-	public class Sala_grupo {
+	public class Sala_grupo extends Sala_biblioteca {
 		private boolean tem_recurso;
 		private int capacidade_maxima;
 		
@@ -105,24 +114,6 @@ public class Reserva_sala {
 			this.tem_recurso = tem_recurso;
 			this.capacidade_maxima = capacidade_maxima;
 		}
-		
-		//geters da outer class
-		public Date getData_reserva() {
-			return data_reserva;
-		}
-		
-		public Date getHora_inicio() {
-			return hora_inicio;
-		}
-		
-		public Date getHora_fim() {
-			return hora_fim;
-		}
-		
-		public Status_reserva_sala getStatus_reserva_sala() {
-			return status_reserva_sala;
-		}
-		
 				
 		//geters e seters
 		public boolean getTem_recurso() {
@@ -143,7 +134,7 @@ public class Reserva_sala {
 		
 	}
 	
-	public class Sala_silenciosa {
+	public class Sala_silenciosa extends Sala_biblioteca {
 		private boolean tem_cabine_individual;
 		private int numero_assentos;
 		
@@ -152,22 +143,7 @@ public class Reserva_sala {
 			this.numero_assentos = numero_assentos;
 		}
 		
-		//geters da outer class
-		public Date getData_reserva() {
-			return data_reserva;
-		}
-		
-		public Date getHora_inicio() {
-			return hora_inicio;
-		}
-		
-		public Date getHora_fim() {
-			return hora_fim;
-		}
-		
-		public Status_reserva_sala getStatus_reserva_sala() {
-			return status_reserva_sala;
-		}
+
 		
 		public boolean getTem_cabine_individual() {
 		      return this.tem_cabine_individual;
@@ -187,28 +163,11 @@ public class Reserva_sala {
 		
 	}
 	
-	public class Sala_multimidia {
+	public class Sala_multimidia extends Sala_biblioteca {
 		private String equipamentos;
 		
 		public Sala_multimidia(String equipamentos) {
 			this.equipamentos = equipamentos;
-		}
-		
-		//geters da outer class
-		public Date getData_reserva() {
-			return data_reserva;
-		}
-		
-		public Date getHora_inicio() {
-			return hora_inicio;
-		}
-		
-		public Date getHora_fim() {
-			return hora_fim;
-		}
-		
-		public Status_reserva_sala getStatus_reserva_sala() {
-			return status_reserva_sala;
 		}
 		
 		public String getEquipamentos() {

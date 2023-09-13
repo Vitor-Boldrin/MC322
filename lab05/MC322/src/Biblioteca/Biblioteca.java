@@ -5,43 +5,36 @@ import java.util.LinkedList;
 import Controle_livros.*;
 import Item_multimidia.*;
 import Pessoa.*;
-import Recursos_Biblioteca.*;
+import Recursos_Biblioteca.Equipamento.Equipamento_emprestimo;
+import Recursos_Biblioteca.Reserva_sala.Sala_biblioteca;
+import Recursos_Biblioteca.Evento.Evento_biblioteca;
+import Recursos_Biblioteca.Recurso.Recurso_multimidia;
 
 public class Biblioteca {
 	   private String nome;
 	   // Membros
-	   private LinkedList<Estudante_graduacao> estudante_graduacao;
-	   private LinkedList<Funcionario> funcionario;
-	   private LinkedList<Estudante_pos> estudante_pos;
-	   private LinkedList<Professor> professor;
+	   private LinkedList<Pessoa> pessoa;
 	   // Livros
-	   private LinkedList<CD_de_audio> cd_de_audio;
-	   private LinkedList<DVD_de_video> dvd_de_video;
-	   private LinkedList<Livro_eletronico> livro_eletronico;
-	   private LinkedList<Livro_fisico> livro_fisico;
-	   private LinkedList<Outros_itens_multimidia> outros_itens_multimidia;
+	   private LinkedList<Item_multimidia> item_multimidia;
 	   // Controle dos livros
 	   private LinkedList<Emprestimo_item_multimidia> emprestimo_item_multimidia;
 	   private LinkedList<Reserva_item_multimidia> reserva_item_multimidia;
 	   // Recursos Biblioteca
-	   private LinkedList<Reserva_sala> reserva_sala;
+	   private LinkedList<Sala_biblioteca> sala_biblioteca;
+	   private LinkedList<Equipamento_emprestimo> equipamento_emprestimo;
+	   private LinkedList<Evento_biblioteca> evento_biblioteca;
 	   private LinkedList<Recurso_multimidia> recurso_multimidia;
-	   private LinkedList<Equipamento> equipamento;
-	   private LinkedList<Evento> evento;
 
 	   public Biblioteca(String nome) {
 	      this.nome = nome;
-	      this.estudante_graduacao = new LinkedList<Estudante_graduacao>();
-	      this.funcionario = new LinkedList<Funcionario>();
-	      this.estudante_pos = new LinkedList<Estudante_pos>();
-	      this.professor = new LinkedList<Professor>();
-	      this.cd_de_audio = new LinkedList<CD_de_audio>();
-	      this.dvd_de_video = new LinkedList<DVD_de_video>();
-	      this.livro_eletronico = new LinkedList<Livro_eletronico>();
-	      this.livro_fisico = new LinkedList<Livro_fisico>();
-	      this.outros_itens_multimidia = new LinkedList<Outros_itens_multimidia>();
+	      this.pessoa = new LinkedList<Pessoa>();
+	      this.item_multimidia = new LinkedList<Item_multimidia>();
 	      this.emprestimo_item_multimidia = new LinkedList<Emprestimo_item_multimidia>();
 	      this.reserva_item_multimidia = new LinkedList<Reserva_item_multimidia>();
+	      this.sala_biblioteca = new LinkedList<Sala_biblioteca>();
+	      this.equipamento_emprestimo = new LinkedList<Equipamento_emprestimo>();
+	      this.evento_biblioteca = new LinkedList<Evento_biblioteca>();
+	      this.recurso_multimidia = new LinkedList<Recurso_multimidia>();
 	   }
 
 	   //seters e geters
@@ -53,76 +46,20 @@ public class Biblioteca {
 	      this.nome = nome;
 	   }
 	   
-	   public LinkedList<Estudante_graduacao> getEstudante_graduacao() {
-	      return this.estudante_graduacao;
+	   public LinkedList<Pessoa> getPessoa() {
+	      return this.pessoa;
 	   }
 
-	   public void setEstudante_graduacao(LinkedList<Estudante_graduacao> estudante_graduacao) {
-	      this.estudante_graduacao = estudante_graduacao;
+	   public void setPessoa(LinkedList<Pessoa> pessoa) {
+	      this.pessoa = pessoa;
 	   }
 
-	   public LinkedList<Funcionario> getFuncionario() {
-	      return this.funcionario;
+	   public LinkedList<Item_multimidia> getItem_multimidia() {
+	      return this.item_multimidia;
 	   }
 
-	   public void setFuncionario(LinkedList<Funcionario> funcionario) {
-	      this.funcionario = funcionario;
-	   }
-	   
-	   public LinkedList<Estudante_pos> getEstudante_pos() {
-		      return this.estudante_pos;
-	   }
-
-	   public void setEstudante_pos(LinkedList<Estudante_pos> estudante_pos) {
-		      this.estudante_pos = estudante_pos;
-	   }
-	   
-	   public LinkedList<Professor> getProfessor() {
-		      return this.professor;
-	   }
-
-	   public void setProfessor(LinkedList<Professor> professor) {
-		      this.professor = professor;
-	   }
-	   
-	   public LinkedList<CD_de_audio> getCD_de_audio() {
-		      return this.cd_de_audio;
-	   }
-
-	   public void setCD_de_audio(LinkedList<CD_de_audio> cd_de_audio) {
-		      this.cd_de_audio = cd_de_audio;
-	   }
-	   
-	   public LinkedList<DVD_de_video> getDVD_de_video() {
-		      return this.dvd_de_video;
-	   }
-
-	   public void setDVD_de_video(LinkedList<DVD_de_video> dvd_de_video) {
-		      this.dvd_de_video = dvd_de_video;
-	   }
-	   
-	   public LinkedList<Livro_eletronico> getLivro_eletronico() {
-		      return this.livro_eletronico;
-	   }
-
-	   public void setLivro_eletronico(LinkedList<Livro_eletronico> livro_eletronico) {
-		      this.livro_eletronico = livro_eletronico;
-	   }
-	   
-	   public LinkedList<Livro_fisico> getLivro_fisico() {
-		      return this.livro_fisico;
-	   }
-
-	   public void setLivro_fisico(LinkedList<Livro_fisico> livro_fisico) {
-		      this.livro_fisico = livro_fisico;
-	   }
-	   
-	   public LinkedList<Outros_itens_multimidia> getOutros_itens_multimidia() {
-		      return this.outros_itens_multimidia;
-	   }
-
-	   public void setOutros_itens_multimidia(LinkedList<Outros_itens_multimidia> outros_itens_multimidia) {
-		      this.outros_itens_multimidia = outros_itens_multimidia;
+	   public void setItem_multimidia(LinkedList<Item_multimidia> item_multimidia) {
+	      this.item_multimidia = item_multimidia;
 	   }
 	   
 	   public LinkedList<Emprestimo_item_multimidia> getEmprestimo_item_multimidia() {
@@ -141,12 +78,28 @@ public class Biblioteca {
 		      this.reserva_item_multimidia = reserva_item_multimidia;
 	   }
 	   
-	   public LinkedList<Reserva_sala> getReserva_sala() {
-		      return this.reserva_sala;
+	   public LinkedList<Sala_biblioteca> getSala_biblioteca() {
+		      return this.sala_biblioteca;
 	   }
 
-	   public void setReserva_sala(LinkedList<Reserva_sala> reserva_sala) {
-		      this.reserva_sala = reserva_sala;
+	   public void setSala_biblioteca(LinkedList<Sala_biblioteca> sala_biblioteca) {
+		      this.sala_biblioteca = sala_biblioteca;
+	   }
+	   
+	   public LinkedList<Equipamento_emprestimo> getEquipamento_emprestimo() {
+		      return this.equipamento_emprestimo;
+	   }
+
+	   public void setEquipamento_emprestimo(LinkedList<Equipamento_emprestimo> equipamento_emprestimo) {
+		      this.equipamento_emprestimo = equipamento_emprestimo;
+	   }
+	   
+	   public LinkedList<Evento_biblioteca> getEvento_biblioteca() {
+		      return this.evento_biblioteca;
+	   }
+
+	   public void setEvento_biblioteca(LinkedList<Evento_biblioteca> evento_biblioteca) {
+		      this.evento_biblioteca = evento_biblioteca;
 	   }
 	   
 	   public LinkedList<Recurso_multimidia> getRecurso_multimidia() {
@@ -155,22 +108,6 @@ public class Biblioteca {
 
 	   public void setRecurso_multimidia(LinkedList<Recurso_multimidia> recurso_multimidia) {
 		      this.recurso_multimidia = recurso_multimidia;
-	   }
-	   
-	   public LinkedList<Equipamento> getEquipamento() {
-		      return this.equipamento;
-	   }
-
-	   public void setEquipamento(LinkedList<Equipamento> equipamento) {
-		      this.equipamento = equipamento;
-	   }
-	   
-	   public LinkedList<Evento> getEvento() {
-		      return this.evento;
-	   }
-
-	   public void setEvento(LinkedList<Evento> evento) {
-		      this.evento = evento;
 	   }
 	   
 	}

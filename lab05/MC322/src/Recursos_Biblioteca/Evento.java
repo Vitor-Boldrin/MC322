@@ -20,7 +20,7 @@ public class Evento {
 	}
 	
 	// Abstract class com métodos e atributos comuns dos 3 tipos de evento
-	abstract class Evento_biblioteca {
+	public abstract class Evento_biblioteca {
 			private Date data_inicio;
 			private Date data_fim;
 			private String local;

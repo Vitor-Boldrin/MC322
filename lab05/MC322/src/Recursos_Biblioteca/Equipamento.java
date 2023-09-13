@@ -19,7 +19,7 @@ public class Equipamento {
 	//INNER CLASS
 	
 	//INFORMATICA
-	abstract class Equipamento_emprestimo {
+	public abstract class Equipamento_emprestimo {
 		private String tipo;
 		private String configuracao;
 		private Status_equipamento status_equipamento;
