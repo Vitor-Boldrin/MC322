@@ -3,6 +3,7 @@ package biblioteca.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.Membro.Membro;
 
 public class MembroControllerImpl implements MembroController {
@@ -14,6 +15,7 @@ public class MembroControllerImpl implements MembroController {
 
     @Override
     public List<Membro> listarMembros() {
+    	membros = BibliotecaStatic.getMembros();
         return membros;
     }
 

@@ -282,6 +282,7 @@ public class BibliotecaMain {
 
     private static void removerItem(Scanner scanner) {
         // Lógica para remover um item
+    	
         System.out.println("Operação de Remoção de Item");
     }
 
@@ -308,13 +309,13 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do aluno
-		        System.out.print("Nome do estudante: ");
+		        System.out.print("Nome do estudante:");
 		        String nome1 = scanner.nextLine();
-		        System.out.print("RA do estudante: ");
+		        System.out.print("ID:");
 		        String id_faculdade1 = scanner.nextLine();
-		        System.out.print("Endereço do estudante: ");
+		        System.out.print("Endereço do estudante:");
 		        String endereco1 = scanner.nextLine();
-		        System.out.print("Contato: ");
+		        System.out.print("Contato:");
 		        String contato1 = scanner.nextLine();
 		        Date data1 = new Date();
 		        
@@ -337,13 +338,13 @@ public class BibliotecaMain {
 		    	System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do aluno
-		        System.out.print("Nome do estudante: ");
+		        System.out.print("Nome do estudante:");
 		        String nome2 = scanner.nextLine();
-		        System.out.print("RA do estudante: ");
+		        System.out.print("ID:");
 		        String id_faculdade2 = scanner.nextLine();
-		        System.out.print("Endereço do estudante: ");
+		        System.out.print("Endereço do estudante:");
 		        String endereco2 = scanner.nextLine();
-		        System.out.print("Contato: ");
+		        System.out.print("Contato:");
 		        String contato2 = scanner.nextLine();
 		        Date data2 = new Date();
 		        
@@ -365,13 +366,13 @@ public class BibliotecaMain {
 		    	System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do aluno
-		        System.out.print("Nome do funcionario: ");
+		        System.out.print("Nome do funcionario:");
 		        String nome3 = scanner.nextLine();
-		        System.out.print("ID do funcionario: ");
+		        System.out.print("ID:");
 		        String id_faculdade3 = scanner.nextLine();
-		        System.out.print("Endereço do funcionario: ");
+		        System.out.print("Endereço do funcionario:");
 		        String endereco3 = scanner.nextLine();
-		        System.out.print("Contato: ");
+		        System.out.print("Contato:");
 		        String contato3 = scanner.nextLine();
 		        Date data3 = new Date();
 		        
@@ -431,13 +432,13 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do aluno
-		        System.out.print("Nome do professor: ");
+		        System.out.print("Nome do professor:");
 		        String nome4 = scanner.nextLine();
-		        System.out.print("Matricula do professor: ");
+		        System.out.print("ID:");
 		        String id_faculdade4 = scanner.nextLine();
-		        System.out.print("Endereço do professor: ");
+		        System.out.print("Endereço do professor:");
 		        String endereco4 = scanner.nextLine();
-		        System.out.print("Contato: ");
+		        System.out.print("Contato:");
 		        String contato4 = scanner.nextLine();
 		        Date data4 = new Date();
 		        
@@ -468,20 +469,75 @@ public class BibliotecaMain {
     }
 
     private static void removerMembro(Scanner scanner) {
-        // Lógica para remover um membro
+
+    	System.out.print("Insira o ID do membro a ser removido:");
+    	String ID = scanner.nextLine();
+    	
+    	//Inicializando variável do membro a ser deletado
+    	Membro membro_deletar = null;
+    	
+    	//Loop para achar o membro a partir do ID
+    	List<Membro> Membros = BibliotecaStatic.getMembros();
+    	for( Membro membro : Membros) {
+    		//
+    		System.out.println(membro.getId_faculdade());
+			System.out.println(ID);
+			//
+    		if(membro.getId_faculdade().equals(ID)) {
+    			membro_deletar = membro;
+    			break;
+    		}
+    	}
+    	
+    	//Checa se o membro existe
+    	if(membro_deletar == null) {
+    		System.out.println("Nenhum membro possui tal ID.");
+    		return;
+    	} else { //Caso existir, confirmar se realmente quer excluir o membro selecionado
+    		int opcao = 0;
+	        while(opcao == 0) {
+			    
+	        	System.out.println("Tem certeza que deseja deletar o membro" + membro_deletar.getNome() + " ?:");
+	    		System.out.println("1. Sim");
+	    		System.out.println("2. Não");
+	    		System.out.print("Insira a opção: ");
+				
+				int codigo_funcionario = scanner.nextInt();
+			    scanner.nextLine();
+				
+				switch (codigo_funcionario) {
+				case 1:
+					opcao = 1;
+					break;
+				case 2:
+					opcao = 2;
+					break;
+				default:
+			        System.out.print("Opção inválida. Por favor, escolha novamente: ");
+				}
+			    
+	        }
+    		
+	        //Deletar ou não deletar ? eis a questão
+	        if(opcao == 1) {
+	        	Membros.remove(membro_deletar);
+	        	System.out.println("Membro removido.");
+	        	return;
+	        } else {
+	        	System.out.println("Operação cancelada.");
+	        }
+    	}
+    	
+    	
+    	
         System.out.println("Operação de Remoção de Membro");
     }
 
     // Métodos para gerar relatórios e estatísticas
     private static void gerarRelatorioAtividadesMembros() {
         //Printar membros existentes
-    	
-    	List<Membro> Membros = BibliotecaStatic.getMembros();
-    	for( Membro membro : Membros) {
-    		System.out.println(membro.getNome());
-    	}
-    	
         System.out.println("Gerando Relatório de Atividades de Membros");
+        return;
     }
 
     private static void gerarRelatorioUsoItens() {

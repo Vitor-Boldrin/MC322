@@ -2,7 +2,7 @@ package biblioteca.models.Membro;
 import java.util.Date;
 
 public abstract class Membro {
-   private static int id;
+   //private static int id;
    private String nome;
    private String id_faculdade;
    private String endereco;

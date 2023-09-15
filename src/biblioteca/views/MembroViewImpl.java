@@ -14,7 +14,9 @@ public class MembroViewImpl implements MembroView {
 
     @Override
     public void mostrarListaMembros(List<Membro> membros) {
-        // Implementação da exibição da lista de membros
+    	for( Membro membro : membros) {
+    		System.out.println("Nome membro: " + membro.getNome() + ", ID: " + membro.getId_faculdade());
+    		}
     }
 
     @Override
