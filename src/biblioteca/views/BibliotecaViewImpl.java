@@ -2,6 +2,7 @@ package biblioteca.views;
 
 import java.util.List;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.ItemMultimidia.Status_item_multimidia;
 import biblioteca.controllers.BibliotecaController;
 
 public class BibliotecaViewImpl implements BibliotecaView {
@@ -14,6 +15,14 @@ public class BibliotecaViewImpl implements BibliotecaView {
     @Override
     public void mostrarItensDisponiveis(List<ItemMultimidia> itens) {
         // Implementação da exibição de itens disponíveis
+    	
+    	Status_item_multimidia disponivel = Status_item_multimidia.DISPONIVEL;
+    	
+    	for( ItemMultimidia item : itens) {
+    		if(item.getStatus().equals(disponivel)) {
+    			System.out.println(item.getTitulo());
+    		}
+    	}
     }
 
     @Override

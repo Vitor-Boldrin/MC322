@@ -100,7 +100,8 @@ public class BibliotecaMain {
             switch (opcaoItens) {
                 case 1:
                     List<ItemMultimidia> itens = bibliotecaController.consultarItensDisponiveis();
-                    bibliotecaView.mostrarItensDisponiveis(itens);
+                    BibliotecaViewImpl bibliotecaViewImpl = new BibliotecaViewImpl(bibliotecaController);
+                    bibliotecaViewImpl.mostrarItensDisponiveis(itens);
                     break;
                 case 2:
                     adicionarItem(scanner);
