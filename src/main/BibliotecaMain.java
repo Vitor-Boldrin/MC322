@@ -313,6 +313,11 @@ public class BibliotecaMain {
 		        String nome1 = scanner.nextLine();
 		        System.out.print("ID:");
 		        String id_faculdade1 = scanner.nextLine();
+		        //Checa se o ID já existe na biblioteca para evitar duplicidades
+		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade1)) {
+		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        }
+		        
 		        System.out.print("Endereço do estudante:");
 		        String endereco1 = scanner.nextLine();
 		        System.out.print("Contato:");
@@ -327,8 +332,11 @@ public class BibliotecaMain {
 		        		contato1,
 						data1);
 		        
+		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(aluno1);
+		        //Armazena ID
+		        BibliotecaStatic.getMembros_id().add(id_faculdade1);
 		        
 		        System.out.println("Estudante criado.");
 		        
@@ -342,6 +350,10 @@ public class BibliotecaMain {
 		        String nome2 = scanner.nextLine();
 		        System.out.print("ID:");
 		        String id_faculdade2 = scanner.nextLine();
+		        //Checa se o ID já existe na biblioteca para evitar duplicidades
+		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade2)) {
+		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        }
 		        System.out.print("Endereço do estudante:");
 		        String endereco2 = scanner.nextLine();
 		        System.out.print("Contato:");
@@ -358,6 +370,8 @@ public class BibliotecaMain {
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(aluno2);
+		      //Armazena ID
+		        BibliotecaStatic.getMembros_id().add(id_faculdade2);
 		        
 		        System.out.println("Estudante criado.");
 		    	return;
@@ -370,6 +384,10 @@ public class BibliotecaMain {
 		        String nome3 = scanner.nextLine();
 		        System.out.print("ID:");
 		        String id_faculdade3 = scanner.nextLine();
+		        //Checa se o ID já existe na biblioteca para evitar duplicidades
+		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade3)) {
+		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        }
 		        System.out.print("Endereço do funcionario:");
 		        String endereco3 = scanner.nextLine();
 		        System.out.print("Contato:");
@@ -424,6 +442,8 @@ public class BibliotecaMain {
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(funcionario);
+		      //Armazena ID
+		        BibliotecaStatic.getMembros_id().add(id_faculdade3);
 		        
 		        System.out.println("Funcionário criado.");
 		    	return;
@@ -436,6 +456,10 @@ public class BibliotecaMain {
 		        String nome4 = scanner.nextLine();
 		        System.out.print("ID:");
 		        String id_faculdade4 = scanner.nextLine();
+		        //Checa se o ID já existe na biblioteca para evitar duplicidades
+		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade4)) {
+		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        }
 		        System.out.print("Endereço do professor:");
 		        String endereco4 = scanner.nextLine();
 		        System.out.print("Contato:");
@@ -452,6 +476,8 @@ public class BibliotecaMain {
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(professor);
+		      //Armazena ID
+		        BibliotecaStatic.getMembros_id().add(id_faculdade4);
 		        
 		        System.out.println("Professor criado.");
 		        
