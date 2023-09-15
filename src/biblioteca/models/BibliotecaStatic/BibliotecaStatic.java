@@ -23,6 +23,9 @@ public class BibliotecaStatic {
 	static private Set<Emprestimo> emprestimos = new HashSet<>();
 	static private LinkedList<Reserva> reservas = new LinkedList<>();
 	
+	//Categorias
+	static private Set<String> categorias = new HashSet<>();
+	
 	static public LinkedList<Membro> getMembros() {
 		return membros;
 	}
@@ -53,5 +56,29 @@ public class BibliotecaStatic {
 	
 	static public void setItens_id(Set<Integer> itens_id_novo) {
 		itens_id = itens_id_novo;
+	}
+	
+	static public LinkedList<Reserva> getReservas() {
+		return reservas;
+	}
+	
+	static public void setReserva(LinkedList<Reserva> reservas_novo) {
+		reservas = reservas_novo;
+	}
+	
+	static public Set<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+	
+	static public void setEmprestimos(Set<Emprestimo> emprestimos_novo) {
+		emprestimos = emprestimos_novo;
+	}
+	
+	static public Set<String> getCategorias() {
+		return categorias;
+	}
+	
+	static public void setCategorias(Set<String> categorias_novo) {
+		categorias = categorias_novo;
 	}
 }
