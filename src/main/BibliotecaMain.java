@@ -99,7 +99,7 @@ public class BibliotecaMain {
 
             switch (opcaoItens) {
                 case 1:
-                    List<ItemMultimidia> itens = bibliotecaController.consultarItensDisponiveis();
+                    List<ItemMultimidia> itens = BibliotecaStatic.getItens();
                     BibliotecaViewImpl bibliotecaViewImpl = new BibliotecaViewImpl(bibliotecaController);
                     bibliotecaViewImpl.mostrarItensDisponiveis(itens);
                     break;
@@ -304,6 +304,7 @@ public class BibliotecaMain {
 		        //Instancia as variáveis do Item
 		        System.out.print("ID do Livro:");
 		        int id1 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getItens_id().contains(id1)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
@@ -328,6 +329,7 @@ public class BibliotecaMain {
 		        String isbn1 = scanner.nextLine();
 		        System.out.print("Edição:");
 		        int edicao1 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        System.out.print("Localização:");
 		        String loc1 = scanner.nextLine();
 		        System.out.print("Estado de Conservação:");
