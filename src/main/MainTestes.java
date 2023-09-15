@@ -15,14 +15,23 @@ public class MainTestes {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println("Chama");
+		String a = "olar";
 		
-		Scanner scanner = new Scanner(System.in);
+		Date data4 = new Date();
 		
-		String a = "oi";
-		String b = "ola";
+		Date data = new Date();
+        
+		//Estudante_graduacao.class;
 		
-		System.out.println(a.equals(a));
+        // Cria objeto
+        Estudante_graduacao professor = new Estudante_graduacao(
+        		"nome4",
+        		"",
+        		"endereco4",
+        		"contato4",
+				data4);
+		
+		System.out.println(data.getClass().equals(Estudante_graduacao.class));
 		
 	}
 

@@ -21,7 +21,22 @@ public class MembroControllerImpl implements MembroController {
 
     @Override
     public Membro buscarMembroPorIdentificacao(String identificacao) {
-        // Lógica de busca
-        return null;
+    	//Inicializando variável do membro a ser editado
+    	Membro membro_editar = null;
+    	
+    	//Loop para achar o membro a partir do ID
+    	List<Membro> Membros = BibliotecaStatic.getMembros();
+    	for( Membro membro : Membros) {
+    		if(membro.getId_faculdade().equals(identificacao)) {
+    			membro_editar = membro;
+    			break;
+    		}
+    	}
+    	//Checa se o membro existe
+    	if(membro_editar == null) {
+    		System.out.println("Nenhum membro possui tal ID.");
+    		return null;
+    	}
+        return membro_editar;
     }
 }

@@ -14,6 +14,7 @@ import biblioteca.models.Membro.Estudante_pos;
 import biblioteca.models.Membro.Funcionario;
 import biblioteca.models.Membro.Membro;
 import biblioteca.models.Membro.Nivel_acesso;
+import biblioteca.models.Membro.Professor;
 import biblioteca.views.*;
 
 import java.util.Date;
@@ -327,7 +328,7 @@ public class BibliotecaMain {
 		        Status_item_multimidia status1 = Status_item_multimidia.DISPONIVEL;
 		        System.out.print("ISBN:");
 		        String isbn1 = scanner.nextLine();
-		        System.out.print("Edição:");
+		        System.out.print("Edição (apenas o número):");
 		        int edicao1 = scanner.nextInt();
 		        scanner.nextLine(); //capturar o \n
 		        System.out.print("Localização:");
@@ -367,6 +368,7 @@ public class BibliotecaMain {
 		        //Instancia as variáveis do Item
 		        System.out.print("ID do Livro:");
 		        int id2 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getItens_id().contains(id2)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
@@ -430,6 +432,7 @@ public class BibliotecaMain {
 		        //Instancia as variáveis do Item
 		        System.out.print("ID do CD:");
 		        int id3 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getItens_id().contains(id3)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
@@ -488,6 +491,7 @@ public class BibliotecaMain {
 		        //Instancia as variáveis do Item
 		        System.out.print("ID do DVD:");
 		        int id4 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getItens_id().contains(id4)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
@@ -555,6 +559,7 @@ public class BibliotecaMain {
 		        //Instancia as variáveis do Item
 		        System.out.print("ID do Item:");
 		        int id5 = scanner.nextInt();
+		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getItens_id().contains(id5)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
@@ -869,7 +874,7 @@ public class BibliotecaMain {
 		        Date data4 = new Date();
 		        
 		        // Cria objeto
-		        Estudante_graduacao professor = new Estudante_graduacao(
+		        Professor professor = new Professor(
 		        		nome4,
 		        		id_faculdade4,
 		        		endereco4,
@@ -894,6 +899,27 @@ public class BibliotecaMain {
     private static void editarMembro(Scanner scanner) {
         // Lógica para editar um membro existente
         System.out.println("Operação de Edição de Membro");
+        System.out.println("----------------------------");
+        System.out.print("Insira o ID do membro a ser editado:");
+    	String ID = scanner.nextLine();
+    	
+    	Membro membro_editar = membroController.buscarMembroPorIdentificacao(ID);
+    	//Atualizando atributos comuns
+    	
+    	//Cada classe tem seus atributos, então, separando
+    	if(membro_editar.getClass().equals(Estudante_graduacao.class)) {
+    		
+    	} else if(membro_editar.getClass().equals(Estudante_pos.class)) {
+    		
+    	} else if(membro_editar.getClass().equals(Funcionario.class)) {
+    		
+    	} else if(membro_editar.getClass().equals(Professor.class)) {
+    		
+    	} else {
+    		System.out.println("ERRO CRÍTICO: CONTATAR O ADMINISTRADOR URGENTEMENTE!");
+    	}
+    	
+    	
     }
 
     private static void removerMembro(Scanner scanner) {
@@ -904,14 +930,7 @@ public class BibliotecaMain {
     	//Inicializando variável do membro a ser deletado
     	Membro membro_deletar = null;
     	
-    	//Loop para achar o membro a partir do ID
-    	List<Membro> Membros = BibliotecaStatic.getMembros();
-    	for( Membro membro : Membros) {
-    		if(membro.getId_faculdade().equals(ID)) {
-    			membro_deletar = membro;
-    			break;
-    		}
-    	}
+    	membro_deletar = membroController.buscarMembroPorIdentificacao(ID);
     	
     	//Checa se o membro existe
     	if(membro_deletar == null) {
@@ -948,6 +967,7 @@ public class BibliotecaMain {
 	        	BibliotecaStatic.getMembros_id().remove(membro_deletar.getId_faculdade());
 	        	
 	        	//Remove do "banco de dados"
+	        	List<Membro> Membros = BibliotecaStatic.getMembros();
 	        	Membros.remove(membro_deletar);
 	        	System.out.println("Membro removido.");
 	        	return;
