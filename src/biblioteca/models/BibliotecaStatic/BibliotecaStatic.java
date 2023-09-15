@@ -3,6 +3,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
+import biblioteca.models.Controle_livros.Emprestimo;
+import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.Membro.Membro;
 
@@ -16,6 +18,10 @@ public class BibliotecaStatic {
 	//Administração Itens
 	static private LinkedList<ItemMultimidia> itens = new LinkedList<>();
 	static private Set<Integer> itens_id = new HashSet<>();
+	
+	//Controle itens
+	static private Set<Emprestimo> emprestimos = new HashSet<>();
+	static private LinkedList<Reserva> reservas = new LinkedList<>();
 	
 	static public LinkedList<Membro> getMembros() {
 		return membros;
