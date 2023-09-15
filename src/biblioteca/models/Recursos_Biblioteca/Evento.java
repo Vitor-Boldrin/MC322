@@ -6,7 +6,7 @@ import biblioteca.models.Membro.Membro;
 
 public class Evento {
 	private Tipo_evento tipo_evento;
-	private LinkedList<Membro> participantes = LinkedList<>();
+	private LinkedList<Membro> participantes = new LinkedList<>();
 	
 	public Evento(Tipo_evento tipo_evento) {
 		this.tipo_evento = tipo_evento;
@@ -19,6 +19,14 @@ public class Evento {
 	
 	public void setTipo_evento(Tipo_evento tipo_evento) {
 	    this.tipo_evento  = tipo_evento;
+	}
+	
+	public LinkedList<Membro> getParticipantes() {
+		return this.participantes;
+	}
+	
+	public void setParticipantes(LinkedList<Membro> participantes) {
+		this.participantes = participantes;
 	}
 	
 	// Abstract class com métodos e atributos comuns dos 3 tipos de evento
@@ -45,6 +53,10 @@ public class Evento {
 			public Tipo_evento getTipo_evento() {
 				return tipo_evento;
 			}
+			
+			public LinkedList<Membro> getParticipantes() {
+				return participantes;
+			} 
 			
 			public Date getData_inicio() {
 			      return this.data_inicio;

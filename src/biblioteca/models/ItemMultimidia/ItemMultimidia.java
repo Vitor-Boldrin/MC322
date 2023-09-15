@@ -1,5 +1,8 @@
 package biblioteca.models.ItemMultimidia;
 
+import java.util.LinkedList;
+import biblioteca.models.ItemMultimidia.Comentario;
+
 public abstract class ItemMultimidia {
 
 	private int id;
@@ -11,6 +14,7 @@ public abstract class ItemMultimidia {
 	private String sinopse;
 	private String capa;
 	private Status_item_multimidia status;
+	private LinkedList<Comentario> comentarios = new LinkedList<>();
 	
 	public ItemMultimidia(
 			int id,
@@ -108,6 +112,14 @@ public abstract class ItemMultimidia {
 	
 	public void setStatus(Status_item_multimidia status) {
 	    this.status = status;
+	}
+	
+	public LinkedList<Comentario> getComentarios() {
+	      return this.comentarios;
+	}
+	
+	public void setComentarios(LinkedList<Comentario> comentarios) {
+	    this.comentarios = comentarios;
 	}
 	
 }
