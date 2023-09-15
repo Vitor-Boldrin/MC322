@@ -13,8 +13,9 @@ public class BibliotecaStatic {
 	static private LinkedList<Membro> membros = new LinkedList<>();
 	static private Set<String> membros_id = new HashSet<>();
 	
-	//Administração Ites
+	//Administração Itens
 	static private LinkedList<ItemMultimidia> itens = new LinkedList<>();
+	static private Set<Integer> itens_id = new HashSet<>();
 	
 	static public LinkedList<Membro> getMembros() {
 		return membros;
@@ -38,5 +39,13 @@ public class BibliotecaStatic {
 	
 	static public void setItens(LinkedList<ItemMultimidia> itens_novo) {
 		itens = itens_novo;
+	}
+	
+	static public Set<Integer> getItens_id() {
+		return itens_id;
+	}
+	
+	static public void setItens_id(Set<Integer> itens_id_novo) {
+		itens_id = itens_id_novo;
 	}
 }
