@@ -538,9 +538,9 @@ public class BibliotecaMain {
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro3);
+		        BibliotecaStatic.getItens().add(livro4);
 		        //Armazena ID
-		        BibliotecaStatic.getItens_id().add(id3);
+		        BibliotecaStatic.getItens_id().add(id4);
 		        
 		        System.out.println("CD de Áudio Adicionado.");
 		        
@@ -600,9 +600,9 @@ public class BibliotecaMain {
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro3);
+		        BibliotecaStatic.getItens().add(livro5);
 		        //Armazena ID
-		        BibliotecaStatic.getItens_id().add(id3);
+		        BibliotecaStatic.getItens_id().add(id5);
 		        
 		        System.out.println("CD de Áudio Adicionado.");
 		        
@@ -620,7 +620,63 @@ public class BibliotecaMain {
     }
 
     private static void removerItem(Scanner scanner) {
-        // Lógica para remover um item
+    	System.out.print("Insira o ID do livro a ser removido:");
+    	int ID = scanner.nextInt();
+    	
+    	//Inicializando variável do membro a ser deletado
+    	ItemMultimidia item_deletar = null;
+    	
+    	//Loop para achar o Item a partir do ID
+    	List<ItemMultimidia> itens = BibliotecaStatic.getItens();
+    	for( ItemMultimidia item : itens) {
+    		if(item.getId() == ID ) {
+    			item_deletar = item;
+    			break;
+    		}
+    	}
+    	
+    	//Checa se o Item existe
+    	if(item_deletar == null) {
+    		System.out.println("Nenhum item possui tal ID.");
+    		return;
+    	} else { //Caso existir, confirmar se realmente quer excluir o item selecionado
+    		int opcao = 0;
+	        while(opcao == 0) {
+			    
+	        	System.out.println("Tem certeza que deseja deletar o item" + item_deletar.getTitulo() + " ?:");
+	    		System.out.println("1. Sim");
+	    		System.out.println("2. Não");
+	    		System.out.print("Insira a opção: ");
+				
+				int codigo_excl = scanner.nextInt();
+			    scanner.nextLine();
+				
+				switch (codigo_excl) {
+				case 1:
+					opcao = 1;
+					break;
+				case 2:
+					opcao = 2;
+					break;
+				default:
+			        System.out.print("Opção inválida. Por favor, escolha novamente: ");
+				}
+			    
+	        }
+    		
+	        //Deletar ou não deletar ? eis a questão
+	        if(opcao == 1) {
+	        	//Remove o ID
+	        	BibliotecaStatic.getItens_id().remove(item_deletar.getId());
+	        	
+	        	//Remove do "banco de dados"
+	        	itens.remove(item_deletar);
+	        	System.out.println("Item removido.");
+	        	return;
+	        } else {
+	        	System.out.println("Operação cancelada.");
+	        }
+    	}
     	
         System.out.println("Operação de Remoção de Item");
     }
