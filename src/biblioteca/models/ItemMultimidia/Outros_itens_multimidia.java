@@ -8,6 +8,7 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 	private String estado_conservacao;
 	
 	public Outros_itens_multimidia(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -23,6 +24,7 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 			) {
 	
 		super(
+				id,
 				titulo,
 				autor,
 				editora,

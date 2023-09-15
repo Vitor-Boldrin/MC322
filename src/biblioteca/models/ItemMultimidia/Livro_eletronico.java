@@ -10,6 +10,7 @@ public class Livro_eletronico extends ItemMultimidia {
 	private Date data_disponibilidade;
 	
 	public Livro_eletronico(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -26,6 +27,7 @@ public class Livro_eletronico extends ItemMultimidia {
 			) {
 	
 		super(
+				id,
 				titulo,
 				autor,
 				editora,

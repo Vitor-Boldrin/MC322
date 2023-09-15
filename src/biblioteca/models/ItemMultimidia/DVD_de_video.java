@@ -8,6 +8,7 @@ public class DVD_de_video extends ItemMultimidia {
 	private String estado_conservacao;
 	
 	public DVD_de_video(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -23,6 +24,7 @@ public class DVD_de_video extends ItemMultimidia {
 			) {
 	
 		super(
+				id,
 				titulo,
 				autor,
 				editora,

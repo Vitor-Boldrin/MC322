@@ -7,6 +7,7 @@ public class CD_de_audio extends ItemMultimidia {
 	private String estado_conservacao;
 	
 	public CD_de_audio(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -21,6 +22,7 @@ public class CD_de_audio extends ItemMultimidia {
 			) {
 	
 		super(
+				id,
 				titulo,
 				autor,
 				editora,

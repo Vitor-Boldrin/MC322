@@ -8,6 +8,7 @@ public class Livro_fisico extends ItemMultimidia {
 	private String estado_conservacao;
 	
 	public Livro_fisico(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -23,6 +24,7 @@ public class Livro_fisico extends ItemMultimidia {
 			) {
 	
 		super(
+				id,
 				titulo,
 				autor,
 				editora,

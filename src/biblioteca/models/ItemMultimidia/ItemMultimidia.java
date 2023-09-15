@@ -2,6 +2,7 @@ package biblioteca.models.ItemMultimidia;
 
 public abstract class ItemMultimidia {
 
+	private int id;
 	private String titulo;
 	private String autor;
 	private String editora;
@@ -12,6 +13,7 @@ public abstract class ItemMultimidia {
 	private Status_item_multimidia status;
 	
 	public ItemMultimidia(
+			int id,
 			String titulo,
 			String autor,
 			String editora,
@@ -21,6 +23,7 @@ public abstract class ItemMultimidia {
 			String capa,
 			Status_item_multimidia status
 			) {
+		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
@@ -34,6 +37,14 @@ public abstract class ItemMultimidia {
 	public abstract short numero_disponivel();
 	
 	public abstract short numero_total();
+	
+	public int getId() {
+	      return this.id;
+	}
+	
+	public void setId(int id) {
+	    this.id = id;
+	}
 	
 	public String getTitulo() {
 	      return this.titulo;
