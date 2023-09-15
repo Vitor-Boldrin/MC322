@@ -1,9 +1,12 @@
 package biblioteca.models.Recursos_Biblioteca;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.LinkedList;
+import biblioteca.models.Membro.Membro;
 
 public class Evento {
 	private Tipo_evento tipo_evento;
+	private LinkedList<Membro> participantes = LinkedList<>();
 	
 	public Evento(Tipo_evento tipo_evento) {
 		this.tipo_evento = tipo_evento;
