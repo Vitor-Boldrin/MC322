@@ -316,6 +316,7 @@ public class BibliotecaMain {
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade1)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        	return;
 		        }
 		        
 		        System.out.print("Endereço do estudante:");
@@ -353,6 +354,7 @@ public class BibliotecaMain {
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade2)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        	return;
 		        }
 		        System.out.print("Endereço do estudante:");
 		        String endereco2 = scanner.nextLine();
@@ -387,6 +389,7 @@ public class BibliotecaMain {
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade3)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        	return;
 		        }
 		        System.out.print("Endereço do funcionario:");
 		        String endereco3 = scanner.nextLine();
@@ -459,6 +462,7 @@ public class BibliotecaMain {
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
 		        if(BibliotecaStatic.getMembros_id().contains(id_faculdade4)) {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        	return;
 		        }
 		        System.out.print("Endereço do professor:");
 		        String endereco4 = scanner.nextLine();
@@ -505,10 +509,6 @@ public class BibliotecaMain {
     	//Loop para achar o membro a partir do ID
     	List<Membro> Membros = BibliotecaStatic.getMembros();
     	for( Membro membro : Membros) {
-    		//
-    		System.out.println(membro.getId_faculdade());
-			System.out.println(ID);
-			//
     		if(membro.getId_faculdade().equals(ID)) {
     			membro_deletar = membro;
     			break;
@@ -546,6 +546,10 @@ public class BibliotecaMain {
     		
 	        //Deletar ou não deletar ? eis a questão
 	        if(opcao == 1) {
+	        	//Remove o ID
+	        	BibliotecaStatic.getMembros_id().remove(membro_deletar.getId_faculdade());
+	        	
+	        	//Remove do "banco de dados"
 	        	Membros.remove(membro_deletar);
 	        	System.out.println("Membro removido.");
 	        	return;
@@ -553,10 +557,6 @@ public class BibliotecaMain {
 	        	System.out.println("Operação cancelada.");
 	        }
     	}
-    	
-    	
-    	
-        System.out.println("Operação de Remoção de Membro");
     }
 
     // Métodos para gerar relatórios e estatísticas
