@@ -1,7 +1,6 @@
 package biblioteca.models.ItemMultimidia;
 
 import java.util.LinkedList;
-import biblioteca.models.ItemMultimidia.Comentario;
 
 public abstract class ItemMultimidia {
 

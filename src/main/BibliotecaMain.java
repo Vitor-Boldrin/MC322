@@ -265,6 +265,19 @@ public class BibliotecaMain {
     private static void realizarEmprestimo(Scanner scanner) {
         // Lógica para realizar um empréstimo
         System.out.println("Operação de Empréstimo de Itens");
+        
+        //Primeiro, colentado os objetos, ITEM e MEMBRO
+        System.out.print("Insira o ID do membro requisitando o empréstimo:");
+    	String id_membro = scanner.nextLine();
+    	Membro membro = membroController.buscarMembroPorIdentificacao(id_membro);
+    	
+    	System.out.print("Insira o ID do livro a ser emprestado:");
+    	int id_livro = scanner.nextInt();
+    	scanner.nextLine(); //captura o \n
+    	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
+    	
+    	// Joga na função e boa
+    	bibliotecaController.emprestarItem(membro, item);
     }
 
     private static void realizarRenovacao(Scanner scanner) {
