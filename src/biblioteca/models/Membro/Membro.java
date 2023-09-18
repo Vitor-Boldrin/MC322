@@ -1,5 +1,9 @@
 package biblioteca.models.Membro;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Set;
+
+import biblioteca.models.Controle_livros.Emprestimo;
 
 public abstract class Membro {
    //private static int id;
@@ -11,6 +15,7 @@ public abstract class Membro {
    private short limite_emprestimo;
    private short prazo_emprestimo;
    private float multa_por_atraso;
+   private LinkedList<Emprestimo> historico_emprestimos = new LinkedList<>();
 
    public Membro(String nome, 
 		   String id_faculdade, 
@@ -87,6 +92,14 @@ public abstract class Membro {
 	
 	public void setMulta_por_atraso(float multa_por_atraso) {
 		   this.multa_por_atraso = multa_por_atraso;
+	}
+	
+	public LinkedList<Emprestimo> getHistorico_emprestimos() {
+		return historico_emprestimos;
+	}
+	
+	public void setHistorico_emprestimos(LinkedList<Emprestimo> historico_emprestimos) {
+		this.historico_emprestimos = historico_emprestimos;
 	}
 
 }

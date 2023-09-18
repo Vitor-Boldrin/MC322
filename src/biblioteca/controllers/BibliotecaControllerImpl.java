@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
+import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.Status_item_multimidia;
@@ -26,11 +27,23 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     public boolean emprestarItem(Membro membro, ItemMultimidia item) {
         // Primeiro, checar se o livro está disponível
     	Status_item_multimidia status_item = item.getStatus();
-    	if(status_item.equals(Status_item_multimidia.DISPONIVEL)) {
-    		//Continua
+    	
+    	if(status_item.equals(Status_item_multimidia.DISPONIVEL)) { // DISPONÍVEL
+    		//Cria o emprestimo
+    		Date data = new Date();
+    		Emprestimo emprestimo = new Emprestimo(data,data,membro,item);
+    		
+    		//Adiciona o emprestimo no Set
+    		BibliotecaStatic.getEmprestimos().add(emprestimo);
+    		item.setStatus(Status_item_multimidia.EMPRESTADO);
+    		
+    		System.out.println("Livro emprestado com sucesso.");
+    		
+    		return true;
+    		
     	} else if(status_item.equals(Status_item_multimidia.EMPRESTADO)
     			|| status_item.equals(Status_item_multimidia.RESERVADO)
-    			|| status_item.equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) {
+    			|| status_item.equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) { // NAO DISPONÍVEL
     		
     		//Cria a reserva
     		Date data = new Date();
@@ -38,14 +51,17 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     		
     		//Adiciona na lista
     		BibliotecaStatic.getReservas().add(reserva);
+    		item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
+    		
+    		System.out.println("Livro está emprestado, porém uma reserva foi gerada");
+    		
+    		return false;
     		
     		
-    	} else {
+    	} else { // O LIVRO EXPLODIU
     		System.out.println("Livro está indisponível");
     		return false;
     	}
-    	
-        return true;
     }
 
     @Override
