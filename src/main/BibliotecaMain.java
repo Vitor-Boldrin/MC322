@@ -1072,6 +1072,28 @@ public class BibliotecaMain {
     private static void gerarRelatorioAtividadesMembros() {
         //Printar membros existentes
         System.out.println("Gerando Relatório de Atividades de Membros");
+        
+        LinkedList<Membro> membros = BibliotecaStatic.getMembros();
+        Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
+        LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
+        
+        for( Membro membro : membros) {
+        	System.out.println("------------------------------------------");
+    		System.out.println(membro.getNome()+':');
+    		System.out.println("Possui os seguintes itens emprestados:");
+    		for( Emprestimo emprestimo : emprestimos) {
+        		if(emprestimo.getPessoa().equals(membro)) {
+        			System.out.println(emprestimo.getItem_multimidia().getTitulo());
+        		}
+        	}
+    		System.out.println("Possui os seguintes itens reservados:");
+    		for( Reserva reserva : reservas) {
+        		if(reserva.getPessoa().equals(membro)) {
+        			System.out.println(reserva.getItem_multimidia().getTitulo());
+        		}
+        	}
+    	}
+        
         return;
     }
 
@@ -1088,6 +1110,12 @@ public class BibliotecaMain {
     private static void gerarRelatorioDisponibilidadeItens() {
         // Lógica para gerar o Relatório de Disponibilidade de Itens
         System.out.println("Gerando Relatório de Disponibilidade de Itens");
+        
+        LinkedList<ItemMultimidia> itens = BibliotecaStatic.getItens();
+        
+        for( ItemMultimidia item : itens) {
+    		System.out.println(item.getTitulo() + ' ' + item.getStatus());
+    	}
     }
 
     private static void gerarEstatisticasUsoPorPerfil() {
