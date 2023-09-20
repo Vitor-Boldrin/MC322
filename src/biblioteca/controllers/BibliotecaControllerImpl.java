@@ -89,24 +89,27 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     	} else if(status_item.equals(Status_item_multimidia.RESERVADO)) {
     		//Livro está reservado
     		System.out.println("Livro está reservado.");
+
     		
-    		//Checando se o próximo na lista é o membro
+    		//Checando se o próximo na lista é o membro e se ele tem a reserva
     		LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
     		
     		int aux = 0;
+    		int aux2 = 0;
     		Reserva reserva_membro = null;
     		
     		for( Reserva reserva : reservas) {
     			if(reserva.getItem_multimidia().equals(item)) {
-					aux++;
+					aux++; 
 		    		if(reserva.getPessoa().equals(membro)) {
 		    			reserva_membro = reserva;
-		    			break;
+		    			aux2 = 1;
+		    			if(aux == 1) { break; } 
 		    		}
     			}
         	}
     		
-    		if(aux == 1 && reserva_membro != null) {
+    		if(aux == 1 && reserva_membro != null) { // Se a primeira vez que o livro for encontrado e for do membro, ele é o proximo na fila
     			//O membro é o próximo na fila
     			//Dando lhe o livro e cancelando a reserva
     			
@@ -125,7 +128,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
         		reservas.remove(reserva_membro);
     			
     			
-    		} else {
+    		} else if(aux2 == 0) { // Nao foi encontrado uma reserva desse livro para o membro
     			System.out.println("O membro ainda não tem a reserva");
     			
     			//Cria a reserva
@@ -138,7 +141,11 @@ public class BibliotecaControllerImpl implements BibliotecaController {
         		System.out.println("Uma reserva foi gerada");
         		
         		return false;
+    		} else if(aux2 == 1) { //Existe uma reserva do membro em cima do livro, porém ele não é o proximo
+    			System.out.println("Membro tem a reserva porém não é o próximo da fila.");
+    			return false;
     		}
+    		
     		
     	} else { // O LIVRO EXPLODIU
     		System.out.println("Livro está indisponível");
