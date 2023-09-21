@@ -2,6 +2,7 @@ package main;
 
 import biblioteca.controllers.*;
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
+import biblioteca.models.BibliotecaStatic.ItemBiblioteca;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.ItemMultimidia.CD_de_audio;
@@ -30,11 +31,13 @@ public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
     private static MembroController membroController;
     private static RelatorioController relatorioController;
+    private static ItemBiblioteca<ItemMultimidia> bibliotecaItemBiblioteca;
 
     public static void main(String[] args) {
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
+        bibliotecaItemBiblioteca = new ItemBiblioteca();
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
         MembroView membroView = new MembroViewImpl(membroController);
@@ -129,7 +132,7 @@ public class BibliotecaMain {
                     fazerReserva(scanner);
                     break;
                 case 8:
-                    devolverItem(scanner);
+                	devolverMainItem(scanner);
                 case 9:
                     return;
                 default:
@@ -285,7 +288,7 @@ public class BibliotecaMain {
     	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
     	
     	// Joga na função e boa
-    	bibliotecaController.emprestarItem(membro, item);
+    	bibliotecaItemBiblioteca.emprestarItem(membro, item);
     }
 
     private static void realizarRenovacao(Scanner scanner) {
@@ -296,9 +299,20 @@ public class BibliotecaMain {
     private static void fazerReserva(Scanner scanner) {
         // Lógica para fazer uma reserva de item
         System.out.println("Operação de Reserva de Itens");
+      //Primeiro, colentado os objetos, ITEM e MEMBRO
+        System.out.print("Insira o ID do membro que está reservando o item:");
+    	String id_membro = scanner.nextLine();
+    	Membro membro = membroController.buscarMembroPorIdentificacao(id_membro);
+    	
+    	System.out.print("Insira o ID do livro a ser reservado:");
+    	int id_livro = scanner.nextInt();
+    	scanner.nextLine(); //captura o \n
+    	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
+        
+        bibliotecaItemBiblioteca.reservarItem(membro, item);
     }
     
-    private static void devolverItem(Scanner scanner) {
+    private static void devolverMainItem(Scanner scanner) {
     	
     	//Primeiro, colentado os objetos, ITEM e MEMBRO
         System.out.print("Insira o ID do membro que está devolvendo o item:");
@@ -310,62 +324,7 @@ public class BibliotecaMain {
     	scanner.nextLine(); //captura o \n
     	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
     	
-    	//Procurando o emprestimo
-    	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
-    	for (Emprestimo emprestimo : emprestimos) {
-    		if(emprestimo.getItem_multimidia().equals(item) && emprestimo.getPessoa().equals(membro)) {
-    			//Encontrado o emprestimo
-    			//Se desfazendo dele
-    			emprestimos.remove(emprestimo);
-    			//Adicionando esse emprestimo ao histórico do membro
-    			membro.getHistorico_emprestimos().add(emprestimo);
-    			//Avaliando o status do livro
-    			
-    			if(item.getStatus().equals(Status_item_multimidia.EMPRESTADO)) {
-    				//Livro estava apenas emprestado, apenas alterando o status
-    				item.setStatus(Status_item_multimidia.DISPONIVEL);
-    				System.out.println("Livro devolvido");
-    				return;
-    				
-    			} else if (item.getStatus().equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) {
-    				//Livro estava emprestado também, atribuindo o emprestimo à reserva que tem dele
-    				//Iterando a lista de reservas
-    				
-    				boolean aux = false; //AUX irá no ajudar na iteração para ver se o item possui mais de uma reserva
-    				LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
-    				
-    				ListIterator<Reserva> iter = reservas.listIterator();
-    				while(iter.hasNext()) {
-    					Reserva reserva = iter.next();
-    					// procurando o reserva que existe
-    					if(reserva.getItem_multimidia().equals(item)) {
-    						
-    						if(aux == false) {
-	    						//encontrado a reserva
-	    						aux = true;
-	    						//deletando a reserva
-	    						reservas.remove(reserva);
-	    						//criando novo emprestimo dessa reserva que foi deletada
-	    						Emprestimo novo_emprestimo = new Emprestimo(null, null, reserva.getPessoa(), item);
-	    						emprestimos.add(novo_emprestimo);
-	    						//alterando status livro
-	    						item.setStatus(Status_item_multimidia.EMPRESTADO);
-    						} else {
-    							//item tinha uma outra reserva, retornando ao status emprestado e reservado
-    							item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
-    						}
-    					}
-    					
-    					System.out.println("Livro devolvido criado um novo emprestimo.");
-    					return;
-    				}
-    				
-    			}
-    		}
-    	}
-    	
-    	System.out.println("Não foi encontrado o emprestimo no sistema.");
-    	return;
+    	bibliotecaItemBiblioteca.devolverItem(membro, item);
     }
 
     // Métodos para adicionar, editar e remover itens e membros
