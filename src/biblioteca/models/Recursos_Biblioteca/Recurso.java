@@ -5,11 +5,9 @@ import biblioteca.models.ItemMultimidia.StatusItem;
 public class Recurso {
 	
 	private Formato_multimidia formato_multimidia;
-	static private StatusItem statusItem;
 	
 	public Recurso(Formato_multimidia formato_multimidia) {
 		this.formato_multimidia = formato_multimidia;
-		Recurso.statusItem = StatusItem.DISPONIVEL;
 	}
 	
 	//geters e seters
@@ -25,10 +23,12 @@ public class Recurso {
 	public abstract class Recurso_multimidia {
 		private String titulo;
 		private String detalhes;
+		private StatusItem statusItem;
 		
 		public Recurso_multimidia(String titulo, String detalhes) {
 			this.titulo = titulo;
 			this.detalhes = detalhes;
+			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		//metodos

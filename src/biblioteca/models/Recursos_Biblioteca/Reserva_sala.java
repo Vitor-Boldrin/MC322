@@ -1,12 +1,13 @@
 package biblioteca.models.Recursos_Biblioteca;
 import java.util.Date;
 
+import biblioteca.models.ItemMultimidia.StatusItem;
+
 public class Reserva_sala {
 
 	private Date data_reserva;
 	private Date hora_inicio;
 	private Date hora_fim;
-	private Status_reserva_sala status_reserva_sala;
 	
 	public Reserva_sala(
 			Date data_reserva,
@@ -43,18 +44,12 @@ public class Reserva_sala {
 	    this.hora_fim = hora_fim;
 	}
 	
-	public Status_reserva_sala getStatus_reserva_sala() {
-	      return this.status_reserva_sala;
-	}
-	
-	public void setStatus_reserva_sala(Status_reserva_sala status_reserva_sala) {
-	    this.status_reserva_sala = status_reserva_sala;
-	}
-	
 	// Parent Class
 	public abstract class Sala_biblioteca {
+		private StatusItem statusItem;
 		
 		public Sala_biblioteca() {
+			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		//geters da outer class
@@ -70,8 +65,12 @@ public class Reserva_sala {
 			return hora_fim;
 		}
 		
-		public Status_reserva_sala getStatus_reserva_sala() {
-			return status_reserva_sala;
+		public StatusItem getStatusItem() {
+			return statusItem;
+		}
+		
+		public void getStatusItem(StatusItem statusItemNovo) {
+			statusItem = statusItemNovo;
 		}
 		
 	}
