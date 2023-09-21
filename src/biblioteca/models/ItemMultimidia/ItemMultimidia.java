@@ -12,7 +12,7 @@ public abstract class ItemMultimidia {
 	private String genero;
 	private String sinopse;
 	private String capa;
-	private Status_item_multimidia status;
+	private StatusItem status;
 	private LinkedList<Comentario> comentarios = new LinkedList<>();
 	
 	public ItemMultimidia(
@@ -24,7 +24,7 @@ public abstract class ItemMultimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			Status_item_multimidia status
+			StatusItem status
 			) {
 		this.id = id;
 		this.titulo = titulo;
@@ -105,11 +105,11 @@ public abstract class ItemMultimidia {
 	    this.capa = capa;
 	}
 	
-	public Status_item_multimidia getStatus() {
+	public StatusItem getStatus() {
 	      return this.status;
 	}
 	
-	public void setStatus(Status_item_multimidia status) {
+	public void setStatus(StatusItem status) {
 	    this.status = status;
 	}
 	

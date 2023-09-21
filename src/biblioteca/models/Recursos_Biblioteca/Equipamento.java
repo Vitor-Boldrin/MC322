@@ -1,5 +1,7 @@
 package biblioteca.models.Recursos_Biblioteca;
 
+import biblioteca.models.ItemMultimidia.StatusItem;
+
 public class Equipamento {
 	private Categoria_equipamento categoria_equipamento;
 	
@@ -22,12 +24,12 @@ public class Equipamento {
 	public abstract class Equipamento_emprestimo {
 		private String tipo;
 		private String configuracao;
-		private Status_equipamento status_equipamento;
+		private StatusItem statusItem;
 		
-		public Equipamento_emprestimo(String tipo, String configuracao, Status_equipamento status_equipamento) {
+		public Equipamento_emprestimo(String tipo, String configuracao, StatusItem statusItem) {
 			this.tipo = tipo;
 			this.configuracao = configuracao;
-			this.status_equipamento = status_equipamento;
+			this.statusItem = statusItem;
 		}
 		
 		public Categoria_equipamento getCategoria_equipamento() {
@@ -51,12 +53,12 @@ public class Equipamento {
 		    this.configuracao = configuracao;
 		}
 		
-		public Status_equipamento getStatus_equipamento() {
-		      return this.status_equipamento;
+		public StatusItem getStatus_equipamento() {
+		      return this.statusItem;
 		}
 		
-		public void setStatus_equipamento(Status_equipamento status_equipamento) {
-		    this.status_equipamento = status_equipamento;
+		public void setStatus_equipamento(StatusItem statusItem) {
+		    this.statusItem = statusItem;
 		}
 		
 	}
@@ -66,8 +68,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Informatica extends Equipamento_emprestimo {
 		
-		public Informatica(String tipo, String configuracao, Status_equipamento status_equipamento) {
-			super(tipo,configuracao,status_equipamento);
+		public Informatica(String tipo, String configuracao, StatusItem statusItem) {
+			super(tipo,configuracao,statusItem);
 		}
 		
 	}
@@ -75,8 +77,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Audiovisual extends Equipamento_emprestimo {
 		
-		public Audiovisual(String tipo, String configuracao, Status_equipamento status_equipamento) {
-			super(tipo,configuracao,status_equipamento);
+		public Audiovisual(String tipo, String configuracao, StatusItem statusItem) {
+			super(tipo,configuracao,statusItem);
 		}
 		
 	}
@@ -84,8 +86,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Impressao extends Equipamento_emprestimo {
 		
-		public Impressao(String tipo, String configuracao, Status_equipamento status_equipamento) {
-			super(tipo,configuracao,status_equipamento);
+		public Impressao(String tipo, String configuracao, StatusItem statusItem) {
+			super(tipo,configuracao,statusItem);
 		}
 		
 	}

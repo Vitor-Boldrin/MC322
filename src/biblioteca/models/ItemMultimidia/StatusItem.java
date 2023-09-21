@@ -1,5 +1,5 @@
 package biblioteca.models.ItemMultimidia;
 
-public enum Status_item_multimidia {
+public enum StatusItem {
 	DISPONIVEL, RESERVADO, EMPRESTADO, EMPRESTADO_E_RESERVADO, INDISPONIVEL
 }

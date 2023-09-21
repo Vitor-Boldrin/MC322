@@ -20,7 +20,7 @@ public class DVD_de_video extends ItemMultimidia {
 			String duracao,
 			boolean legendas_e_audio,
 			String estado_conservacao,
-			Status_item_multimidia status
+			StatusItem status
 			) {
 	
 		super(

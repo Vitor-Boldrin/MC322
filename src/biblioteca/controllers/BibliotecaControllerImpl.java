@@ -10,7 +10,7 @@ import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
-import biblioteca.models.ItemMultimidia.Status_item_multimidia;
+import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Membro;
 
 public class BibliotecaControllerImpl implements BibliotecaController {

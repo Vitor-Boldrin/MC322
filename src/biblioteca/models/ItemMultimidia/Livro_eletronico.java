@@ -18,7 +18,7 @@ public class Livro_eletronico extends ItemMultimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			Status_item_multimidia status,
+			StatusItem status,
 			String formato,
 			String fomato_arquivo,
 			String url_acesso,

@@ -11,7 +11,7 @@ import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.Livro_eletronico;
 import biblioteca.models.ItemMultimidia.Livro_fisico;
 import biblioteca.models.ItemMultimidia.Outros_itens_multimidia;
-import biblioteca.models.ItemMultimidia.Status_item_multimidia;
+import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Estudante_graduacao;
 import biblioteca.models.Membro.Estudante_pos;
 import biblioteca.models.Membro.Funcionario;
@@ -375,7 +375,7 @@ public class BibliotecaMain {
 		        String sinopse1 = scanner.nextLine();
 		        System.out.print("Capa:");
 		        String capa1 = scanner.nextLine();
-		        Status_item_multimidia status1 = Status_item_multimidia.DISPONIVEL;
+		        StatusItem status1 = StatusItem.DISPONIVEL;
 		        System.out.print("ISBN:");
 		        String isbn1 = scanner.nextLine();
 		        System.out.print("Edição (apenas o número):");
@@ -438,7 +438,7 @@ public class BibliotecaMain {
 		        String sinopse2 = scanner.nextLine();
 		        System.out.print("Capa:");
 		        String capa2 = scanner.nextLine();
-		        Status_item_multimidia status2 = Status_item_multimidia.DISPONIVEL;
+		        StatusItem status2 = StatusItem.DISPONIVEL;
 		        System.out.print("Formato:");
 		        String formato2 = scanner.nextLine();
 		        System.out.print("Formato Arquivo:");
@@ -502,7 +502,7 @@ public class BibliotecaMain {
 		        String sinopse3 = scanner.nextLine();
 		        System.out.print("Capa:");
 		        String capa3 = scanner.nextLine();
-		        Status_item_multimidia status3 = Status_item_multimidia.DISPONIVEL;
+		        StatusItem status3 = StatusItem.DISPONIVEL;
 		        System.out.print("Lista de Faixas:");
 		        String lista_de_faixas3 = scanner.nextLine();
 		        System.out.print("Duração:");
@@ -561,7 +561,7 @@ public class BibliotecaMain {
 		        String sinopse4 = scanner.nextLine();
 		        System.out.print("Capa:");
 		        String capa4 = scanner.nextLine();
-		        Status_item_multimidia status4 = Status_item_multimidia.DISPONIVEL;
+		        StatusItem status4 = StatusItem.DISPONIVEL;
 		        System.out.print("Elenco:");
 		        String elenco4 = scanner.nextLine();
 		        System.out.print("Duração:");
@@ -629,7 +629,7 @@ public class BibliotecaMain {
 		        String sinopse5 = scanner.nextLine();
 		        System.out.print("Capa:");
 		        String capa5 = scanner.nextLine();
-		        Status_item_multimidia status5 = Status_item_multimidia.DISPONIVEL;
+		        StatusItem status5 = StatusItem.DISPONIVEL;
 		        System.out.print("Tipo Recurso:");
 		        String tipo_recurso5 = scanner.nextLine();
 		        System.out.print("Formato:");

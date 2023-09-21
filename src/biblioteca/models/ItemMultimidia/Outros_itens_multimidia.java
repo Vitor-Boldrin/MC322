@@ -16,7 +16,7 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			Status_item_multimidia status,
+			StatusItem status,
 			String tipo_recurso,
 			String formato,
 			String localizacao,

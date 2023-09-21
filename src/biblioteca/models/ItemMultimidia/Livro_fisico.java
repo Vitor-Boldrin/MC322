@@ -16,7 +16,7 @@ public class Livro_fisico extends ItemMultimidia {
 			String genero,
 			String sinopse,
 			String capa,
-			Status_item_multimidia status,
+			StatusItem status,
 			String isbn,
 			int edicao,
 			String localizacao,

@@ -18,7 +18,7 @@ public class CD_de_audio extends ItemMultimidia {
 			String lista_de_faixas,
 			String duracao,
 			String estado_conservacao,
-			Status_item_multimidia status
+			StatusItem status
 			) {
 	
 		super(

@@ -9,7 +9,7 @@ import java.util.Set;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
-import biblioteca.models.ItemMultimidia.Status_item_multimidia;
+import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Membro;
 
 public class ItemBiblioteca<T> {
@@ -62,7 +62,7 @@ public class ItemBiblioteca<T> {
 	
 	private boolean emprestarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
         // Primeiro, checar se o livro está disponível
-    	Status_item_multimidia status_item = item.getStatus();
+    	StatusItem status_item = item.getStatus();
     	
     	// Checa se o membro já tem esse item emprestado
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
@@ -75,7 +75,7 @@ public class ItemBiblioteca<T> {
     		}
     	}
     	
-    	if(status_item.equals(Status_item_multimidia.DISPONIVEL)) { 
+    	if(status_item.equals(StatusItem.DISPONIVEL)) { 
     		// DISPONÍVEL
     		//Cria o emprestimo
     		Date data = new Date();
@@ -83,14 +83,14 @@ public class ItemBiblioteca<T> {
     		
     		//Adiciona o emprestimo no Set
     		BibliotecaStatic.getEmprestimos().add(emprestimo);
-    		item.setStatus(Status_item_multimidia.EMPRESTADO);
+    		item.setStatus(StatusItem.EMPRESTADO);
     		
     		System.out.println("Livro emprestado com sucesso.");
     		
     		return true;
     		
-    	} else if(status_item.equals(Status_item_multimidia.EMPRESTADO)
-    			|| status_item.equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) { 
+    	} else if(status_item.equals(StatusItem.EMPRESTADO)
+    			|| status_item.equals(StatusItem.EMPRESTADO_E_RESERVADO)) { 
     		// ITEM JÁ EMPRESTADO
     		System.out.println("Livro está emprestado.");
     		
@@ -113,14 +113,14 @@ public class ItemBiblioteca<T> {
     		
     		//Adiciona na lista
     		BibliotecaStatic.getReservas().add(reserva);
-    		item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
+    		item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
     		
     		System.out.println("Uma reserva foi gerada");
     		
     		return false;
     		
     		
-    	} else if(status_item.equals(Status_item_multimidia.RESERVADO)) {
+    	} else if(status_item.equals(StatusItem.RESERVADO)) {
     		//Livro está reservado
     		System.out.println("Livro está reservado.");
 
@@ -153,7 +153,7 @@ public class ItemBiblioteca<T> {
         		
         		//Adiciona o emprestimo no Set
         		BibliotecaStatic.getEmprestimos().add(emprestimo);
-        		item.setStatus(Status_item_multimidia.EMPRESTADO);
+        		item.setStatus(StatusItem.EMPRESTADO);
         		
         		System.out.println("O membro é o próximo na fila para o livro.");
         		System.out.println("Livro emprestado com sucesso.");
@@ -192,25 +192,25 @@ public class ItemBiblioteca<T> {
 	
 	private boolean itemCheckItemStatus(Membro membro, ItemMultimidia item) {
 		//Checa o status do item após o emprestimo
-		Status_item_multimidia status_item = item.getStatus();
+		StatusItem status_item = item.getStatus();
 		
 		//Faz a alocação dos itens no set da classe atual dependento do seu status
-		if(status_item.equals(Status_item_multimidia.EMPRESTADO)) {
+		if(status_item.equals(StatusItem.EMPRESTADO)) {
 			//Livro somente emprestado, retirando do set de reservas e adicionando na set de emprestimos
 			this.itensEmprestados.add((T) item);
 			this.itensReservados.remove((T) item);
 			
-		} else if(status_item.equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) {
+		} else if(status_item.equals(StatusItem.EMPRESTADO_E_RESERVADO)) {
 			//Livro emprestado e reservado, adicionando nos 2 sets
 			this.itensEmprestados.add((T) item);
 			this.itensReservados.add((T) item);
 			
-		} else if(status_item.equals(Status_item_multimidia.RESERVADO)) {
+		} else if(status_item.equals(StatusItem.RESERVADO)) {
 			//Livro reservado, retirando dos emprestimos e adicionadno nas reservas
 			this.itensEmprestados.remove((T) item);
 			this.itensReservados.add((T) item);
 			
-		} else if(status_item.equals(Status_item_multimidia.INDISPONIVEL)) {
+		} else if(status_item.equals(StatusItem.INDISPONIVEL)) {
 			return false;
 			
 		}
@@ -230,9 +230,9 @@ public class ItemBiblioteca<T> {
 	
 	private boolean reservarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
 		//Primeiro, checar se o livro está indisponível
-    	Status_item_multimidia status_item = item.getStatus();
+    	StatusItem status_item = item.getStatus();
     	
-    	if(status_item.equals(Status_item_multimidia.INDISPONIVEL)) {
+    	if(status_item.equals(StatusItem.INDISPONIVEL)) {
     		System.out.println("Item está indisponível e portanto não pode ser reservado.");
     	}
     	
@@ -253,15 +253,15 @@ public class ItemBiblioteca<T> {
 		Date data = new Date();
 		Reserva reserva_nova = new Reserva(data,membro,item);
 		
-		if(status_item.equals(Status_item_multimidia.EMPRESTADO)) {
+		if(status_item.equals(StatusItem.EMPRESTADO)) {
 			//Altera status para emprestado e reservado
 			
-			item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
+			item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
 			
-		} else if (status_item.equals(Status_item_multimidia.DISPONIVEL)) {
+		} else if (status_item.equals(StatusItem.DISPONIVEL)) {
 			//Altera status para reservado
 			
-			item.setStatus(Status_item_multimidia.RESERVADO);
+			item.setStatus(StatusItem.RESERVADO);
 		}
 		//Qualquer outro status se manterá o mesmo
 		//Adicionando a reserva
@@ -293,13 +293,13 @@ public class ItemBiblioteca<T> {
     			membro.getHistorico_emprestimos().add(emprestimo);
     			//Avaliando o status do livro
     			
-    			if(item.getStatus().equals(Status_item_multimidia.EMPRESTADO)) {
+    			if(item.getStatus().equals(StatusItem.EMPRESTADO)) {
     				//Livro estava apenas emprestado, apenas alterando o status
-    				item.setStatus(Status_item_multimidia.DISPONIVEL);
+    				item.setStatus(StatusItem.DISPONIVEL);
     				System.out.println("Livro devolvido");
     				return;
     				
-    			} else if (item.getStatus().equals(Status_item_multimidia.EMPRESTADO_E_RESERVADO)) {
+    			} else if (item.getStatus().equals(StatusItem.EMPRESTADO_E_RESERVADO)) {
     				//Livro estava emprestado também, atribuindo o emprestimo à reserva que tem dele
     				//Iterando a lista de reservas
     				
@@ -321,10 +321,10 @@ public class ItemBiblioteca<T> {
 	    						Emprestimo novo_emprestimo = new Emprestimo(null, null, reserva.getPessoa(), item);
 	    						emprestimos.add(novo_emprestimo);
 	    						//alterando status livro
-	    						item.setStatus(Status_item_multimidia.EMPRESTADO);
+	    						item.setStatus(StatusItem.EMPRESTADO);
     						} else {
     							//item tinha uma outra reserva, retornando ao status emprestado e reservado
-    							item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
+    							item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
     						}
     					}
     					
