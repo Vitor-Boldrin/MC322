@@ -34,7 +34,7 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
     	
     	for( Emprestimo emprestimo : emprestimos) {
-    		if(emprestimo.getPessoa().equals(membro)) {
+    		if(emprestimo.getPessoa().equals(membro) && emprestimo.getItem_multimidia().equals(item)) {
     			System.out.println("Membro já tem esse item emprestado.");
     			System.out.println("Operação encerrada.");
     			return false;
