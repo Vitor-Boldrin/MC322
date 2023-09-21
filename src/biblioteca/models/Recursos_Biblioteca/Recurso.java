@@ -1,11 +1,15 @@
 package biblioteca.models.Recursos_Biblioteca;
 
+import biblioteca.models.ItemMultimidia.StatusItem;
+
 public class Recurso {
 	
 	private Formato_multimidia formato_multimidia;
+	static private StatusItem statusItem;
 	
 	public Recurso(Formato_multimidia formato_multimidia) {
 		this.formato_multimidia = formato_multimidia;
+		Recurso.statusItem = StatusItem.DISPONIVEL;
 	}
 	
 	//geters e seters
@@ -47,6 +51,14 @@ public class Recurso {
 		
 		public void setDetalhes(String detalhes) {
 		    this.detalhes = detalhes;
+		}
+		
+		public StatusItem getStatusItem() {
+			return statusItem;
+		}
+		
+		public void getStatusItem(StatusItem statusItemNovo) {
+			statusItem = statusItemNovo;
 		}
 		
 		
