@@ -189,7 +189,7 @@ public class ItemBiblioteca<T> {
 
     }
 	
-	private boolean emprestarItemCheckItemStatus(Membro membro, ItemMultimidia item) {
+	private boolean itemCheckItemStatus(Membro membro, ItemMultimidia item) {
 		//Checa o status do item após o emprestimo
 		Status_item_multimidia status_item = item.getStatus();
 		
@@ -223,7 +223,60 @@ public class ItemBiblioteca<T> {
 		emprestarItemReservaEmprestimo(membro, (ItemMultimidia) item);
 		
 		//Realiza o manejo nos set's emprestados e reservados
-		emprestarItemCheckItemStatus(membro, (ItemMultimidia) item);
+		itemCheckItemStatus(membro, (ItemMultimidia) item);
 		return true;
 	}
+	
+	private boolean reservarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
+		//Primeiro, checar se o livro está indisponível
+    	Status_item_multimidia status_item = item.getStatus();
+    	
+    	if(status_item.equals(Status_item_multimidia.INDISPONIVEL)) {
+    		System.out.println("Item está indisponível e portanto não pode ser reservado.");
+    	}
+    	
+    	//Checa se o membro já tem esse item reservado
+    	LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
+    	
+    	for( Reserva reserva : reservas) {
+    		if(reserva.getPessoa().equals(membro) && reserva.getItem_multimidia().equals(item)) {
+    			System.out.println("Membro já tem esse item reservado.");
+    			System.out.println("Operação encerrada.");
+    			return false;
+    		}
+    	}
+    	
+    	//Checa o status do item e faz o tratamento de acordo
+    	//Primeiramente, independente do status do item, ele sempre poderá ser reservado, portanto, criando a reserva
+    	//Cria a reserva
+		Date data = new Date();
+		Reserva reserva_nova = new Reserva(data,membro,item);
+		
+		if(status_item.equals(Status_item_multimidia.EMPRESTADO)) {
+			//Altera status para emprestado e reservado
+			
+			item.setStatus(Status_item_multimidia.EMPRESTADO_E_RESERVADO);
+			
+		} else if (status_item.equals(Status_item_multimidia.DISPONIVEL)) {
+			//Altera status para reservado
+			
+			item.setStatus(Status_item_multimidia.RESERVADO);
+		}
+		//Qualquer outro status se manterá o mesmo
+		//Adicionando a reserva
+		
+		BibliotecaStatic.getReservas().add(reserva_nova);
+    	
+		return true;
+	}
+	
+	public boolean reservarItem(Membro membro, T item) {
+		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
+		reservarItemReservaEmprestimo(membro, (ItemMultimidia) item);
+		
+		//Realiza o manejo nos set's emprestados e reservados
+		itemCheckItemStatus(membro, (ItemMultimidia) item);
+		return true;
+	}
+	
 }
