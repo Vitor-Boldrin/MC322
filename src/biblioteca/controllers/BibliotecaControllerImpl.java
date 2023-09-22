@@ -24,5 +24,25 @@ public class BibliotecaControllerImpl implements BibliotecaController {
     public List<ItemMultimidia> consultarItensDisponiveis() {
         return itens;
     }
+    
+    public ItemMultimidia buscarItenPorIdentificacao(int identificacao) {
+    	//Inicializando variável do membro a ser editado
+    	ItemMultimidia item_editar = null;
+    	
+    	//Loop para achar o membro a partir do ID
+    	List<ItemMultimidia> Itens = BibliotecaStatic.getItens();
+    	for( ItemMultimidia item : Itens) {
+    		if(item.getId() == identificacao) {
+    			item_editar = item;
+    			break;
+    		}
+    	}
+    	//Checa se o membro existe
+    	if(item_editar == null) {
+    		System.out.println("Nenhum membro possui tal ID.");
+    		return null;
+    	}
+        return item_editar;
+    }
 
 }
