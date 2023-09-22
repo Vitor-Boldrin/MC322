@@ -285,7 +285,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser emprestado:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
+    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
     	
     	// Joga na função e boa
     	bibliotecaItemBiblioteca.emprestarItem(membro, item);
@@ -307,7 +307,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser reservado:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
+    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
         
         bibliotecaItemBiblioteca.reservarItem(membro, item);
     }
@@ -322,7 +322,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser devolvido:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = BibliotecaStatic.getItens().get(id_livro);
+    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
     	
     	bibliotecaItemBiblioteca.devolverItem(membro, item);
     }
@@ -1042,7 +1042,7 @@ public class BibliotecaMain {
     		System.out.println("Possui os seguintes itens emprestados:");
     		for( Emprestimo emprestimo : emprestimos) {
         		if(emprestimo.getPessoa().equals(membro)) {
-        			System.out.println(emprestimo.getItem_multimidia().getTitulo());
+        			System.out.println(emprestimo.getItem_multimidia().toString());
         		}
         	}
     		System.out.println("Possui os seguintes itens reservados:");
