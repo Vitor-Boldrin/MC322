@@ -1,37 +1,45 @@
 package main;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
+import biblioteca.models.BibliotecaStatic.ListaReservas;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.*;
+import biblioteca.models.Recursos_Biblioteca.Categoria_equipamento;
+import biblioteca.models.Recursos_Biblioteca.Equipamento;
+import biblioteca.models.Recursos_Biblioteca.Formato_multimidia;
+import biblioteca.models.Recursos_Biblioteca.Recurso;
+import biblioteca.models.Recursos_Biblioteca.Recurso.Video;
 
 public class MainTestes {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		String a = "olar";
+		Equipamento equipamento1 = new Equipamento(Categoria_equipamento.AUDIOVISUAL);
+		Equipamento.Audiovisual emprestimeEquipamento1 = equipamento1.new Audiovisual("notebook", "windowns");
 		
-		Date data4 = new Date();
+		Equipamento equipamento2 = new Equipamento(Categoria_equipamento.AUDIOVISUAL);
+		Equipamento.Audiovisual emprestimeEquipamento2 = equipamento2.new Audiovisual("notebook", "windowns");
 		
-		Date data = new Date();
-        
-		//Estudante_graduacao.class;
+		Recurso recurso1 = new Recurso(Formato_multimidia.VIDEO);
+		Recurso.Video recursoEmprestimo1 = recurso1.new Video("opa","não");
 		
-        // Cria objeto
-        Estudante_graduacao professor = new Estudante_graduacao(
-        		"nome4",
-        		"",
-        		"endereco4",
-        		"contato4",
-				data4);
+		ListaReservas classeReservas = new ListaReservas();
 		
-		System.out.println(data.getClass().equals(Estudante_graduacao.class));
+		classeReservas.getItensReservados().add(recursoEmprestimo1);
+		
+		classeReservas.getItensReservados().add(emprestimeEquipamento1);
+		
+		classeReservas.imprimirReservas(classeReservas.getItensReservados());
+		
+		
 		
 	}
 

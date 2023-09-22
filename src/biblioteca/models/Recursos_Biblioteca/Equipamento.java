@@ -26,10 +26,10 @@ public class Equipamento {
 		private String configuracao;
 		private StatusItem statusItem;
 		
-		public Equipamento_emprestimo(String tipo, String configuracao, StatusItem statusItem) {
+		public Equipamento_emprestimo(String tipo, String configuracao) {
 			this.tipo = tipo;
 			this.configuracao = configuracao;
-			this.statusItem = statusItem;
+			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		public Categoria_equipamento getCategoria_equipamento() {
@@ -68,8 +68,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Informatica extends Equipamento_emprestimo {
 		
-		public Informatica(String tipo, String configuracao, StatusItem statusItem) {
-			super(tipo,configuracao,statusItem);
+		public Informatica(String tipo, String configuracao) {
+			super(tipo,configuracao);
 		}
 		
 	}
@@ -77,8 +77,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Audiovisual extends Equipamento_emprestimo {
 		
-		public Audiovisual(String tipo, String configuracao, StatusItem statusItem) {
-			super(tipo,configuracao,statusItem);
+		public Audiovisual(String tipo, String configuracao) {
+			super(tipo,configuracao);
 		}
 		
 	}
@@ -86,8 +86,8 @@ public class Equipamento {
 	//INFORMATICA
 	public class Impressao extends Equipamento_emprestimo {
 		
-		public Impressao(String tipo, String configuracao, StatusItem statusItem) {
-			super(tipo,configuracao,statusItem);
+		public Impressao(String tipo, String configuracao) {
+			super(tipo,configuracao);
 		}
 		
 	}
