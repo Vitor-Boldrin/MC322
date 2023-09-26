@@ -703,11 +703,11 @@ public class BibliotecaMain {
             switch (opcaoItens) {
                 case 1:
                     
-	            	if (item.getStatus().equals(StatusItem.DISPONIVEL)) {
+	            	if (item.getStatusItem().equals(StatusItem.DISPONIVEL)) {
 	            		System.out.println("O item está disponível, deseja torna-lo indisponível ? y/n");
 	            		String opcaoStatus = scanner.nextLine();
 	            		if(opcaoStatus.equals("y")) {
-	            			item.setStatus(StatusItem.INDISPONIVEL);
+	            			item.setStatusItem(StatusItem.INDISPONIVEL);
 		            		System.out.println("Operação realizada com sucesso.");
 		            		return;
 	            		} else if(opcaoStatus.equals("n")) {
@@ -720,11 +720,11 @@ public class BibliotecaMain {
 	            		}
 	            		
 	            	}
-	            	else if (item.getStatus().equals(StatusItem.INDISPONIVEL)) {
+	            	else if (item.getStatusItem().equals(StatusItem.INDISPONIVEL)) {
 	            		System.out.println("O item está disponível, deseja torna-lo disponivel ? y/n");
 	            		String opcaoStatus = scanner.nextLine();
 	            		if(opcaoStatus.equals("y")) {
-	            			item.setStatus(StatusItem.DISPONIVEL);
+	            			item.setStatusItem(StatusItem.DISPONIVEL);
 		            		System.out.println("Operação realizada com sucesso.");
 		            		return;
 	            		} else if(opcaoStatus.equals("n")) {
@@ -1206,7 +1206,7 @@ public class BibliotecaMain {
         LinkedList<ItemMultimidia> itens = BibliotecaStatic.getItens();
         
         for( ItemMultimidia item : itens) {
-    		System.out.println(item.getTitulo() + ' ' + item.getStatus());
+    		System.out.println(item.getTitulo() + ' ' + item.getStatusItem());
     	}
     }
 

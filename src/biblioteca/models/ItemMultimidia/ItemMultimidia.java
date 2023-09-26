@@ -26,7 +26,7 @@ public abstract class ItemMultimidia extends Item {
 			String capa,
 			StatusItem status
 			) {
-		super(id,status);
+		super(id);
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
@@ -34,6 +34,7 @@ public abstract class ItemMultimidia extends Item {
 		this.genero = genero;
 		this.sinopse = sinopse;
 		this.capa = capa;
+		this.setStatusItem(StatusItem.DISPONIVEL);
 
 	}
 	

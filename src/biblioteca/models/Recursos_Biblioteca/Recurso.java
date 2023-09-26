@@ -9,10 +9,10 @@ public class Recurso extends Item {
 	
 	public Recurso(
 			int id,
-			StatusItem status,
 			Formato_multimidia formato_multimidia) {
-		super(id,status);
+		super(id);
 		this.formato_multimidia = formato_multimidia;
+		this.setStatusItem(StatusItem.DISPONIVEL);
 	}
 	
 	//geters e seters

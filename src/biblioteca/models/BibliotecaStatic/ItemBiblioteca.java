@@ -74,7 +74,7 @@ public class ItemBiblioteca<T> {
     	}
     	
     	//Checar se o livro está disponível
-    	StatusItem status_item = item.getStatus();
+    	StatusItem status_item = item.getStatusItem();
     	
     	if(status_item.equals(StatusItem.DISPONIVEL)) { 
     		// DISPONÍVEL
@@ -84,7 +84,7 @@ public class ItemBiblioteca<T> {
     		
     		//Adiciona o emprestimo no Set
     		BibliotecaStatic.getEmprestimos().add(emprestimo);
-    		item.setStatus(StatusItem.EMPRESTADO);
+    		item.setStatusItem(StatusItem.EMPRESTADO);
     		
     		//Aumenta o número de emprestimos
     		membro.setNumEmprestimo((short) (membro.getNumEmprestimo() + 1));
@@ -117,7 +117,7 @@ public class ItemBiblioteca<T> {
     		
     		//Adiciona na lista
     		BibliotecaStatic.getReservas().add(reserva);
-    		item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
+    		item.setStatusItem(StatusItem.EMPRESTADO_E_RESERVADO);
     		
     		System.out.println("Uma reserva foi gerada");
     		
@@ -157,7 +157,7 @@ public class ItemBiblioteca<T> {
         		
         		//Adiciona o emprestimo no Set
         		BibliotecaStatic.getEmprestimos().add(emprestimo);
-        		item.setStatus(StatusItem.EMPRESTADO);
+        		item.setStatusItem(StatusItem.EMPRESTADO);
         		
         		//Aumenta o número de emprestimos
         		membro.setNumEmprestimo((short) (membro.getNumEmprestimo() + 1));
@@ -198,7 +198,7 @@ public class ItemBiblioteca<T> {
 	
 	private boolean itemCheckItemStatus(Membro membro, ItemMultimidia item) {
 		//Checa o status do item após o emprestimo
-		StatusItem status_item = item.getStatus();
+		StatusItem status_item = item.getStatusItem();
 		
 		//Faz a alocação dos itens no set da classe atual dependento do seu status
 		if(status_item.equals(StatusItem.EMPRESTADO)) {
@@ -246,7 +246,7 @@ public class ItemBiblioteca<T> {
 	
 	private boolean reservarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
 		//Primeiro, checar se o livro está indisponível
-    	StatusItem status_item = item.getStatus();
+    	StatusItem status_item = item.getStatusItem();
     	
     	if(status_item.equals(StatusItem.INDISPONIVEL)) {
     		System.out.println("Item está indisponível e portanto não pode ser reservado.");
@@ -272,12 +272,12 @@ public class ItemBiblioteca<T> {
 		if(status_item.equals(StatusItem.EMPRESTADO)) {
 			//Altera status para emprestado e reservado
 			
-			item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
+			item.setStatusItem(StatusItem.EMPRESTADO_E_RESERVADO);
 			
 		} else if (status_item.equals(StatusItem.DISPONIVEL)) {
 			//Altera status para reservado
 			
-			item.setStatus(StatusItem.RESERVADO);
+			item.setStatusItem(StatusItem.RESERVADO);
 		}
 		//Qualquer outro status se manterá o mesmo
 		//Adicionando a reserva
@@ -313,14 +313,14 @@ public class ItemBiblioteca<T> {
     			membro.getHistorico_emprestimos().add(emprestimo);
     			//Avaliando o status do livro
     			
-    			if(item.getStatus().equals(StatusItem.EMPRESTADO)) {
+    			if(item.getStatusItem().equals(StatusItem.EMPRESTADO)) {
     				//Livro estava apenas emprestado, apenas alterando o status
-    				item.setStatus(StatusItem.DISPONIVEL);
+    				item.setStatusItem(StatusItem.DISPONIVEL);
 
     				System.out.println("Livro devolvido");
     				return;
     				
-    			} else if (item.getStatus().equals(StatusItem.EMPRESTADO_E_RESERVADO)) {
+    			} else if (item.getStatusItem().equals(StatusItem.EMPRESTADO_E_RESERVADO)) {
     				//Livro estava emprestado também, atribuindo o emprestimo à reserva que tem dele
     				//Iterando a lista de reservas
     				
@@ -342,10 +342,10 @@ public class ItemBiblioteca<T> {
 	    						Emprestimo novo_emprestimo = new Emprestimo(null, null, reserva.getPessoa(), item);
 	    						emprestimos.add(novo_emprestimo);
 	    						//alterando status livro
-	    						item.setStatus(StatusItem.EMPRESTADO);
+	    						item.setStatusItem(StatusItem.EMPRESTADO);
     						} else {
     							//item tinha uma outra reserva, retornando ao status emprestado e reservado
-    							item.setStatus(StatusItem.EMPRESTADO_E_RESERVADO);
+    							item.setStatusItem(StatusItem.EMPRESTADO_E_RESERVADO);
     						}
     					}
     					

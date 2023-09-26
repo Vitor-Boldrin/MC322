@@ -8,10 +8,10 @@ public class Equipamento extends Item {
 	
 	public Equipamento(
 			int id,
-			StatusItem status,
 			Categoria_equipamento categoria_equipamento) {
-		super(id,status);
+		super(id);
 		this.categoria_equipamento = categoria_equipamento;
+		this.setStatusItem(StatusItem.DISPONIVEL);
 	}
 	
 	//geters e seters
@@ -39,6 +39,14 @@ public class Equipamento extends Item {
 			return categoria_equipamento;
 		}
 		
+		public StatusItem getStatusItem() {
+			return Equipamento.this.getStatusItem();
+		}
+		
+		public void setStatusItem(StatusItem status) {
+			Equipamento.this.setStatusItem(status);
+		}
+
 		//seters e geters
 		public String getTipo() {
 		      return this.tipo;

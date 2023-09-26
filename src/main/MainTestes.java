@@ -25,15 +25,24 @@ public class MainTestes {
 		// TODO Auto-generated method stub
 
 
-			try {
-				System.out.println("Erro fodase");
-				throw new IllegalAccessException("Erro");
-			} catch (IllegalAccessException e) {
-				System.err.println("Erro " + e.getMessage());
-			}
-			
-			System.out.println("AAAAAAAAAAA");
+		Equipamento equipamento1 = new Equipamento(1,Categoria_equipamento.AUDIOVISUAL);
+		Equipamento.Audiovisual emprestimeEquipamento1 = equipamento1.new Audiovisual("notebook", "windowns");
 		
+		Equipamento equipamento2 = new Equipamento(1,Categoria_equipamento.AUDIOVISUAL);
+		Equipamento.Audiovisual emprestimeEquipamento2 = equipamento2.new Audiovisual("notebook", "windowns");
+		
+		//Recurso recurso1 = new Recurso(2,Formato_multimidia.VIDEO);
+		//Recurso.Video recursoEmprestimo1 = recurso1.new Video("opa","não");
+
+		System.out.println(emprestimeEquipamento1.getStatusItem() );
+		
+		System.out.println(emprestimeEquipamento2.getStatusItem() );
+		
+		emprestimeEquipamento1.setStatusItem(StatusItem.INDISPONIVEL);
+		
+		System.out.println(emprestimeEquipamento1.getStatusItem() );
+		
+		System.out.println(emprestimeEquipamento2.getStatusItem() );
 	}
 
 }

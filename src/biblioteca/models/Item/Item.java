@@ -7,9 +7,8 @@ public abstract class Item {
 	private int id;
 	private StatusItem status = StatusItem.DISPONIVEL;;
 	
-	public Item(int id, StatusItem status) {
+	public Item(int id) {
 		this.id = id;
-		this.status = status;
 	}
 	
 	public int getId() {
@@ -20,11 +19,11 @@ public abstract class Item {
 	    this.id = id;
 	}
 	
-	public StatusItem getStatus() {
+	public StatusItem getStatusItem() {
 	      return this.status;
 	}
 	
-	public void setStatus(StatusItem status) {
+	public void setStatusItem(StatusItem status) {
 	    this.status = status;
 	}
 	

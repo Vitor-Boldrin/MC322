@@ -18,7 +18,7 @@ public class BibliotecaViewImpl implements BibliotecaView {
     	StatusItem disponivel = StatusItem.DISPONIVEL;
     	
     	for( ItemMultimidia item : itens) {
-    		if(item.getStatus().equals(disponivel)) {
+    		if(item.getStatusItem().equals(disponivel)) {
     			System.out.println(item.getTitulo());
     		}
     	}

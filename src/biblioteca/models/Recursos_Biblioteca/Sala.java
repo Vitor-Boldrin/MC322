@@ -1,22 +1,26 @@
 package biblioteca.models.Recursos_Biblioteca;
 import java.util.Date;
 
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.StatusItem;
 
-public class Sala {
+public class Sala extends Item {
 
 	private Date data_reserva;
 	private Date hora_inicio;
 	private Date hora_fim;
 	
 	public Sala(
+			int id,
 			Date data_reserva,
 			Date hora_inicio,
 			Date hora_fim
 			) {
+		super(id);
 		this.data_reserva = data_reserva;
 		this.hora_inicio = hora_inicio;
 		this.hora_fim = hora_fim;
+		this.setStatusItem(StatusItem.DISPONIVEL);
 	}
 	
 	//geters e seters
@@ -46,10 +50,8 @@ public class Sala {
 	
 	// Parent Class
 	public abstract class Sala_biblioteca {
-		private StatusItem statusItem;
 		
 		public Sala_biblioteca() {
-			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		//geters da outer class
@@ -63,14 +65,6 @@ public class Sala {
 		
 		public Date getHora_fim() {
 			return hora_fim;
-		}
-		
-		public StatusItem getStatusItem() {
-			return statusItem;
-		}
-		
-		public void getStatusItem(StatusItem statusItemNovo) {
-			statusItem = statusItemNovo;
 		}
 		
 	}
