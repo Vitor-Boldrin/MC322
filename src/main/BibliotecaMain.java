@@ -675,6 +675,73 @@ public class BibliotecaMain {
     private static void editarItem(Scanner scanner) {
         // Lógica para editar um item existente
         System.out.println("Operação de Edição de Item");
+        
+        System.out.print("Insira o ID do livro a ser editado:");
+    	int id_livro = scanner.nextInt();
+    	scanner.nextLine(); //captura o \n
+    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+        
+        while (true) {
+            System.out.println("---- Menu Edição de Itens ----");
+            System.out.println("Selecione a opção que deseja editar.");
+            System.out.println();
+            System.out.println("1. STATUS Item");
+            System.out.println("2. Condição Item");
+            System.out.println();
+            System.out.println();
+            System.out.print("Escolha uma opção: ");
+
+            int opcaoItens = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcaoItens) {
+                case 1:
+                    
+	            	if (item.getStatus().equals(StatusItem.DISPONIVEL)) {
+	            		System.out.print("O item está disponível, deseja torna-lo indisponível ? y/n");
+	            		String opcaoStatus = scanner.nextLine();
+	            		if(opcaoStatus.equals("y")) {
+	            			item.setStatus(StatusItem.INDISPONIVEL);
+		            		System.out.print("Operação realizada com sucesso.");
+		            		return;
+	            		} else if(opcaoStatus.equals("n")) {
+	            			System.out.print("Operação cancelada.");
+	            			return;
+	            		} else {
+	            			System.out.print("Opção inválida.");
+	            			System.out.print("Operação cancelada.");
+	            			return;
+	            		}
+	            		
+	            	}
+	            	else if (item.getStatus().equals(StatusItem.INDISPONIVEL)) {
+	            		System.out.print("O item está disponível, deseja torna-lo disponivel ? y/n");
+	            		String opcaoStatus = scanner.nextLine();
+	            		if(opcaoStatus.equals("y")) {
+	            			item.setStatus(StatusItem.DISPONIVEL);
+		            		System.out.print("Operação realizada com sucesso.");
+		            		return;
+	            		} else if(opcaoStatus.equals("n")) {
+	            			System.out.print("Operação cancelada.");
+	            			return;
+	            		} else {
+	            			System.out.print("Opção inválida.");
+	            			System.out.print("Operação cancelada.");
+	            			return;
+	            		}
+	            	}
+	            	else {
+	            		System.out.print("O item deve estar disponível ou indisponível para a edicação do status");
+	            		System.out.print("Operação cancelada.");
+	            		return;
+	            	}
+                case 2:
+                	System.out.println("TODO");
+                    return;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            }
+        }
     }
 
     private static void removerItem(Scanner scanner) {

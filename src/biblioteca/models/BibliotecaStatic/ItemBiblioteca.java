@@ -61,10 +61,8 @@ public class ItemBiblioteca<T> {
 	}
 	
 	private boolean emprestarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
-        // Primeiro, checar se o livro está disponível
-    	StatusItem status_item = item.getStatus();
-    	
-    	// Checa se o membro já tem esse item emprestado
+    	//Checa se o membro já tem esse item emprestado. Importante, pois mesmo
+		// emprestado, ao solicitar o emprestimo é criado uma reserva
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
     	
     	for( Emprestimo emprestimo : emprestimos) {
@@ -74,6 +72,9 @@ public class ItemBiblioteca<T> {
     			return false;
     		}
     	}
+    	
+    	//Checar se o livro está disponível
+    	StatusItem status_item = item.getStatus();
     	
     	if(status_item.equals(StatusItem.DISPONIVEL)) { 
     		// DISPONÍVEL
@@ -182,8 +183,7 @@ public class ItemBiblioteca<T> {
     		
     		
     	} else { // O LIVRO EXPLODIU
-    		System.out.println("Livro está indisponível");
-    		return false;
+    		throw new UnsupportedOperationException("O livro está indisponível.");
     	}
     	
 		return false;
