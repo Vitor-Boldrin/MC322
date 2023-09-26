@@ -2,9 +2,10 @@ package biblioteca.models.ItemMultimidia;
 
 import java.util.LinkedList;
 
-public abstract class ItemMultimidia {
+import biblioteca.models.Item.Item;
 
-	private int id;
+public abstract class ItemMultimidia extends Item {
+
 	private String titulo;
 	private String autor;
 	private String editora;
@@ -12,7 +13,6 @@ public abstract class ItemMultimidia {
 	private String genero;
 	private String sinopse;
 	private String capa;
-	private StatusItem status;
 	private LinkedList<Comentario> comentarios = new LinkedList<>();
 	
 	public ItemMultimidia(
@@ -26,7 +26,7 @@ public abstract class ItemMultimidia {
 			String capa,
 			StatusItem status
 			) {
-		this.id = id;
+		super(id,status);
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
@@ -34,20 +34,12 @@ public abstract class ItemMultimidia {
 		this.genero = genero;
 		this.sinopse = sinopse;
 		this.capa = capa;
-		this.status = status;
+
 	}
 	
 	public abstract short numero_disponivel();
 	
 	public abstract short numero_total();
-	
-	public int getId() {
-	      return this.id;
-	}
-	
-	public void setId(int id) {
-	    this.id = id;
-	}
 	
 	public String getTitulo() {
 	      return this.titulo;
@@ -103,14 +95,6 @@ public abstract class ItemMultimidia {
 	
 	public void setCapa(String capa) {
 	    this.capa = capa;
-	}
-	
-	public StatusItem getStatus() {
-	      return this.status;
-	}
-	
-	public void setStatus(StatusItem status) {
-	    this.status = status;
 	}
 	
 	public LinkedList<Comentario> getComentarios() {

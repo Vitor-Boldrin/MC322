@@ -3,13 +3,13 @@ import java.util.Date;
 
 import biblioteca.models.ItemMultimidia.StatusItem;
 
-public class Reserva_sala {
+public class Sala {
 
 	private Date data_reserva;
 	private Date hora_inicio;
 	private Date hora_fim;
 	
-	public Reserva_sala(
+	public Sala(
 			Date data_reserva,
 			Date hora_inicio,
 			Date hora_fim

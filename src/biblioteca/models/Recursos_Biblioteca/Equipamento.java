@@ -1,11 +1,16 @@
 package biblioteca.models.Recursos_Biblioteca;
 
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.StatusItem;
 
-public class Equipamento {
+public class Equipamento extends Item {
 	private Categoria_equipamento categoria_equipamento;
 	
-	public Equipamento(Categoria_equipamento categoria_equipamento) {
+	public Equipamento(
+			int id,
+			StatusItem status,
+			Categoria_equipamento categoria_equipamento) {
+		super(id,status);
 		this.categoria_equipamento = categoria_equipamento;
 	}
 	
@@ -24,12 +29,10 @@ public class Equipamento {
 	public abstract class Equipamento_emprestimo {
 		private String tipo;
 		private String configuracao;
-		private StatusItem statusItem;
 		
 		public Equipamento_emprestimo(String tipo, String configuracao) {
 			this.tipo = tipo;
 			this.configuracao = configuracao;
-			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		public Categoria_equipamento getCategoria_equipamento() {
@@ -51,14 +54,6 @@ public class Equipamento {
 		
 		public void setConfiguracao(String configuracao) {
 		    this.configuracao = configuracao;
-		}
-		
-		public StatusItem getStatus_equipamento() {
-		      return this.statusItem;
-		}
-		
-		public void setStatus_equipamento(StatusItem statusItem) {
-		    this.statusItem = statusItem;
 		}
 		
 	}

@@ -1,12 +1,17 @@
 package biblioteca.models.Recursos_Biblioteca;
 
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.StatusItem;
 
-public class Recurso {
+public class Recurso extends Item {
 	
 	private Formato_multimidia formato_multimidia;
 	
-	public Recurso(Formato_multimidia formato_multimidia) {
+	public Recurso(
+			int id,
+			StatusItem status,
+			Formato_multimidia formato_multimidia) {
+		super(id,status);
 		this.formato_multimidia = formato_multimidia;
 	}
 	
@@ -23,12 +28,10 @@ public class Recurso {
 	public abstract class Recurso_multimidia {
 		private String titulo;
 		private String detalhes;
-		private StatusItem statusItem;
 		
 		public Recurso_multimidia(String titulo, String detalhes) {
 			this.titulo = titulo;
 			this.detalhes = detalhes;
-			this.statusItem = StatusItem.DISPONIVEL;
 		}
 		
 		//metodos
@@ -51,14 +54,6 @@ public class Recurso {
 		
 		public void setDetalhes(String detalhes) {
 		    this.detalhes = detalhes;
-		}
-		
-		public StatusItem getStatusItem() {
-			return statusItem;
-		}
-		
-		public void getStatusItem(StatusItem statusItemNovo) {
-			statusItem = statusItemNovo;
 		}
 		
 		
