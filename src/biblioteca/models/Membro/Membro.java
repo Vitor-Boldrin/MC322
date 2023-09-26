@@ -16,18 +16,21 @@ public abstract class Membro {
    private short prazo_emprestimo;
    private float multa_por_atraso;
    private LinkedList<Emprestimo> historico_emprestimos = new LinkedList<>();
+   private boolean bloqueado;
 
    public Membro(String nome, 
 		   String id_faculdade, 
 		   String endereco, 
 		   String contato,
-		   Date data_registro
+		   Date data_registro,
+		   boolean bloqueado
 		   ) {
       this.nome = nome;
       this.id_faculdade = id_faculdade;
       this.endereco = endereco;
       this.contato = contato;
       this.data_registro = data_registro;
+      this.bloqueado = bloqueado;
    }
    
    public String getNome() {
@@ -100,6 +103,14 @@ public abstract class Membro {
 	
 	public void setHistorico_emprestimos(LinkedList<Emprestimo> historico_emprestimos) {
 		this.historico_emprestimos = historico_emprestimos;
+	}
+	
+	public boolean getBloqueado() {
+	      return this.bloqueado;
+	}
+	
+	public void setBloqueado(boolean bloqueado) {
+		   this.bloqueado = bloqueado;
 	}
 
 }

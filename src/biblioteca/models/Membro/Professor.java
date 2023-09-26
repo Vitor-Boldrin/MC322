@@ -9,13 +9,15 @@ public class Professor extends Membro {
 		   String id_faculdade, 
 		   String endereco, 
 		   String contato,
-		   Date data_registro) {
+		   Date data_registro,
+		   boolean bloqueado) {
 			
 			super(nome, 
 			id_faculdade, 
 			endereco, 
 			contato,
-			data_registro
+			data_registro,
+			bloqueado
 			);
 			this.setLimite_emprestimo((short)7);
 			this.setPrazo_emprestimo((short)30);

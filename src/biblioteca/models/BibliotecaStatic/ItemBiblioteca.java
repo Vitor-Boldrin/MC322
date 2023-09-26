@@ -219,7 +219,12 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	public boolean emprestarItem(Membro membro, T item) {
+	public boolean emprestarItem(Membro membro, T item) throws IllegalAccessException {
+		//Checa se o membro está bloqueado
+    	if(membro.getBloqueado()) {
+    		throw new IllegalAccessException("Membro está bloqueado e não pode realizar emprestimos.");
+    	}
+		
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
 		emprestarItemReservaEmprestimo(membro, (ItemMultimidia) item);
 		

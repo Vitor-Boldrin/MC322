@@ -33,7 +33,7 @@ public class BibliotecaMain {
     private static RelatorioController relatorioController;
     private static ItemBiblioteca<ItemMultimidia> bibliotecaItemBiblioteca;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
@@ -87,7 +87,7 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) {
+    private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) throws IllegalAccessException {
         while (true) {
             System.out.println("---- Menu Gerenciamento de Itens ----");
             System.out.println();
@@ -273,7 +273,7 @@ public class BibliotecaMain {
     }
 
     // Métodos para realizar empréstimo, renovação e reserva
-    private static void realizarEmprestimo(Scanner scanner) {
+    private static void realizarEmprestimo(Scanner scanner) throws IllegalAccessException {
         // Lógica para realizar um empréstimo
         System.out.println("Operação de Empréstimo de Itens");
         
@@ -843,6 +843,20 @@ public class BibliotecaMain {
 		        String endereco1 = scanner.nextLine();
 		        System.out.print("Contato:");
 		        String contato1 = scanner.nextLine();
+
+		        boolean statusMembro1;
+		        System.out.println("Membro bloqueado (y/n):");
+        		String opcaoStatus1 = scanner.nextLine();
+        		if(opcaoStatus1.equals("y")) {
+        			statusMembro1 = true;
+        		} else if(opcaoStatus1.equals("n")) {
+        			statusMembro1 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+		        
 		        Date data1 = new Date();
 		        
 		        // Cria objeto
@@ -851,7 +865,8 @@ public class BibliotecaMain {
 		        		id_faculdade1,
 		        		endereco1,
 		        		contato1,
-						data1);
+						data1,
+						statusMembro1);
 		        
 		        
 		        //Armazena na biblioteca
@@ -880,6 +895,20 @@ public class BibliotecaMain {
 		        String endereco2 = scanner.nextLine();
 		        System.out.print("Contato:");
 		        String contato2 = scanner.nextLine();
+		        
+		        boolean statusMembro2;
+		        System.out.println("Membro bloqueado (y/n):");
+        		String opcaoStatus2 = scanner.nextLine();
+        		if(opcaoStatus2.equals("y")) {
+        			statusMembro2 = true;
+        		} else if(opcaoStatus2.equals("n")) {
+        			statusMembro2 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+		        
 		        Date data2 = new Date();
 		        
 		        // Cria objeto
@@ -888,7 +917,8 @@ public class BibliotecaMain {
 		        		id_faculdade2,
 		        		endereco2,
 		        		contato2,
-						data2);
+						data2,
+						statusMembro2);
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(aluno2);
@@ -915,6 +945,20 @@ public class BibliotecaMain {
 		        String endereco3 = scanner.nextLine();
 		        System.out.print("Contato:");
 		        String contato3 = scanner.nextLine();
+		        
+		        boolean statusMembro3;
+		        System.out.println("Membro bloqueado (y/n):");
+        		String opcaoStatus3 = scanner.nextLine();
+        		if(opcaoStatus3.equals("y")) {
+        			statusMembro3 = true;
+        		} else if(opcaoStatus3.equals("n")) {
+        			statusMembro3 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+		        
 		        Date data3 = new Date();
 		        
 		      //Set do nível do funcionario
@@ -961,7 +1005,8 @@ public class BibliotecaMain {
 		        		endereco3,
 		        		contato3,
 						data3,
-						nivel_acesso);
+						nivel_acesso,
+						statusMembro3);
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(funcionario);
@@ -988,6 +1033,20 @@ public class BibliotecaMain {
 		        String endereco4 = scanner.nextLine();
 		        System.out.print("Contato:");
 		        String contato4 = scanner.nextLine();
+		        
+		        boolean statusMembro4;
+		        System.out.println("Membro bloqueado (y/n):");
+        		String opcaoStatus4 = scanner.nextLine();
+        		if(opcaoStatus4.equals("y")) {
+        			statusMembro4 = true;
+        		} else if(opcaoStatus4.equals("n")) {
+        			statusMembro4 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+		        
 		        Date data4 = new Date();
 		        
 		        // Cria objeto
@@ -996,7 +1055,8 @@ public class BibliotecaMain {
 		        		id_faculdade4,
 		        		endereco4,
 		        		contato4,
-						data4);
+						data4,
+						statusMembro4);
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(professor);
