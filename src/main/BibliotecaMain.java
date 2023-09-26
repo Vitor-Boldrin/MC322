@@ -698,41 +698,41 @@ public class BibliotecaMain {
                 case 1:
                     
 	            	if (item.getStatus().equals(StatusItem.DISPONIVEL)) {
-	            		System.out.print("O item está disponível, deseja torna-lo indisponível ? y/n");
+	            		System.out.println("O item está disponível, deseja torna-lo indisponível ? y/n");
 	            		String opcaoStatus = scanner.nextLine();
 	            		if(opcaoStatus.equals("y")) {
 	            			item.setStatus(StatusItem.INDISPONIVEL);
-		            		System.out.print("Operação realizada com sucesso.");
+		            		System.out.println("Operação realizada com sucesso.");
 		            		return;
 	            		} else if(opcaoStatus.equals("n")) {
-	            			System.out.print("Operação cancelada.");
+	            			System.out.println("Operação cancelada.");
 	            			return;
 	            		} else {
-	            			System.out.print("Opção inválida.");
-	            			System.out.print("Operação cancelada.");
+	            			System.out.println("Opção inválida.");
+	            			System.out.println("Operação cancelada.");
 	            			return;
 	            		}
 	            		
 	            	}
 	            	else if (item.getStatus().equals(StatusItem.INDISPONIVEL)) {
-	            		System.out.print("O item está disponível, deseja torna-lo disponivel ? y/n");
+	            		System.out.println("O item está disponível, deseja torna-lo disponivel ? y/n");
 	            		String opcaoStatus = scanner.nextLine();
 	            		if(opcaoStatus.equals("y")) {
 	            			item.setStatus(StatusItem.DISPONIVEL);
-		            		System.out.print("Operação realizada com sucesso.");
+		            		System.out.println("Operação realizada com sucesso.");
 		            		return;
 	            		} else if(opcaoStatus.equals("n")) {
-	            			System.out.print("Operação cancelada.");
+	            			System.out.println("Operação cancelada.");
 	            			return;
 	            		} else {
-	            			System.out.print("Opção inválida.");
-	            			System.out.print("Operação cancelada.");
+	            			System.out.println("Opção inválida.");
+	            			System.out.println("Operação cancelada.");
 	            			return;
 	            		}
 	            	}
 	            	else {
-	            		System.out.print("O item deve estar disponível ou indisponível para a edicação do status");
-	            		System.out.print("Operação cancelada.");
+	            		System.out.println("O item deve estar disponível ou indisponível para a edicação do status");
+	            		System.out.println("Operação cancelada.");
 	            		return;
 	            	}
                 case 2:
