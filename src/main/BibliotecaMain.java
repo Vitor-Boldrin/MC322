@@ -273,7 +273,7 @@ public class BibliotecaMain {
     }
 
     // Métodos para realizar empréstimo, renovação e reserva
-    private static void realizarEmprestimo(Scanner scanner) throws IllegalAccessException {
+    private static void realizarEmprestimo(Scanner scanner) {
         // Lógica para realizar um empréstimo
         System.out.println("Operação de Empréstimo de Itens");
         
