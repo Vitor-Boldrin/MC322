@@ -288,7 +288,13 @@ public class BibliotecaMain {
     	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
     	
     	// Joga na função e boa
-    	bibliotecaItemBiblioteca.emprestarItem(membro, item);
+    	try {
+    		bibliotecaItemBiblioteca.emprestarItem(membro, item);
+    	} catch (IllegalAccessException e) {
+    		System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
+    		System.err.println("Alguma regra para o emprestimo do item foi violada");
+    		System.err.println(e.getMessage());
+    	}
     }
 
     private static void realizarRenovacao(Scanner scanner) {

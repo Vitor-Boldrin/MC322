@@ -17,6 +17,7 @@ public abstract class Membro {
    private float multa_por_atraso;
    private LinkedList<Emprestimo> historico_emprestimos = new LinkedList<>();
    private boolean bloqueado;
+   private short numEmprestimo = 0;
 
    public Membro(String nome, 
 		   String id_faculdade, 
@@ -111,6 +112,14 @@ public abstract class Membro {
 	
 	public void setBloqueado(boolean bloqueado) {
 		   this.bloqueado = bloqueado;
+	}
+	
+	public short getNumEmprestimo() {
+	      return this.numEmprestimo;
+	}
+	
+	public void setNumEmprestimo(short numEmprestimo) {
+		   this.numEmprestimo = numEmprestimo;
 	}
 
 }

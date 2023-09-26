@@ -86,6 +86,9 @@ public class ItemBiblioteca<T> {
     		BibliotecaStatic.getEmprestimos().add(emprestimo);
     		item.setStatus(StatusItem.EMPRESTADO);
     		
+    		//Aumenta o número de emprestimos
+    		membro.setNumEmprestimo((short) (membro.getNumEmprestimo() + 1));
+    		
     		System.out.println("Livro emprestado com sucesso.");
     		
     		return true;
@@ -156,6 +159,9 @@ public class ItemBiblioteca<T> {
         		BibliotecaStatic.getEmprestimos().add(emprestimo);
         		item.setStatus(StatusItem.EMPRESTADO);
         		
+        		//Aumenta o número de emprestimos
+        		membro.setNumEmprestimo((short) (membro.getNumEmprestimo() + 1));
+        		
         		System.out.println("O membro é o próximo na fila para o livro.");
         		System.out.println("Livro emprestado com sucesso.");
         		
@@ -223,6 +229,11 @@ public class ItemBiblioteca<T> {
 		//Checa se o membro está bloqueado
     	if(membro.getBloqueado()) {
     		throw new IllegalAccessException("Membro está bloqueado e não pode realizar emprestimos.");
+    	}
+    	
+    	//Checa se membro não passou do limite de livros emprestados
+    	if(membro.getNumEmprestimo() >= membro.getLimite_emprestimo()) {
+    		throw new IllegalAccessException("Membro excedeu o número de livros emprestados e não pode realizar emprestimos.");
     	}
 		
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
@@ -294,6 +305,10 @@ public class ItemBiblioteca<T> {
     			//Encontrado o emprestimo
     			//Se desfazendo dele
     			emprestimos.remove(emprestimo);
+    			
+    			//Diminiui número de livros emprestados
+	    		membro.setNumEmprestimo((short) (membro.getNumEmprestimo() - 1));
+    			
     			//Adicionando esse emprestimo ao histórico do membro
     			membro.getHistorico_emprestimos().add(emprestimo);
     			//Avaliando o status do livro
@@ -301,6 +316,7 @@ public class ItemBiblioteca<T> {
     			if(item.getStatus().equals(StatusItem.EMPRESTADO)) {
     				//Livro estava apenas emprestado, apenas alterando o status
     				item.setStatus(StatusItem.DISPONIVEL);
+
     				System.out.println("Livro devolvido");
     				return;
     				
@@ -333,7 +349,7 @@ public class ItemBiblioteca<T> {
     						}
     					}
     					
-    					System.out.println("Livro devolvido criado um novo emprestimo.");
+    					System.out.println("Livro devolvido e foi criado um novo emprestimo.");
     					return;
     				}
     				
