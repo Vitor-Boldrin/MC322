@@ -179,6 +179,12 @@ public class Sala extends Item {
 			this.equipamentos = equipamentos;
 		}
 		
+		//métodos
+		@Override
+		public String toString() {
+			return "SalaMultimidia Id: " + String.valueOf( Sala.this.getId() );
+		}
+		
 		public String getEquipamentos() {
 		      return this.equipamentos;
 		}

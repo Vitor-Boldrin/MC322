@@ -336,6 +336,36 @@ public class BibliotecaMain {
 
     // Métodos para adicionar, editar e remover itens e membros
     private static void adicionarItem(Scanner scanner) {
+    	while (true) {
+            System.out.println("---- Menu Adição de Itens ----");
+            System.out.println();
+            System.out.println("1. Adicionar Item Multimidia");
+            System.out.println("2. Adicionar Sala");
+            System.out.println("3. Voltar");
+            System.out.println();
+            System.out.println();
+            System.out.print("Escolha uma opção: ");
+
+            int opcaoItens = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcaoItens) {
+                case 1:
+                	adicionarItemMultimidia(scanner);
+                    break;
+                case 2:
+                    System.out.println("Função para a adição de sala");
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            }
+        }
+    }
+    
+    // Métodos para adicionar, editar e remover itens e membros
+    private static void adicionarItemMultimidia(Scanner scanner) {
         // Lógica para adicionar um novo item
         System.out.println("Operação de Adição de Item");
         System.out.println("----------------------------");
