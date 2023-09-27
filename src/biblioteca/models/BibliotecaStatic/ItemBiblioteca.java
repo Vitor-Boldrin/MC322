@@ -296,7 +296,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	private static void devolverItemReservaEmprestimo(Membro membro, Item item) {
+	private static void devolverItemReservaEmprestimo(Membro membro, Item item) throws NullPointerException {
     	
 		//Procurando o emprestimo
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
@@ -357,11 +357,10 @@ public class ItemBiblioteca<T> {
     		}
     	}
     	
-    	System.out.println("Não foi encontrado o emprestimo no sistema.");
-    	return;
+    	throw new NullPointerException("Membro não possui o emprestimo para ser devolvido.");
     }
 	
-	public boolean devolverItem(Membro membro, T item) {
+	public boolean devolverItem(Membro membro, T item) throws NullPointerException {
 		//Primeiro, devolve o livro, trata os objetos emprestimos e reservas e o status do item
 		devolverItemReservaEmprestimo(membro, (Item) item);
 		

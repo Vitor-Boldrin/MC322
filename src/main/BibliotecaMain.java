@@ -134,8 +134,15 @@ public class BibliotecaMain {
                 case 7:
                     fazerReserva(scanner);
                     break;
-                case 8:
-                	devolverMainItem(scanner);
+                case 8: //blabla
+                	try{
+                		devolverMainItem(scanner);
+                	}
+                	catch(NullPointerException e) {
+                		System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
+                		System.err.println("Algum comando tentou acessar algo inexistente.");
+                		System.err.println(e.getMessage());
+                	}
                 case 9:
                     return;
                 default:
@@ -321,7 +328,7 @@ public class BibliotecaMain {
         bibliotecaItemBiblioteca.reservarItem(membro, item);
     }
     
-    private static void devolverMainItem(Scanner scanner) {
+    private static void devolverMainItem(Scanner scanner) throws NullPointerException {
     	
     	//Primeiro, colentado os objetos, ITEM e MEMBRO
         System.out.print("Insira o ID do membro que está devolvendo o item:");
