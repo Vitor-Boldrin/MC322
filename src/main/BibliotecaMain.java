@@ -18,6 +18,10 @@ import biblioteca.models.Membro.Funcionario;
 import biblioteca.models.Membro.Membro;
 import biblioteca.models.Membro.Nivel_acesso;
 import biblioteca.models.Membro.Professor;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaGrupo;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaIndividual;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaMultimidia;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaSilenciosa;
 import biblioteca.views.*;
 
 import java.util.Date;
@@ -352,7 +356,7 @@ public class BibliotecaMain {
                 	adicionarItemMultimidia(scanner);
                     break;
                 case 2:
-                    System.out.println("Função para a adição de sala");
+                	adicionarSala(scanner);
                     break;
                 case 3:
                     return;
@@ -715,11 +719,10 @@ public class BibliotecaMain {
 
 			System.out.println("Insira o tipo da Sala:");
 			System.out.println("");
-			System.out.println("1. Sala individual");
-			System.out.println("2. Livro Eletronico");
-			System.out.println("3. CD de Aúdico");
-			System.out.println("4. DVD de Vídeo");
-			System.out.println("5. Outros Itens Multimidia");
+			System.out.println("1. Sala Individual");
+			System.out.println("2. Sala em Grupo");
+			System.out.println("3. Sala Silenciosa");
+			System.out.println("4. Sala Multimidia");
 			System.out.println("");
 			System.out.print("Digite o número: ");
 			
@@ -728,11 +731,11 @@ public class BibliotecaMain {
 		    
 		    switch (codigo) {
 		    case 1:
-		        System.out.println("Livro Físico");
+		        System.out.println("Sala Individual");
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do Livro:");
+		        System.out.print("ID do Item:");
 		        int id1 = scanner.nextInt();
 		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
@@ -740,62 +743,48 @@ public class BibliotecaMain {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
 		        	return;
 		        }
-		        System.out.print("Título do Livro:");
-		        String titulo1 = scanner.nextLine();
-		        System.out.print("Autor:");
-		        String autor1 = scanner.nextLine();
-		        System.out.print("Editora:");
-		        String editora1 = scanner.nextLine();
-		        System.out.print("Ano:");
-		        String ano1 = scanner.nextLine(); 
-		        System.out.print("Genero:");
-		        String genero1 = scanner.nextLine(); 
-		        System.out.print("Sinopse:");
-		        String sinopse1 = scanner.nextLine();
-		        System.out.print("Capa:");
-		        String capa1 = scanner.nextLine();
-		        StatusItem status1 = StatusItem.DISPONIVEL;
-		        System.out.print("ISBN:");
-		        String isbn1 = scanner.nextLine();
-		        System.out.print("Edição (apenas o número):");
-		        int edicao1 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        System.out.print("Localização:");
-		        String loc1 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado1 = scanner.nextLine();
+		        System.out.print("Nome da Sala:");
+		        String nomeSala1 = scanner.nextLine();
+		        
+		        System.out.print("Possui computador ?(y/n):");
+		        boolean temComputador1;
+		        String opcaoStatus1 = scanner.nextLine();
+        		if(opcaoStatus1.equals("y")) {
+        			temComputador1 = true;
+        		} else if(opcaoStatus1.equals("n")) {
+        			temComputador1 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+		        
+		        System.out.print("Numero da Sala:");
+		        int numeroSala1 = scanner.nextInt();
+			    scanner.nextLine();
 		        
 		        // Cria objeto
-		        Livro_fisico livro1 = new Livro_fisico(
+			    SalaIndividual salaIndividual = new SalaIndividual(
 		        		id1,
-		        		titulo1,
-		        		autor1,
-		        		editora1,
-		        		ano1,
-		        		genero1,
-		        		sinopse1,
-		        		capa1,
-		        		status1,
-		        		isbn1,
-		        		edicao1,
-		        		loc1,
-		        		estado1);
+		        		nomeSala1,
+		        		temComputador1,
+		        		numeroSala1);
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro1);
+		        BibliotecaStatic.getItens().add(salaIndividual);
 		        //Armazena ID
 		        BibliotecaStatic.getItens_id().add(id1);
 		        
-		        System.out.println("Livro Adicionado.");
+		        System.out.println("Sala Adicionada.");
 		        
 		        return;
-		    case 2:
-		    	System.out.println("Livro Eletrônico");
+		    case 2:        
+		        System.out.println("Sala Individual");
 		        System.out.println("----------------------");
 		        
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do Livro:");
+		        //Instancia as variáveis da sala
+		        System.out.print("ID da Sala:");
 		        int id2 = scanner.nextInt();
 		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
@@ -803,63 +792,48 @@ public class BibliotecaMain {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
 		        	return;
 		        }
-		        System.out.print("Título do Livro:");
-		        String titulo2 = scanner.nextLine();
-		        System.out.print("Autor:");
-		        String autor2 = scanner.nextLine();
-		        System.out.print("Editora:");
-		        String editora2 = scanner.nextLine();
-		        System.out.print("Ano:");
-		        String ano2 = scanner.nextLine(); 
-		        System.out.print("Genero:");
-		        String genero2 = scanner.nextLine(); 
-		        System.out.print("Sinopse:");
-		        String sinopse2 = scanner.nextLine();
-		        System.out.print("Capa:");
-		        String capa2 = scanner.nextLine();
-		        StatusItem status2 = StatusItem.DISPONIVEL;
-		        System.out.print("Formato:");
-		        String formato2 = scanner.nextLine();
-		        System.out.print("Formato Arquivo:");
-		        String formato_arquivo2 = scanner.nextLine();
-		        System.out.print("URL Acesso:");
-		        String url_acesso2 = scanner.nextLine();
-		        System.out.print("Requisitos Leitura:");
-		        String requisitos_leitura2 = scanner.nextLine();
-		        Date data_disponibilidades2 = new Date();
+		        System.out.print("Nome da Sala:");
+		        String nomeSala2 = scanner.nextLine();
+		        
+		        System.out.print("Possui Recurso ?(y/n):");
+		        boolean temRecurso2;
+		        String opcaoStatus2 = scanner.nextLine();
+        		if(opcaoStatus2.equals("y")) {
+        			temRecurso2 = true;
+        		} else if(opcaoStatus2.equals("n")) {
+        			temRecurso2 = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+        		System.out.print("Numero da Sala:");
+		        int capacidadeMaxima1 = scanner.nextInt();
+			    scanner.nextLine();
 		        
 		        // Cria objeto
-		        Livro_eletronico livro2 = new Livro_eletronico(
+		        SalaGrupo salaGrupo = new SalaGrupo(
 		        		id2,
-		        		titulo2,
-		        		autor2,
-		        		editora2,
-		        		ano2,
-		        		genero2,
-		        		sinopse2,
-		        		capa2,
-		        		status2,
-		        		formato2,
-		        		formato_arquivo2,
-		        		url_acesso2,
-		        		requisitos_leitura2,
-		        		data_disponibilidades2);
+		        		nomeSala2,
+		        		temRecurso2,
+		        		capacidadeMaxima1
+		        		);
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro2);
+		        BibliotecaStatic.getItens().add(salaGrupo);
 		        //Armazena ID
 		        BibliotecaStatic.getItens_id().add(id2);
 		        
-		        System.out.println("Livro Eletrônico Adicionado.");
+		        System.out.println("Sala em grupo adicionada.");
 		        
 		    	return;
 		    case 3:
-		    	System.out.println("CD de Áudio");
+		    	System.out.println("Sala Silenciosa");
 		        System.out.println("----------------------");
 		        
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do CD:");
+		        //Instancia as variáveis da sala
+		        System.out.print("ID da Sala:");
 		        int id3 = scanner.nextInt();
 		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
@@ -867,58 +841,48 @@ public class BibliotecaMain {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
 		        	return;
 		        }
-		        System.out.print("Título do CD:");
-		        String titulo3 = scanner.nextLine();
-		        System.out.print("Autor:");
-		        String autor3 = scanner.nextLine();
-		        System.out.print("Editora:");
-		        String editora3 = scanner.nextLine();
-		        System.out.print("Ano:");
-		        String ano3 = scanner.nextLine(); 
-		        System.out.print("Genero:");
-		        String genero3 = scanner.nextLine(); 
-		        System.out.print("Sinopse:");
-		        String sinopse3 = scanner.nextLine();
-		        System.out.print("Capa:");
-		        String capa3 = scanner.nextLine();
-		        StatusItem status3 = StatusItem.DISPONIVEL;
-		        System.out.print("Lista de Faixas:");
-		        String lista_de_faixas3 = scanner.nextLine();
-		        System.out.print("Duração:");
-		        String duracao3 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao3 = scanner.nextLine();
+		        System.out.print("Nome da Sala:");
+		        String nomeSala3 = scanner.nextLine();
+		        
+		        System.out.print("Possui Cabine Individual ?(y/n):");
+		        boolean temCabineIndividual;
+		        String opcaoStatus3 = scanner.nextLine();
+        		if(opcaoStatus3.equals("y")) {
+        			temCabineIndividual = true;
+        		} else if(opcaoStatus3.equals("n")) {
+        			temCabineIndividual = false;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
+        		System.out.print("Numero de Assentos:");
+		        int numeroAssentos3 = scanner.nextInt();
+			    scanner.nextLine();
 		        
 		        // Cria objeto
-		        CD_de_audio livro3 = new CD_de_audio(
+		        SalaSilenciosa salaSilenciosa = new SalaSilenciosa(
 		        		id3,
-		        		titulo3,
-		        		autor3,
-		        		editora3,
-		        		ano3,
-		        		genero3,
-		        		sinopse3,
-		        		capa3,
-		        		lista_de_faixas3,
-		        		duracao3,
-		        		estado_de_conservacao3,
-		        		status3);
+		        		nomeSala3,
+		        		temCabineIndividual,
+		        		numeroAssentos3
+		        		);
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro3);
+		        BibliotecaStatic.getItens().add(salaSilenciosa);
 		        //Armazena ID
 		        BibliotecaStatic.getItens_id().add(id3);
 		        
-		        System.out.println("CD de Áudio Adicionado.");
+		        System.out.println("Sala em grupo adicionada.");
 		        
 		    	return;
 		    case 4:
-		    	System.out.println("DVD de Vídeo");
+		    	System.out.println("Sala Multimidia");
 		        System.out.println("----------------------");
 		        
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do DVD:");
+		        //Instancia as variáveis da sala
+		        System.out.print("ID da Sala:");
 		        int id4 = scanner.nextInt();
 		        scanner.nextLine(); //capturar o \n
 		        //Checa se o ID já existe na biblioteca para evitar duplicidades
@@ -926,124 +890,28 @@ public class BibliotecaMain {
 		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
 		        	return;
 		        }
-		        System.out.print("Título do DVD:");
-		        String titulo4 = scanner.nextLine();
-		        System.out.print("Autor:");
-		        String autor4 = scanner.nextLine();
-		        System.out.print("Editora:");
-		        String editora4 = scanner.nextLine();
-		        System.out.print("Ano:");
-		        String ano4 = scanner.nextLine(); 
-		        System.out.print("Genero:");
-		        String genero4 = scanner.nextLine(); 
-		        System.out.print("Sinopse:");
-		        String sinopse4 = scanner.nextLine();
-		        System.out.print("Capa:");
-		        String capa4 = scanner.nextLine();
-		        StatusItem status4 = StatusItem.DISPONIVEL;
-		        System.out.print("Elenco:");
-		        String elenco4 = scanner.nextLine();
-		        System.out.print("Duração:");
-		        String duracao4 = scanner.nextLine();
-		        System.out.print("Legendas e Áudio (s)(n):");
-		        String legendas_e_audio4 = scanner.nextLine();
-		        boolean legendas_e_audio_boolean;
-		        if(legendas_e_audio4.equals("s")) {
-		        	legendas_e_audio_boolean = true;
-		        } else {
-		        	legendas_e_audio_boolean = false;
-		        }
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao4 = scanner.nextLine();
+		        System.out.print("Nome da Sala:");
+		        String nomeSala4 = scanner.nextLine();
+		      
+		        String equipamentos4 = scanner.nextLine();
+			    scanner.nextLine();
 		        
 		        // Cria objeto
-		        DVD_de_video livro4 = new DVD_de_video(
+		        SalaMultimidia salaMultimidia = new SalaMultimidia(
 		        		id4,
-		        		titulo4,
-		        		autor4,
-		        		editora4,
-		        		ano4,
-		        		genero4,
-		        		sinopse4,
-		        		capa4,
-		        		elenco4,
-		        		duracao4,
-		        		legendas_e_audio_boolean,
-		        		estado_de_conservacao4,
-		        		status4);
-		        
-		        
-		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro4);
-		        //Armazena ID
-		        BibliotecaStatic.getItens_id().add(id4);
-		        
-		        System.out.println("CD de Áudio Adicionado.");
-		        
-		        return;
-		    case 5:
-		    	System.out.println("Outro Item Multimidia");
-		        System.out.println("----------------------");
-		        
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do Item:");
-		        int id5 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id5)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
-		        System.out.print("Título do DVD:");
-		        String titulo5 = scanner.nextLine();
-		        System.out.print("Autor:");
-		        String autor5 = scanner.nextLine();
-		        System.out.print("Editora:");
-		        String editora5 = scanner.nextLine();
-		        System.out.print("Ano:");
-		        String ano5 = scanner.nextLine(); 
-		        System.out.print("Genero:");
-		        String genero5 = scanner.nextLine(); 
-		        System.out.print("Sinopse:");
-		        String sinopse5 = scanner.nextLine();
-		        System.out.print("Capa:");
-		        String capa5 = scanner.nextLine();
-		        StatusItem status5 = StatusItem.DISPONIVEL;
-		        System.out.print("Tipo Recurso:");
-		        String tipo_recurso5 = scanner.nextLine();
-		        System.out.print("Formato:");
-		        String formato5 = scanner.nextLine();
-		        System.out.print("Localização:");
-		        String localizacao5 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao5 = scanner.nextLine();
-		        
-		        // Cria objeto
-		        Outros_itens_multimidia livro5 = new Outros_itens_multimidia(
-		        		id5,
-		        		titulo5,
-		        		autor5,
-		        		editora5,
-		        		ano5,
-		        		genero5,
-		        		sinopse5,
-		        		capa5,
-		        		status5,
-		        		tipo_recurso5,
-		        		formato5,
-		        		localizacao5,
-		        		estado_de_conservacao5
+		        		nomeSala4,
+		        		equipamentos4
 		        		);
 		        
 		        
 		        //Armazena na biblioteca
-		        BibliotecaStatic.getItens().add(livro5);
+		        BibliotecaStatic.getItens().add(salaMultimidia);
 		        //Armazena ID
-		        BibliotecaStatic.getItens_id().add(id5);
+		        BibliotecaStatic.getItens_id().add(id4);
 		        
-		        System.out.println("CD de Áudio Adicionado.");
+		        System.out.println("Sala Multimidia Adicionada.");
 		        
-		        return;
+		    	return;
 		    default:
 		        System.out.print("Opção inválida. Por favor, escolha novamente: ");
 		    }
