@@ -1,109 +1,32 @@
-package biblioteca.models.Recursos_Biblioteca;
-import java.util.Date;
+package biblioteca.models.Recursos_Biblioteca.SalaBiblioteca;
 
 import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.StatusItem;
 
 public class Sala extends Item {
 
-	private Date data_reserva;
-	private Date hora_inicio;
-	private Date hora_fim;
+	private String nomeSala;
 	
 	public Sala(
 			int id,
-			Date data_reserva,
-			Date hora_inicio,
-			Date hora_fim
+			String nomeSala
 			) {
 		super(id);
-		this.data_reserva = data_reserva;
-		this.hora_inicio = hora_inicio;
-		this.hora_fim = hora_fim;
+		this.nomeSala = nomeSala;
 		this.setStatusItem(StatusItem.DISPONIVEL);
 	}
 	
 	//geters e seters
-	public Date getData_reserva() {
-	      return this.data_reserva;
+	public String getNomeSala() {
+	      return this.nomeSala;
 	}
 	
-	public void setData_reserva(Date data_reserva) {
-	    this.data_reserva = data_reserva;
+	public void setNomeSala(String nomeSala) {
+	    this.nomeSala = nomeSala;
 	}
-	
-	public Date getHora_inicio() {
-	      return this.hora_inicio;
-	}
-	
-	public void setHora_inicio(Date hora_inicio) {
-	    this.hora_inicio = hora_inicio;
-	}
-	
-	public Date getHora_fim() {
-	      return this.hora_fim;
-	}
-	
-	public void setHora_fim(Date hora_fim) {
-	    this.hora_fim = hora_fim;
-	}
-	
-	// Parent Class
-	public abstract class Sala_biblioteca {
-		
-		public Sala_biblioteca() {
-		}
-		
-		//geters da outer class
-		public Date getData_reserva() {
-			return data_reserva;
-		}
-		
-		public Date getHora_inicio() {
-			return hora_inicio;
-		}
-		
-		public Date getHora_fim() {
-			return hora_fim;
-		}
-		
-	}
-	
 	
 	// Inner classes
-	public class Sala_individual extends Sala_biblioteca {
-		private boolean tem_computador;
-		private int numero_sala;
-		
-		public Sala_individual(boolean tem_computador, int numero_sala) {
-			this.tem_computador = tem_computador;
-			this.numero_sala = numero_sala;
-		}
-		
-		//métodos
-		@Override
-		public String toString() {
-			return "SalaIndividual Id: " + String.valueOf( Sala.this.getId() );
-		}
-		
-		//geters e seters
-		public boolean getTem_computador() {
-		      return this.tem_computador;
-		}
-		
-		public void setTem_computador(boolean tem_computador) {
-		    this.tem_computador = tem_computador;
-		}
-		
-		public int getnumero_sala() {
-		      return this.numero_sala;
-		}
-		
-		public void setNumero_sala(int numero_sala) {
-		    this.numero_sala = numero_sala;
-		}
-		
-	}
+	/*
 	
 	public class Sala_grupo extends Sala_biblioteca {
 		private boolean tem_recurso;
@@ -193,6 +116,6 @@ public class Sala extends Item {
 		    this.equipamentos = equipamentos;
 		}
 		
-	}
+	} */
 	
 }
