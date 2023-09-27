@@ -38,6 +38,11 @@ public abstract class ItemMultimidia extends Item {
 
 	}
 	
+	@Override
+	public String toString() {
+		return "ItemMultimidia: " + this.titulo + " Id: " + String.valueOf( this.getId() );
+	}
+	
 	public abstract short numero_disponivel();
 	
 	public abstract short numero_total();

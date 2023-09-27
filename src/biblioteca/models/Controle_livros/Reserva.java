@@ -1,20 +1,20 @@
 package biblioteca.models.Controle_livros;
 import java.util.Date;
 
-import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.Item.Item;
 import biblioteca.models.Membro.Membro;
 
 public class Reserva {
 
 	private Date data_reserva;
 	private Membro membro;
-	private ItemMultimidia itemMultimidia;
+	private Item item;
 	
 	// Construtor
-	public Reserva(Date data_reserva, Membro membro, ItemMultimidia itemMultimidia) {
+	public Reserva(Date data_reserva, Membro membro, Item itemMultimidia) {
 		this.data_reserva = data_reserva;
 		this.membro = membro;
-		this.itemMultimidia = itemMultimidia;
+		this.item = itemMultimidia;
 	}
 	
 	
@@ -35,12 +35,12 @@ public class Reserva {
 	    this.membro = membro;
 	}
 	
-	public ItemMultimidia getItem_multimidia() {
-	      return this.itemMultimidia;
+	public Item getItem() {
+	      return this.item;
 	}
 	
-	public void setPessoa(ItemMultimidia itemMultimidia) {
-	    this.itemMultimidia = itemMultimidia;
+	public void setItem(Item item) {
+	    this.item = item;
 	}
 	
 }

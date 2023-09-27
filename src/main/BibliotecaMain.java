@@ -1175,13 +1175,13 @@ public class BibliotecaMain {
     		System.out.println("Possui os seguintes itens emprestados:");
     		for( Emprestimo emprestimo : emprestimos) {
         		if(emprestimo.getPessoa().equals(membro)) {
-        			System.out.println(emprestimo.getItem_multimidia().toString());
+        			System.out.println(emprestimo.getItem().toString());
         		}
         	}
     		System.out.println("Possui os seguintes itens reservados:");
     		for( Reserva reserva : reservas) {
         		if(reserva.getPessoa().equals(membro)) {
-        			System.out.println(reserva.getItem_multimidia().getTitulo());
+        			System.out.println(reserva.getItem().toString());
         		}
         	}
     	}

@@ -1,7 +1,7 @@
 package biblioteca.models.Controle_livros;
 import java.util.Date;
 
-import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.Item.Item;
 import biblioteca.models.Membro.Membro;
 
 public class Emprestimo {
@@ -9,15 +9,15 @@ public class Emprestimo {
 	private Date data_emprestimo;
 	private Date data_final;
 	private Membro membro;
-	private ItemMultimidia itemMultimidia;
+	private Item item;
 	
 	// Construtor
 	public Emprestimo(Date data_emprestimo,Date data_final,
-			Membro membro,ItemMultimidia itemMultimidia) {
+			Membro membro,Item itemMultimidia) {
 		this.data_emprestimo = data_emprestimo;
 		this.data_final = data_final;
 		this.membro = membro;
-		this.itemMultimidia = itemMultimidia;
+		this.item = itemMultimidia;
 	}
 	
 	
@@ -46,12 +46,12 @@ public class Emprestimo {
 	    this.membro = membro;
 	}
 	
-	public ItemMultimidia getItem_multimidia() {
-	      return this.itemMultimidia;
+	public Item getItem() {
+	      return this.item;
 	}
 	
-	public void setPessoa(ItemMultimidia itemMultimidia) {
-	    this.itemMultimidia = itemMultimidia;
+	public void setItem(Item item) {
+	    this.item = item;
 	}
 	
 }

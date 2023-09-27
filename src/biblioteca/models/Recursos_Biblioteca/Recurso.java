@@ -66,6 +66,11 @@ public class Recurso extends Item {
 			super(titulo, detalhes);
 		}	
 		
+		@Override
+		public String toString() {
+			return "RecursoAudio Id: " + String.valueOf( Recurso.this.getId() );
+		}
+		
 	}
 	
 	public class Video extends Recurso_multimidia {
@@ -74,6 +79,11 @@ public class Recurso extends Item {
 			super(titulo, detalhes);
 		}	
 		
+		@Override
+		public String toString() {
+			return "RecursoVideo Id: " + String.valueOf( Recurso.this.getId() );
+		}
+		
 	}
 	
 	public class Software extends Recurso_multimidia {
@@ -81,6 +91,11 @@ public class Recurso extends Item {
 		public Software(String titulo, String detalhes) {
 			super(titulo, detalhes);
 		}	
+		
+		@Override
+		public String toString() {
+			return "RecursoSoftware Id: " + String.valueOf( Recurso.this.getId() );
+		}
 		
 	}
 }

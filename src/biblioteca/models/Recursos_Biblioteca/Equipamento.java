@@ -75,6 +75,11 @@ public class Equipamento extends Item {
 			super(tipo,configuracao);
 		}
 		
+		@Override
+		public String toString() {
+			return "EquipamentoInformática Id: " + String.valueOf( Equipamento.this.getId() );
+		}
+		
 	}
 	
 	//INFORMATICA
@@ -84,6 +89,11 @@ public class Equipamento extends Item {
 			super(tipo,configuracao);
 		}
 		
+		@Override
+		public String toString() {
+			return "EquipamentoAudivisual Id: " + String.valueOf( Equipamento.this.getId() );
+		}
+		
 	}
 		
 	//INFORMATICA
@@ -91,6 +101,11 @@ public class Equipamento extends Item {
 		
 		public Impressao(String tipo, String configuracao) {
 			super(tipo,configuracao);
+		}
+		
+		@Override
+		public String toString() {
+			return "EquipamentoImpressão Id: " + String.valueOf( Equipamento.this.getId() );
 		}
 		
 	}

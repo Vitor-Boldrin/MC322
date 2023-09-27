@@ -80,6 +80,12 @@ public class Sala extends Item {
 			this.numero_sala = numero_sala;
 		}
 		
+		//métodos
+		@Override
+		public String toString() {
+			return "SalaIndividual Id: " + String.valueOf( Sala.this.getId() );
+		}
+		
 		//geters e seters
 		public boolean getTem_computador() {
 		      return this.tem_computador;
@@ -106,6 +112,12 @@ public class Sala extends Item {
 		public Sala_grupo(boolean tem_recurso, int capacidade_maxima) {
 			this.tem_recurso = tem_recurso;
 			this.capacidade_maxima = capacidade_maxima;
+		}
+		
+		//métodos
+		@Override
+		public String toString() {
+			return "SalaGrupo Id: " + String.valueOf( Sala.this.getId() );
 		}
 				
 		//geters e seters
@@ -136,7 +148,11 @@ public class Sala extends Item {
 			this.numero_assentos = numero_assentos;
 		}
 		
-
+		//métodos
+		@Override
+		public String toString() {
+			return "SalaSilenciosa Id: " + String.valueOf( Sala.this.getId() );
+		}
 		
 		public boolean getTem_cabine_individual() {
 		      return this.tem_cabine_individual;

@@ -43,6 +43,8 @@ public class MainTestes {
 		System.out.println(emprestimeEquipamento1.getStatusItem() );
 		
 		System.out.println(emprestimeEquipamento2.getStatusItem() );
+		
+		System.out.println(emprestimeEquipamento2.toString() );
 	}
 
 }

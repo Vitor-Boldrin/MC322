@@ -66,7 +66,7 @@ public class ItemBiblioteca<T> {
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
     	
     	for( Emprestimo emprestimo : emprestimos) {
-    		if(emprestimo.getPessoa().equals(membro) && emprestimo.getItem_multimidia().equals(item)) {
+    		if(emprestimo.getPessoa().equals(membro) && emprestimo.getItem().equals(item)) {
     			System.out.println("Membro já tem esse item emprestado.");
     			System.out.println("Operação encerrada.");
     			return false;
@@ -102,7 +102,7 @@ public class ItemBiblioteca<T> {
     		LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
     		
     		for( Reserva reserva : reservas) {
-        		if(reserva.getPessoa().equals(membro) && reserva.getItem_multimidia().equals(item)) {
+        		if(reserva.getPessoa().equals(membro) && reserva.getItem().equals(item)) {
         			//Membro já tem uma reserva nesse item
         			System.out.println("Membro já tem esse item reservado.");
         			System.out.println("Operação encerrada.");
@@ -137,7 +137,7 @@ public class ItemBiblioteca<T> {
     		Reserva reserva_membro = null;
     		
     		for( Reserva reserva : reservas) {
-    			if(reserva.getItem_multimidia().equals(item)) {
+    			if(reserva.getItem().equals(item)) {
 					aux++; 
 		    		if(reserva.getPessoa().equals(membro)) {
 		    			reserva_membro = reserva;
@@ -256,7 +256,7 @@ public class ItemBiblioteca<T> {
     	LinkedList<Reserva> reservas = BibliotecaStatic.getReservas();
     	
     	for( Reserva reserva : reservas) {
-    		if(reserva.getPessoa().equals(membro) && reserva.getItem_multimidia().equals(item)) {
+    		if(reserva.getPessoa().equals(membro) && reserva.getItem().equals(item)) {
     			System.out.println("Membro já tem esse item reservado.");
     			System.out.println("Operação encerrada.");
     			return false;
@@ -301,7 +301,7 @@ public class ItemBiblioteca<T> {
 		//Procurando o emprestimo
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
     	for (Emprestimo emprestimo : emprestimos) {
-    		if(emprestimo.getItem_multimidia().equals(item) && emprestimo.getPessoa().equals(membro)) {
+    		if(emprestimo.getItem().equals(item) && emprestimo.getPessoa().equals(membro)) {
     			//Encontrado o emprestimo
     			//Se desfazendo dele
     			emprestimos.remove(emprestimo);
@@ -331,7 +331,7 @@ public class ItemBiblioteca<T> {
     				while(iter.hasNext()) {
     					Reserva reserva = iter.next();
     					// procurando o reserva que existe
-    					if(reserva.getItem_multimidia().equals(item)) {
+    					if(reserva.getItem().equals(item)) {
     						
     						if(aux == false) {
 	    						//encontrado a reserva
