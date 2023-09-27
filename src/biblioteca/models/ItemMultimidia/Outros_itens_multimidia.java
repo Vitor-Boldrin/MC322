@@ -5,7 +5,7 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 	private String tipo_recurso;
 	private String formato;
 	private String localizacao;
-	private String estado_conservacao;
+	private EstadoItemMultimidia estado_conservacao;
 	
 	public Outros_itens_multimidia(
 			int id,
@@ -20,7 +20,7 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 			String tipo_recurso,
 			String formato,
 			String localizacao,
-			String estado_conservacao
+			EstadoItemMultimidia estado_conservacao
 			) {
 	
 		super(
@@ -73,11 +73,11 @@ public class Outros_itens_multimidia extends ItemMultimidia {
 	    this.localizacao = localizacao;
 	}
 	
-	public String getEstado_conservacao() {
+	public EstadoItemMultimidia getEstado_conservacao() {
 	      return this.estado_conservacao;
 	}
 	
-	public void setEstado_conservacao(String estado_conservacao) {
+	public void setEstado_conservacao(EstadoItemMultimidia estado_conservacao) {
 	    this.estado_conservacao = estado_conservacao;
 	}
 }

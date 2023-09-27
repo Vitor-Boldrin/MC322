@@ -5,7 +5,7 @@ public class Livro_fisico extends ItemMultimidia {
 	private String isbn;
 	private int edicao;
 	private String localizacao;
-	private String estado_conservacao;
+	private EstadoItemMultimidia estado_conservacao;
 	
 	public Livro_fisico(
 			int id,
@@ -20,7 +20,7 @@ public class Livro_fisico extends ItemMultimidia {
 			String isbn,
 			int edicao,
 			String localizacao,
-			String estado_conservacao
+			EstadoItemMultimidia estado_conservacao
 			) {
 	
 		super(
@@ -73,11 +73,11 @@ public class Livro_fisico extends ItemMultimidia {
 	    this.localizacao = localizacao;
 	}
 	
-	public String getEstado_conservacao() {
+	public EstadoItemMultimidia getEstado_conservacao() {
 	      return this.estado_conservacao;
 	}
 	
-	public void setEstado_conservacao(String estado_conservacao) {
+	public void setEstado_conservacao(EstadoItemMultimidia estado_conservacao) {
 	    this.estado_conservacao = estado_conservacao;
 	}
 	

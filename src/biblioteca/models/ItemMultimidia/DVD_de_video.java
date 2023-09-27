@@ -5,7 +5,7 @@ public class DVD_de_video extends ItemMultimidia {
 	private String elenco;
 	private String duracao;
 	private boolean legendas_e_audio;
-	private String estado_conservacao;
+	private EstadoItemMultimidia estado_conservacao;
 	
 	public DVD_de_video(
 			int id,
@@ -19,7 +19,7 @@ public class DVD_de_video extends ItemMultimidia {
 			String elenco,
 			String duracao,
 			boolean legendas_e_audio,
-			String estado_conservacao,
+			EstadoItemMultimidia estado_conservacao,
 			StatusItem status
 			) {
 	
@@ -73,11 +73,11 @@ public class DVD_de_video extends ItemMultimidia {
 	    this.legendas_e_audio = legendas_e_audio;
 	}
 	
-	public String getEstado_conservacao() {
+	public EstadoItemMultimidia getEstado_conservacao() {
 	      return this.estado_conservacao;
 	}
 	
-	public void setEstado_conservacao(String estado_conservacao) {
+	public void setEstado_conservacao(EstadoItemMultimidia estado_conservacao) {
 	    this.estado_conservacao = estado_conservacao;
 	}
 }

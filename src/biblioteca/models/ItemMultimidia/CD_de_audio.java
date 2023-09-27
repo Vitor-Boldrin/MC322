@@ -4,7 +4,7 @@ public class CD_de_audio extends ItemMultimidia {
 
 	private String lista_de_faixas;
 	private String duracao;
-	private String estado_conservacao;
+	private EstadoItemMultimidia estado_conservacao;
 	
 	public CD_de_audio(
 			int id,
@@ -17,7 +17,7 @@ public class CD_de_audio extends ItemMultimidia {
 			String capa,
 			String lista_de_faixas,
 			String duracao,
-			String estado_conservacao,
+			EstadoItemMultimidia estado_conservacao,
 			StatusItem status
 			) {
 	
@@ -62,11 +62,11 @@ public class CD_de_audio extends ItemMultimidia {
 	    this.duracao = duracao;
 	}
 	
-	public String getEstado_conservacao() {
+	public EstadoItemMultimidia getEstado_conservacao() {
 	      return this.estado_conservacao;
 	}
 	
-	public void setEstado_conservacao(String estado_conservacao) {
+	public void setEstado_conservacao(EstadoItemMultimidia estado_conservacao) {
 	    this.estado_conservacao = estado_conservacao;
 	}
 	
