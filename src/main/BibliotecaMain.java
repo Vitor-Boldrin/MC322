@@ -780,7 +780,7 @@ public class BibliotecaMain {
 		        
 		        return;
 		    case 2:        
-		        System.out.println("Sala Individual");
+		        System.out.println("Sala Grupo");
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis da sala
