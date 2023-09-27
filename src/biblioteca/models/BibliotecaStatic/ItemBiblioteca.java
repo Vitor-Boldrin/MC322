@@ -8,7 +8,7 @@ import java.util.Set;
 
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
-import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Membro;
 
@@ -60,7 +60,7 @@ public class ItemBiblioteca<T> {
 		this.numeroDeItensReservados = numeroDeItensReservados;
 	}
 	
-	private boolean emprestarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
+	private boolean emprestarItemReservaEmprestimo(Membro membro, Item item) {
     	//Checa se o membro já tem esse item emprestado. Importante, pois mesmo
 		// emprestado, ao solicitar o emprestimo é criado uma reserva
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
@@ -196,7 +196,7 @@ public class ItemBiblioteca<T> {
 
     }
 	
-	private boolean itemCheckItemStatus(Membro membro, ItemMultimidia item) {
+	private boolean itemCheckItemStatus(Membro membro, Item item) {
 		//Checa o status do item após o emprestimo
 		StatusItem status_item = item.getStatusItem();
 		
@@ -237,14 +237,14 @@ public class ItemBiblioteca<T> {
     	}
 		
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
-		emprestarItemReservaEmprestimo(membro, (ItemMultimidia) item);
+		emprestarItemReservaEmprestimo(membro, (Item) item);
 		
 		//Realiza o manejo nos set's emprestados e reservados
-		itemCheckItemStatus(membro, (ItemMultimidia) item);
+		itemCheckItemStatus(membro, (Item) item);
 		return true;
 	}
 	
-	private boolean reservarItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
+	private boolean reservarItemReservaEmprestimo(Membro membro, Item item) {
 		//Primeiro, checar se o livro está indisponível
     	StatusItem status_item = item.getStatusItem();
     	
@@ -289,14 +289,14 @@ public class ItemBiblioteca<T> {
 	
 	public boolean reservarItem(Membro membro, T item) {
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
-		reservarItemReservaEmprestimo(membro, (ItemMultimidia) item);
+		reservarItemReservaEmprestimo(membro, (Item) item);
 		
 		//Realiza o manejo nos set's emprestados e reservados
-		itemCheckItemStatus(membro, (ItemMultimidia) item);
+		itemCheckItemStatus(membro, (Item) item);
 		return true;
 	}
 	
-	private static void devolverItemReservaEmprestimo(Membro membro, ItemMultimidia item) {
+	private static void devolverItemReservaEmprestimo(Membro membro, Item item) {
     	
 		//Procurando o emprestimo
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
@@ -363,10 +363,10 @@ public class ItemBiblioteca<T> {
 	
 	public boolean devolverItem(Membro membro, T item) {
 		//Primeiro, devolve o livro, trata os objetos emprestimos e reservas e o status do item
-		devolverItemReservaEmprestimo(membro, (ItemMultimidia) item);
+		devolverItemReservaEmprestimo(membro, (Item) item);
 		
 		//Realiza o manejo nos set's emprestados e reservados
-		itemCheckItemStatus(membro, (ItemMultimidia) item);
+		itemCheckItemStatus(membro, (Item) item);
 		return true;
 	}
 	

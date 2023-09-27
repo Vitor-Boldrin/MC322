@@ -9,6 +9,7 @@ import java.util.Set;
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Membro;
@@ -25,13 +26,13 @@ public class BibliotecaControllerImpl implements BibliotecaController {
         return itens;
     }
     
-    public ItemMultimidia buscarItenPorIdentificacao(int identificacao) {
+    public Item buscarItenPorIdentificacao(int identificacao) {
     	//Inicializando variável do membro a ser editado
-    	ItemMultimidia item_editar = null;
+    	Item item_editar = null;
     	
     	//Loop para achar o membro a partir do ID
-    	List<ItemMultimidia> Itens = BibliotecaStatic.getItens();
-    	for( ItemMultimidia item : Itens) {
+    	List<Item> Itens = BibliotecaStatic.getItens();
+    	for( Item item : Itens) {
     		if(item.getId() == identificacao) {
     			item_editar = item;
     			break;

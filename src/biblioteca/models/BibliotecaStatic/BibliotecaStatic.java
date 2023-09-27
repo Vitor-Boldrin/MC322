@@ -5,7 +5,7 @@ import java.util.Set;
 
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
-import biblioteca.models.ItemMultimidia.ItemMultimidia;
+import biblioteca.models.Item.Item;
 import biblioteca.models.Membro.Membro;
 
 public class BibliotecaStatic {
@@ -16,7 +16,7 @@ public class BibliotecaStatic {
 	static private Set<String> membros_id = new HashSet<>();
 	
 	//Administração Itens
-	static private LinkedList<ItemMultimidia> itens = new LinkedList<>();
+	static private LinkedList<Item> itens = new LinkedList<>();
 	static private Set<Integer> itens_id = new HashSet<>();
 	
 	//Controle itens
@@ -42,11 +42,11 @@ public class BibliotecaStatic {
 		membros_id = membros_id_novo;
 	}
 	
-	static public LinkedList<ItemMultimidia> getItens() {
+	static public LinkedList<Item> getItens() {
 		return itens;
 	}
 	
-	static public void setItens(LinkedList<ItemMultimidia> itens_novo) {
+	static public void setItens(LinkedList<Item> itens_novo) {
 		itens = itens_novo;
 	}
 	

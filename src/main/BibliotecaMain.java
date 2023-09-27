@@ -5,6 +5,7 @@ import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.BibliotecaStatic.ItemBiblioteca;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.CD_de_audio;
 import biblioteca.models.ItemMultimidia.DVD_de_video;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
@@ -31,7 +32,7 @@ public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
     private static MembroController membroController;
     private static RelatorioController relatorioController;
-    private static ItemBiblioteca<ItemMultimidia> bibliotecaItemBiblioteca;
+    private static ItemBiblioteca<Item> bibliotecaItemBiblioteca;
 
     public static void main(String[] args) throws IllegalAccessException {
         bibliotecaController = new BibliotecaControllerImpl();
@@ -109,7 +110,7 @@ public class BibliotecaMain {
 
             switch (opcaoItens) {
                 case 1:
-                    List<ItemMultimidia> itens = BibliotecaStatic.getItens();
+                    List<Item> itens = BibliotecaStatic.getItens();
                     BibliotecaViewImpl bibliotecaViewImpl = new BibliotecaViewImpl(bibliotecaController);
                     bibliotecaViewImpl.mostrarItensDisponiveis(itens);
                     break;
@@ -285,7 +286,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser emprestado:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+    	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
     	
     	// Joga na função e boa
     	try {
@@ -313,7 +314,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser reservado:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+    	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
         
         bibliotecaItemBiblioteca.reservarItem(membro, item);
     }
@@ -328,7 +329,7 @@ public class BibliotecaMain {
     	System.out.print("Insira o ID do livro a ser devolvido:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+    	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
     	
     	bibliotecaItemBiblioteca.devolverItem(membro, item);
     }
@@ -685,7 +686,7 @@ public class BibliotecaMain {
         System.out.print("Insira o ID do livro a ser editado:");
     	int id_livro = scanner.nextInt();
     	scanner.nextLine(); //captura o \n
-    	ItemMultimidia item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+    	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
         
         while (true) {
             System.out.println("---- Menu Edição de Itens ----");
@@ -755,11 +756,11 @@ public class BibliotecaMain {
     	int ID = scanner.nextInt();
     	
     	//Inicializando variável do membro a ser deletado
-    	ItemMultimidia item_deletar = null;
+    	Item item_deletar = null;
     	
     	//Loop para achar o Item a partir do ID
-    	List<ItemMultimidia> itens = BibliotecaStatic.getItens();
-    	for( ItemMultimidia item : itens) {
+    	List<Item> itens = BibliotecaStatic.getItens();
+    	for( Item item : itens) {
     		if(item.getId() == ID ) {
     			item_deletar = item;
     			break;
@@ -774,7 +775,7 @@ public class BibliotecaMain {
     		int opcao = 0;
 	        while(opcao == 0) {
 			    
-	        	System.out.println("Tem certeza que deseja deletar o item" + item_deletar.getTitulo() + " ?:");
+	        	System.out.println("Tem certeza que deseja deletar o item" + item_deletar.toString() + " ?:");
 	    		System.out.println("1. Sim");
 	    		System.out.println("2. Não");
 	    		System.out.print("Insira a opção: ");
@@ -1203,10 +1204,10 @@ public class BibliotecaMain {
         // Lógica para gerar o Relatório de Disponibilidade de Itens
         System.out.println("Gerando Relatório de Disponibilidade de Itens");
         
-        LinkedList<ItemMultimidia> itens = BibliotecaStatic.getItens();
+        LinkedList<Item> itens = BibliotecaStatic.getItens();
         
-        for( ItemMultimidia item : itens) {
-    		System.out.println(item.getTitulo() + ' ' + item.getStatusItem());
+        for( Item item : itens) {
+    		System.out.println(item.toString() + ' ' + item.getStatusItem());
     	}
     }
 
