@@ -9,6 +9,7 @@ import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.CD_de_audio;
 import biblioteca.models.ItemMultimidia.DVD_de_video;
 import biblioteca.models.ItemMultimidia.EstadoItemMultimidia;
+import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.Livro_eletronico;
 import biblioteca.models.ItemMultimidia.Livro_fisico;
 import biblioteca.models.ItemMultimidia.Outros_itens_multimidia;
@@ -985,7 +986,7 @@ public class BibliotecaMain {
             System.out.println("Selecione a opção que deseja editar.");
             System.out.println();
             System.out.println("1. STATUS Item");
-            System.out.println("2. Condição Item");
+            System.out.println("2. Condição Item (Apenas Itens Multimidia");
             System.out.println();
             System.out.println();
             System.out.print("Escolha uma opção: ");
@@ -1035,8 +1036,38 @@ public class BibliotecaMain {
 	            		return;
 	            	}
                 case 2:
-                	System.out.println("TODO");
-                    return;
+                	
+                	if( !(item.getClass() == ItemMultimidia.class) ) {
+                		System.out.println("O item não é do tipo Item Multimidia.");
+                		System.out.println("Operação Cancelada.");
+                		return;
+                	}
+                	
+                	ItemMultimidia itemMultimidia = (ItemMultimidia) item;
+                	while(true) {
+                		System.out.println("Selecione o novo estado do Item.");
+                        System.out.println();
+                        System.out.println("1. Bom Estado");
+                        System.out.println("2. Mau Estado");
+                        System.out.println();
+                        System.out.println();
+                        System.out.print("Escolha uma opção: ");
+                        
+                        int opcaoEstadoIten = scanner.nextInt();
+                        scanner.nextLine();
+                        
+                        if(opcaoEstadoIten == 1) {
+                        	itemMultimidia.setEstado_conservacao(EstadoItemMultimidia.BOM);
+		            		System.out.println("Operação realizada com sucesso.");
+		            		return;
+	            		} else if(opcaoEstadoIten == 2) {
+	            			itemMultimidia.setEstado_conservacao(EstadoItemMultimidia.MAU);
+	            			System.out.println("Operação realizada com sucesso.");
+	            			return;
+	            		} else {
+	            			System.out.println("Opção inválida, tente novamente.");
+	            		}
+                	}
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
             }

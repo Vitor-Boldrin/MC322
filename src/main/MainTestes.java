@@ -8,14 +8,17 @@ import java.util.Scanner;
 
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.BibliotecaStatic.ListaReservas;
+import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.*;
 import biblioteca.models.Recursos_Biblioteca.Categoria_equipamento;
 import biblioteca.models.Recursos_Biblioteca.Equipamento;
+import biblioteca.models.Recursos_Biblioteca.Evento;
 import biblioteca.models.Recursos_Biblioteca.Formato_multimidia;
 import biblioteca.models.Recursos_Biblioteca.Recurso;
 import biblioteca.models.Recursos_Biblioteca.Recurso.Video;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.Sala;
 
 
 
@@ -45,6 +48,11 @@ public class MainTestes {
 		System.out.println(emprestimeEquipamento2.getStatusItem() );
 		
 		System.out.println(emprestimeEquipamento2.toString() );
+		
+		if(equipamento1 instanceof ItemMultimidia) {
+    		System.out.println("AAAAAAAAAAAAAA");
+    	}
+		
 	}
 
 }

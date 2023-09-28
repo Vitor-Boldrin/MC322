@@ -93,4 +93,14 @@ public class Livro_eletronico extends ItemMultimidia {
 	public void setData_disponibilidade(Date data_disponibilidade) {
 	    this.data_disponibilidade = data_disponibilidade;
 	}
+	
+	public EstadoItemMultimidia getEstado_conservacao() {
+		  System.out.println("O Livro Eletrônico não possui estado de conservação. Nada foi retornado.");
+	      return null;
+	}
+	
+	public void setEstado_conservacao(EstadoItemMultimidia estado_conservacao) {
+		System.out.println("O Livro Eletrônico não possui estado de conservação. Nada foi editado.");
+	    return;
+	}
 }

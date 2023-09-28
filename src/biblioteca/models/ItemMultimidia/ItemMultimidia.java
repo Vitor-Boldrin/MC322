@@ -47,6 +47,10 @@ public abstract class ItemMultimidia extends Item {
 	
 	public abstract short numero_total();
 	
+	public abstract EstadoItemMultimidia getEstado_conservacao();
+	
+	public abstract void setEstado_conservacao(EstadoItemMultimidia estado_conservacao);
+	
 	public String getTitulo() {
 	      return this.titulo;
 	}
