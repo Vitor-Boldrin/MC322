@@ -8,6 +8,7 @@ import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.CD_de_audio;
 import biblioteca.models.ItemMultimidia.DVD_de_video;
+import biblioteca.models.ItemMultimidia.EstadoItemMultimidia;
 import biblioteca.models.ItemMultimidia.Livro_eletronico;
 import biblioteca.models.ItemMultimidia.Livro_fisico;
 import biblioteca.models.ItemMultimidia.Outros_itens_multimidia;
@@ -429,8 +430,19 @@ public class BibliotecaMain {
 		        scanner.nextLine(); //capturar o \n
 		        System.out.print("Localização:");
 		        String loc1 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado1 = scanner.nextLine();
+		        
+		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        EstadoItemMultimidia estado1;
+		        String opcaoStatus1 = scanner.nextLine();
+        		if(opcaoStatus1.equals("y")) {
+        			estado1 = EstadoItemMultimidia.BOM;
+        		} else if(opcaoStatus1.equals("n")) {
+        			estado1 = EstadoItemMultimidia.MAU;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
 		        
 		        // Cria objeto
 		        Livro_fisico livro1 = new Livro_fisico(
@@ -553,8 +565,19 @@ public class BibliotecaMain {
 		        String lista_de_faixas3 = scanner.nextLine();
 		        System.out.print("Duração:");
 		        String duracao3 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao3 = scanner.nextLine();
+		        
+		        EstadoItemMultimidia estado_de_conservacao3;
+		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        String opcaoStatus3 = scanner.nextLine();
+        		if(opcaoStatus3.equals("y")) {
+        			estado_de_conservacao3 = EstadoItemMultimidia.BOM;
+        		} else if(opcaoStatus3.equals("n")) {
+        			estado_de_conservacao3 = EstadoItemMultimidia.MAU;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
 		        
 		        // Cria objeto
 		        CD_de_audio livro3 = new CD_de_audio(
@@ -620,8 +643,19 @@ public class BibliotecaMain {
 		        } else {
 		        	legendas_e_audio_boolean = false;
 		        }
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao4 = scanner.nextLine();
+		        
+		        EstadoItemMultimidia estado_de_conservacao4;
+		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        String opcaoStatus4 = scanner.nextLine();
+        		if(opcaoStatus4.equals("y")) {
+        			estado_de_conservacao4 = EstadoItemMultimidia.BOM;
+        		} else if(opcaoStatus4.equals("n")) {
+        			estado_de_conservacao4 = EstadoItemMultimidia.MAU;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
 		        
 		        // Cria objeto
 		        DVD_de_video livro4 = new DVD_de_video(
@@ -682,8 +716,19 @@ public class BibliotecaMain {
 		        String formato5 = scanner.nextLine();
 		        System.out.print("Localização:");
 		        String localizacao5 = scanner.nextLine();
-		        System.out.print("Estado de Conservação:");
-		        String estado_de_conservacao5 = scanner.nextLine();
+		        
+		        EstadoItemMultimidia estado_de_conservacao5;
+		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        String opcaoStatus5 = scanner.nextLine();
+        		if(opcaoStatus5.equals("y")) {
+        			estado_de_conservacao5 = EstadoItemMultimidia.BOM;
+        		} else if(opcaoStatus5.equals("n")) {
+        			estado_de_conservacao5 = EstadoItemMultimidia.MAU;
+        		} else {
+        			System.out.println("Opção inválida.");
+        			System.out.println("Operação cancelada.");
+        			return;
+        		}
 		        
 		        // Cria objeto
 		        Outros_itens_multimidia livro5 = new Outros_itens_multimidia(
