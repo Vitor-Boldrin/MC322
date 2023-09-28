@@ -9,6 +9,8 @@ import java.util.Set;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
 import biblioteca.models.Item.Item;
+import biblioteca.models.ItemMultimidia.EstadoItemMultimidia;
+import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.StatusItem;
 import biblioteca.models.Membro.Membro;
 
@@ -70,6 +72,16 @@ public class ItemBiblioteca<T> {
     			System.out.println("Membro já tem esse item emprestado.");
     			System.out.println("Operação encerrada.");
     			return false;
+    		}
+    	}
+    	
+    	//Checa se o estado do item está BOM, apenas para itens multimidia
+    	if( (item.getClass() == ItemMultimidia.class) ) {
+    		ItemMultimidia itemMultimidia = (ItemMultimidia) item;
+    		if(itemMultimidia.getEstado_conservacao().equals(EstadoItemMultimidia.MAU)) {
+    			System.out.println("O item multimidia está em MAU estado de conservação e portanto não pode ser emprestado.");
+        		System.out.println("Operação Cancelada.");
+        		return false;
     		}
     	}
     	
