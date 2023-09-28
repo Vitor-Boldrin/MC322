@@ -1037,7 +1037,7 @@ public class BibliotecaMain {
 	            	}
                 case 2:
                 	
-                	if( !(item.getClass() == ItemMultimidia.class) ) {
+                	if( !(item instanceof ItemMultimidia) ) {
                 		System.out.println("O item não é do tipo Item Multimidia.");
                 		System.out.println("Operação Cancelada.");
                 		return;

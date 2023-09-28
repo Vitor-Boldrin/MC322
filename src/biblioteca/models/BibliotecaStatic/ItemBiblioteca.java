@@ -76,7 +76,7 @@ public class ItemBiblioteca<T> {
     	}
     	
     	//Checa se o estado do item está BOM, apenas para itens multimidia
-    	if( (item.getClass() == ItemMultimidia.class) ) {
+    	if( (item instanceof ItemMultimidia) ) {
     		ItemMultimidia itemMultimidia = (ItemMultimidia) item;
     		if(itemMultimidia.getEstado_conservacao().equals(EstadoItemMultimidia.MAU)) {
     			System.out.println("O item multimidia está em MAU estado de conservação e portanto não pode ser emprestado.");
@@ -315,6 +315,23 @@ public class ItemBiblioteca<T> {
     	for (Emprestimo emprestimo : emprestimos) {
     		if(emprestimo.getItem().equals(item) && emprestimo.getPessoa().equals(membro)) {
     			//Encontrado o emprestimo
+    			
+    			//Checa se o estado do item está BOM, apenas para itens multimidia
+    	    	if( (item instanceof ItemMultimidia) ) {
+    	    		ItemMultimidia itemMultimidia = (ItemMultimidia) item;
+    	    		try {
+			    		if(itemMultimidia.getEstado_conservacao().equals(EstadoItemMultimidia.MAU)) {
+			    			System.out.println("");
+			        		throw new IllegalStateException("O item multimidia está em MAU estado de conservação e portanto não pode ser devolvido nesse estado.");
+			    		}
+    	    		} catch(IllegalStateException e) {
+    	    			System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
+                		System.err.println(e.getMessage());
+                		System.err.println("(Procure a Manutenção!)");
+    	    			return;
+    	    		}
+    	    	}
+    			
     			//Se desfazendo dele
     			emprestimos.remove(emprestimo);
     			
