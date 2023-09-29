@@ -1,6 +1,7 @@
 package main;
 import java.util.Collection;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,21 +38,29 @@ public class MainTestes {
 		//Recurso recurso1 = new Recurso(2,Formato_multimidia.VIDEO);
 		//Recurso.Video recursoEmprestimo1 = recurso1.new Video("opa","não");
 
-		System.out.println(emprestimeEquipamento1.getStatusItem() );
+		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println(emprestimeEquipamento2.getStatusItem() );
-		
-		emprestimeEquipamento1.setStatusItem(StatusItem.INDISPONIVEL);
-		
-		System.out.println(emprestimeEquipamento1.getStatusItem() );
-		
-		System.out.println(emprestimeEquipamento2.getStatusItem() );
-		
-		System.out.println(emprestimeEquipamento2.toString() );
-		
-		if(equipamento1 instanceof ItemMultimidia) {
-    		System.out.println("AAAAAAAAAAAAAA");
-    	}
+		 boolean auxAddItem = true;
+	        int id1 = -1;
+	        do {
+		        //Instancia as variáveis do Item
+		        System.out.print("ID do Livro:");
+		        try {
+		        	id1 = scanner.nextInt();
+		        	scanner.nextLine();
+		        } catch(InputMismatchException e) {
+		        	System.out.println("O ID deve ser um número, tente novamente.");
+		        	scanner.next();
+		        	continue;
+		        }
+		        //Checa se o ID já existe na biblioteca para evitar duplicidades
+		        if(BibliotecaStatic.getItens_id().contains(id1)) {
+		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
+		        	return;
+
+		        }
+		        auxAddItem = false;
+	        }while(auxAddItem) ;
 		
 	}
 

@@ -27,10 +27,12 @@ import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaSilenciosa;
 import biblioteca.views.*;
 
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
@@ -395,20 +397,39 @@ public class BibliotecaMain {
 		    int codigo = scanner.nextInt();
 		    scanner.nextLine();
 		    
-		    switch (codigo) {
+		    
+			switch (codigo) {
 		    case 1:
 		        System.out.println("Livro Físico");
 		        System.out.println("----------------------");
 		        
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do Livro:");
-		        int id1 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id1)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem1 = true;
+		        int id1 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id1 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id1)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem1 = false;
+		        }while(auxAddItem1) ;
+		        
 		        System.out.print("Título do Livro:");
 		        String titulo1 = scanner.nextLine();
 		        System.out.print("Autor:");
@@ -444,6 +465,7 @@ public class BibliotecaMain {
         			System.out.println("Operação cancelada.");
         			return;
         		}
+	        		
 		        
 		        // Cria objeto
 		        Livro_fisico livro1 = new Livro_fisico(
@@ -475,14 +497,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do Livro:");
-		        int id2 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id2)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem2 = true;
+		        int id2 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id2 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id2)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem2 = false;
+		        }while(auxAddItem2) ;
+		        
 		        System.out.print("Título do Livro:");
 		        String titulo2 = scanner.nextLine();
 		        System.out.print("Autor:");
@@ -539,14 +580,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do CD:");
-		        int id3 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id3)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem3 = true;
+		        int id3 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id2 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id3)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem3 = false;
+		        }while(auxAddItem3) ;
+		        
 		        System.out.print("Título do CD:");
 		        String titulo3 = scanner.nextLine();
 		        System.out.print("Autor:");
@@ -609,14 +669,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do DVD:");
-		        int id4 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id4)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem4 = true;
+		        int id4 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id4 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id4)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem4 = false;
+		        }while(auxAddItem4) ;
+		        
 		        System.out.print("Título do DVD:");
 		        String titulo4 = scanner.nextLine();
 		        System.out.print("Autor:");
@@ -688,14 +767,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do Item:");
-		        int id5 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id5)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem5 = true;
+		        int id5 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id5 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id5)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem5 = false;
+		        }while(auxAddItem5) ;
+		        
 		        System.out.print("Título do DVD:");
 		        String titulo5 = scanner.nextLine();
 		        System.out.print("Autor:");
@@ -788,14 +886,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis do Item
-		        System.out.print("ID do Item:");
-		        int id1 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id1)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem1 = true;
+		        int id1 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id1 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id1)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem1 = false;
+		        }while(auxAddItem1) ;
+		        
 		        System.out.print("Nome da Sala:");
 		        String nomeSala1 = scanner.nextLine();
 		        
@@ -837,14 +954,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis da sala
-		        System.out.print("ID da Sala:");
-		        int id2 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id2)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem2 = true;
+		        int id2 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id2 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id2)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem2 = false;
+		        }while(auxAddItem2) ;
+		        
 		        System.out.print("Nome da Sala:");
 		        String nomeSala2 = scanner.nextLine();
 		        
@@ -886,14 +1022,33 @@ public class BibliotecaMain {
 		        System.out.println("----------------------");
 		        
 		        //Instancia as variáveis da sala
-		        System.out.print("ID da Sala:");
-		        int id3 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id3)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-		        }
+		        boolean auxAddItem3 = true;
+		        int id3 = -1;
+		        do {
+			        //Instancia as variáveis do Item
+			        System.out.print("ID do Livro:");
+			        try {
+			        	id3 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("O ID deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			         //capturar o \n
+			        //Checa se o ID já existe na biblioteca para evitar duplicidades
+			        try {
+				        if(BibliotecaStatic.getItens_id().contains(id3)) {
+				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        }
+			        } catch(IllegalArgumentException e) {
+			        	System.err.println(e.getMessage());
+			        	System.out.println("Tente outro ID.");
+			        	continue;
+			        }
+			        auxAddItem3 = false;
+		        }while(auxAddItem3) ;
+		        
 		        System.out.print("Nome da Sala:");
 		        String nomeSala3 = scanner.nextLine();
 		        
