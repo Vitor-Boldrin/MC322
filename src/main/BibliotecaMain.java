@@ -650,8 +650,27 @@ public class BibliotecaMain {
 		        StatusItem status3 = StatusItem.DISPONIVEL;
 		        System.out.print("Lista de Faixas:");
 		        String lista_de_faixas3 = scanner.nextLine();
-		        System.out.print("Duração:");
-		        String duracao3 = scanner.nextLine();
+		        
+		        auxAddItem3 = true;
+			    int duracao3 = 1;
+			    do {
+			        System.out.print("Duração em Segundos:");
+			        
+			        try {
+			        	duracao3 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("A duração deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			        if(duracao3 <= 0) {
+			        	System.out.println("O tempo de duração não deve ser negativo, tente novamente.");
+			        	continue;
+			        }
+			        
+			        auxAddItem3 = false;
+		        }while(auxAddItem3) ;
 		        
 		        EstadoItemMultimidia estado_de_conservacao3 = null;
 		        auxAddItem3 = true;
@@ -747,8 +766,28 @@ public class BibliotecaMain {
 		        StatusItem status4 = StatusItem.DISPONIVEL;
 		        System.out.print("Elenco:");
 		        String elenco4 = scanner.nextLine();
-		        System.out.print("Duração:");
-		        String duracao4 = scanner.nextLine();
+		        
+		        auxAddItem4 = true;
+			    int duracao4 = 1;
+			    do {
+			        System.out.print("Duração em Segundos:");
+			        
+			        try {
+			        	duracao4 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("A duração deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			        if(duracao4 <= 0) {
+			        	System.out.println("O tempo de duração não deve ser negativo, tente novamente.");
+			        	continue;
+			        }
+			        
+			        auxAddItem4 = false;
+		        }while(auxAddItem4) ;
+		        
 		        System.out.print("Legendas e Áudio (s)(n):");
 		        String legendas_e_audio4 = scanner.nextLine();
 		        boolean legendas_e_audio_boolean;
