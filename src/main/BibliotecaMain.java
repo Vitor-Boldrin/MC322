@@ -447,26 +447,52 @@ public class BibliotecaMain {
 		        StatusItem status1 = StatusItem.DISPONIVEL;
 		        System.out.print("ISBN:");
 		        String isbn1 = scanner.nextLine();
-		        System.out.print("Edição (apenas o número):");
-		        int edicao1 = scanner.nextInt();
-		        scanner.nextLine(); //capturar o \n
+		        
+		        auxAddItem1 = true;
+			    int edicao1 = 1;
+			    do {
+			        System.out.print("Edição:");
+			        
+			        try {
+			        	edicao1 = scanner.nextInt();
+			        	scanner.nextLine();
+			        } catch(InputMismatchException e) {
+			        	System.out.println("A edição deve ser um número, tente novamente.");
+			        	scanner.next();
+			        	continue;
+			        }
+			        if(edicao1 <= 0) {
+			        	System.out.println("O número da edição não deve ser negativo, tente novamente.");
+			        	continue;
+			        }
+			        
+			        auxAddItem1 = false;
+		        }while(auxAddItem1) ;
+		        
 		        System.out.print("Localização:");
 		        String loc1 = scanner.nextLine();
 		        
-		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
-		        EstadoItemMultimidia estado1;
-		        String opcaoStatus1 = scanner.nextLine();
-        		if(opcaoStatus1.equals("y")) {
-        			estado1 = EstadoItemMultimidia.BOM;
-        		} else if(opcaoStatus1.equals("n")) {
-        			estado1 = EstadoItemMultimidia.MAU;
-        		} else {
-        			System.out.println("Opção inválida.");
-        			System.out.println("Operação cancelada.");
-        			return;
-        		}
+		        EstadoItemMultimidia estado1 = null;
+		        auxAddItem1 = true;
+		        do {
+		        	System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        	try {
+		        		String opcaoStatus1 = scanner.nextLine();
+		        		if(opcaoStatus1.equals("y")) {
+		        			estado1 = EstadoItemMultimidia.BOM;
+		        		} else if(opcaoStatus1.equals("n")) {
+		        			estado1 = EstadoItemMultimidia.MAU;
+		        		} else {
+		        			throw new InputMismatchException("Opção inválida.");
+		        		}
+		        	} catch (InputMismatchException e) {
+		        		System.err.println(e.getMessage());
+		        		System.out.println("Tente novamente.");
+		        		continue;
+		        	}
+		        	auxAddItem1 = false;
+		        } while(auxAddItem1);
 	        		
-		        
 		        // Cria objeto
 		        Livro_fisico livro1 = new Livro_fisico(
 		        		id1,
@@ -627,18 +653,26 @@ public class BibliotecaMain {
 		        System.out.print("Duração:");
 		        String duracao3 = scanner.nextLine();
 		        
-		        EstadoItemMultimidia estado_de_conservacao3;
-		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
-		        String opcaoStatus3 = scanner.nextLine();
-        		if(opcaoStatus3.equals("y")) {
-        			estado_de_conservacao3 = EstadoItemMultimidia.BOM;
-        		} else if(opcaoStatus3.equals("n")) {
-        			estado_de_conservacao3 = EstadoItemMultimidia.MAU;
-        		} else {
-        			System.out.println("Opção inválida.");
-        			System.out.println("Operação cancelada.");
-        			return;
-        		}
+		        EstadoItemMultimidia estado_de_conservacao3 = null;
+		        auxAddItem3 = true;
+		        do {
+		        	System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        	try {
+		        		String opcaoStatus3 = scanner.nextLine();
+		        		if(opcaoStatus3.equals("y")) {
+		        			estado_de_conservacao3 = EstadoItemMultimidia.BOM;
+		        		} else if(opcaoStatus3.equals("n")) {
+		        			estado_de_conservacao3 = EstadoItemMultimidia.MAU;
+		        		} else {
+		        			throw new InputMismatchException("Opção inválida.");
+		        		}
+		        	} catch (InputMismatchException e) {
+		        		System.err.println(e.getMessage());
+		        		System.out.println("Tente novamente.");
+		        		continue;
+		        	}
+		        	auxAddItem3 = false;
+		        } while(auxAddItem3);
 		        
 		        // Cria objeto
 		        CD_de_audio livro3 = new CD_de_audio(
@@ -724,18 +758,26 @@ public class BibliotecaMain {
 		        	legendas_e_audio_boolean = false;
 		        }
 		        
-		        EstadoItemMultimidia estado_de_conservacao4;
-		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
-		        String opcaoStatus4 = scanner.nextLine();
-        		if(opcaoStatus4.equals("y")) {
-        			estado_de_conservacao4 = EstadoItemMultimidia.BOM;
-        		} else if(opcaoStatus4.equals("n")) {
-        			estado_de_conservacao4 = EstadoItemMultimidia.MAU;
-        		} else {
-        			System.out.println("Opção inválida.");
-        			System.out.println("Operação cancelada.");
-        			return;
-        		}
+		        EstadoItemMultimidia estado_de_conservacao4 = null;
+		        auxAddItem4 = true;
+		        do {
+		        	System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        	try {
+		        		String opcaoStatus4 = scanner.nextLine();
+		        		if(opcaoStatus4.equals("y")) {
+		        			estado_de_conservacao4 = EstadoItemMultimidia.BOM;
+		        		} else if(opcaoStatus4.equals("n")) {
+		        			estado_de_conservacao4 = EstadoItemMultimidia.MAU;
+		        		} else {
+		        			throw new InputMismatchException("Opção inválida.");
+		        		}
+		        	} catch (InputMismatchException e) {
+		        		System.err.println(e.getMessage());
+		        		System.out.println("Tente novamente.");
+		        		continue;
+		        	}
+		        	auxAddItem4 = false;
+		        } while(auxAddItem4);
 		        
 		        // Cria objeto
 		        DVD_de_video livro4 = new DVD_de_video(
@@ -816,18 +858,26 @@ public class BibliotecaMain {
 		        System.out.print("Localização:");
 		        String localizacao5 = scanner.nextLine();
 		        
-		        EstadoItemMultimidia estado_de_conservacao5;
-		        System.out.print("Está em Bom Estado de Conservação?:(y/n):");
-		        String opcaoStatus5 = scanner.nextLine();
-        		if(opcaoStatus5.equals("y")) {
-        			estado_de_conservacao5 = EstadoItemMultimidia.BOM;
-        		} else if(opcaoStatus5.equals("n")) {
-        			estado_de_conservacao5 = EstadoItemMultimidia.MAU;
-        		} else {
-        			System.out.println("Opção inválida.");
-        			System.out.println("Operação cancelada.");
-        			return;
-        		}
+		        EstadoItemMultimidia estado_de_conservacao5 = null;
+		        auxAddItem5 = true;
+		        do {
+		        	System.out.print("Está em Bom Estado de Conservação?:(y/n):");
+		        	try {
+		        		String opcaoStatus5 = scanner.nextLine();
+		        		if(opcaoStatus5.equals("y")) {
+		        			estado_de_conservacao5 = EstadoItemMultimidia.BOM;
+		        		} else if(opcaoStatus5.equals("n")) {
+		        			estado_de_conservacao5 = EstadoItemMultimidia.MAU;
+		        		} else {
+		        			throw new InputMismatchException("Opção inválida.");
+		        		}
+		        	} catch (InputMismatchException e) {
+		        		System.err.println(e.getMessage());
+		        		System.out.println("Tente novamente.");
+		        		continue;
+		        	}
+		        	auxAddItem5 = false;
+		        } while(auxAddItem5);
 		        
 		        // Cria objeto
 		        Outros_itens_multimidia livro5 = new Outros_itens_multimidia(

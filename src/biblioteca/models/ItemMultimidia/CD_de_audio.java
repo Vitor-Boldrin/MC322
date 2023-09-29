@@ -3,7 +3,7 @@ package biblioteca.models.ItemMultimidia;
 public class CD_de_audio extends ItemMultimidia {
 
 	private String lista_de_faixas;
-	private String duracao;
+	private int duracao;
 	private EstadoItemMultimidia estado_conservacao;
 	
 	public CD_de_audio(
@@ -16,7 +16,7 @@ public class CD_de_audio extends ItemMultimidia {
 			String sinopse,
 			String capa,
 			String lista_de_faixas,
-			String duracao,
+			int duracao,
 			EstadoItemMultimidia estado_conservacao,
 			StatusItem status
 			) {
@@ -54,11 +54,11 @@ public class CD_de_audio extends ItemMultimidia {
 	    this.lista_de_faixas = lista_de_faixas;
 	}
 	
-	public String getDuracao() {
+	public int getDuracao() {
 	      return this.duracao;
 	}
 	
-	public void setDuracao(String duracao) {
+	public void setDuracao(int duracao) {
 	    this.duracao = duracao;
 	}
 	

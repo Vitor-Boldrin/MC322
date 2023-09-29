@@ -3,7 +3,7 @@ package biblioteca.models.ItemMultimidia;
 public class DVD_de_video extends ItemMultimidia {
 
 	private String elenco;
-	private String duracao;
+	private int duracao;
 	private boolean legendas_e_audio;
 	private EstadoItemMultimidia estado_conservacao;
 	
@@ -17,7 +17,7 @@ public class DVD_de_video extends ItemMultimidia {
 			String sinopse,
 			String capa,
 			String elenco,
-			String duracao,
+			int duracao,
 			boolean legendas_e_audio,
 			EstadoItemMultimidia estado_conservacao,
 			StatusItem status
@@ -57,11 +57,11 @@ public class DVD_de_video extends ItemMultimidia {
 	    this.elenco = elenco;
 	}
 	
-	public String getDuracao() {
+	public int getDuracao() {
 	      return this.duracao;
 	}
 	
-	public void setDuracao(String duracao) {
+	public void setDuracao(int duracao) {
 	    this.duracao = duracao;
 	}
 	
