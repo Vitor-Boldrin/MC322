@@ -1,5 +1,6 @@
 package biblioteca.models.BibliotecaStatic;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -124,7 +125,7 @@ public class ItemBiblioteca<T> {
     		
     		//Membro ainda nao tem reserva no item
     		//Cria a reserva
-    		Date data = new Date();
+    		LocalDateTime data = null;
     		Reserva reserva = new Reserva(data, data, membro, item);
     		
     		//Adiciona na lista
@@ -185,7 +186,7 @@ public class ItemBiblioteca<T> {
     			System.out.println("O membro ainda não tem a reserva");
     			
     			//Cria a reserva
-        		Date data = new Date();
+    			LocalDateTime data = null;
         		Reserva reserva = new Reserva(data,data, membro, item);
         		
         		//Adiciona na lista
@@ -278,7 +279,7 @@ public class ItemBiblioteca<T> {
     	//Checa o status do item e faz o tratamento de acordo
     	//Primeiramente, independente do status do item, ele sempre poderá ser reservado, portanto, criando a reserva
     	//Cria a reserva
-		Date data = new Date();
+    	LocalDateTime data = null;
 		Reserva reserva_nova = new Reserva(data,data,membro,item);
 		
 		if(status_item.equals(StatusItem.EMPRESTADO)) {

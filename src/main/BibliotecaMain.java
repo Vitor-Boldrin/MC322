@@ -20,6 +20,7 @@ import biblioteca.models.Membro.Funcionario;
 import biblioteca.models.Membro.Membro;
 import biblioteca.models.Membro.Nivel_acesso;
 import biblioteca.models.Membro.Professor;
+import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.Sala;
 import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaGrupo;
 import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaIndividual;
 import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaMultimidia;
@@ -317,19 +318,70 @@ public class BibliotecaMain {
     }
 
     private static void fazerReserva(Scanner scanner) {
-        // Lógica para fazer uma reserva de item
-        System.out.println("Operação de Reserva de Itens");
-      //Primeiro, colentado os objetos, ITEM e MEMBRO
-        System.out.print("Insira o ID do membro que está reservando o item:");
-    	String id_membro = scanner.nextLine();
-    	Membro membro = membroController.buscarMembroPorIdentificacao(id_membro);
     	
-    	System.out.print("Insira o ID do livro a ser reservado:");
-    	int id_livro = scanner.nextInt();
-    	scanner.nextLine(); //captura o \n
-    	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
-        
-        bibliotecaItemBiblioteca.reservarItem(membro, item);
+    	while (true) {
+            System.out.println("---- Menu Reserva de Itens ----");
+            System.out.println("Selecione o que deseja reservar.");
+            System.out.println();
+            System.out.println("1. Item/Equipamento/Recurso");
+            System.out.println("2. Sala");
+            System.out.println();
+            System.out.println();
+            System.out.print("Escolha uma opção: ");
+
+            int opcaoItens = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcaoItens) {
+                case 1:
+                	// Lógica para fazer uma reserva de item
+                    System.out.println("Operação de Reserva de Itens");
+                    //Primeiro, colentado os objetos, ITEM e MEMBRO
+                    System.out.print("Insira o ID do membro que está reservando o item:");
+                	String id_membro = scanner.nextLine();
+                	Membro membro = membroController.buscarMembroPorIdentificacao(id_membro);
+                	
+                	System.out.print("Insira o ID do livro a ser reservado:");
+                	int id_livro = scanner.nextInt();
+                	scanner.nextLine(); //captura o \n
+                	Item item = bibliotecaController.buscarItenPorIdentificacao(id_livro);
+                	
+                	//Confirma se é uma sala
+                	if( (item instanceof Sala) ) {
+                		System.out.println("O ID selecionado não é um item/recurso/equipamento.");
+                		System.out.println("Operação Cancelada.");
+                		return;
+                	}
+                	
+                    bibliotecaItemBiblioteca.reservarItem(membro, item);
+                case 2:
+                	// Lógica para fazer uma reserva de item
+                    System.out.println("Operação de Reserva de Itens");
+                    //Primeiro, colentado os objetos, ITEM e MEMBRO
+                    System.out.print("Insira o ID do membro que está reservando o item:");
+                	String id_membro2 = scanner.nextLine();
+                	Membro membro2 = membroController.buscarMembroPorIdentificacao(id_membro2);
+                	
+                	System.out.print("Insira o ID da sala a ser reservado:");
+                	int id_sala = scanner.nextInt();
+                	scanner.nextLine(); //captura o \n
+                	Item sala = bibliotecaController.buscarItenPorIdentificacao(id_sala);
+                	
+                	//Confirma se é uma sala
+                	if( !(sala instanceof Sala) ) {
+                		System.out.println("O ID selecionado não é uma sala.");
+                		System.out.println("Operação Cancelada.");
+                		return;
+                	}
+                	
+                	
+                    
+                    bibliotecaItemBiblioteca.reservarItem(membro2, sala);
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            }
+        }
+    	
     }
     
     private static void devolverMainItem(Scanner scanner) throws NullPointerException {

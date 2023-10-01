@@ -1,4 +1,6 @@
 package main;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Collection;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -38,29 +40,13 @@ public class MainTestes {
 		//Recurso recurso1 = new Recurso(2,Formato_multimidia.VIDEO);
 		//Recurso.Video recursoEmprestimo1 = recurso1.new Video("opa","não");
 
-		Scanner scanner = new Scanner(System.in);
 		
-		 boolean auxAddItem = true;
-	        int id1 = -1;
-	        do {
-		        //Instancia as variáveis do Item
-		        System.out.print("ID do Livro:");
-		        try {
-		        	id1 = scanner.nextInt();
-		        	scanner.nextLine();
-		        } catch(InputMismatchException e) {
-		        	System.out.println("O ID deve ser um número, tente novamente.");
-		        	scanner.next();
-		        	continue;
-		        }
-		        //Checa se o ID já existe na biblioteca para evitar duplicidades
-		        if(BibliotecaStatic.getItens_id().contains(id1)) {
-		        	System.out.println("ERRO: ID já cadastrato, retornando ao menu.");
-		        	return;
-
-		        }
-		        auxAddItem = false;
-	        }while(auxAddItem) ;
+		LocalDateTime data1 = LocalDateTime.parse("2023-10-01T06:30:00");
+		LocalDateTime data2 = LocalDateTime.parse("2023-10-01T07:30:00");
+		
+		if(data1.isBefore(data1) || data1.isEqual(data1)) {
+			System.out.println("AAAA");
+		}
 		
 	}
 
