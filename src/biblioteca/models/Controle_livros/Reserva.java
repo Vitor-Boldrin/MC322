@@ -7,12 +7,14 @@ import biblioteca.models.Membro.Membro;
 public class Reserva {
 
 	private Date data_reserva;
+	private Date data_final;
 	private Membro membro;
 	private Item item;
 	
 	// Construtor
-	public Reserva(Date data_reserva, Membro membro, Item itemMultimidia) {
+	public Reserva(Date data_reserva, Date data_final, Membro membro, Item itemMultimidia) {
 		this.data_reserva = data_reserva;
+		this.data_final = data_final;
 		this.membro = membro;
 		this.item = itemMultimidia;
 	}
@@ -25,6 +27,14 @@ public class Reserva {
 	
 	public void setData_reserva(Date data_reserva) {
 	    this.data_reserva = data_reserva;
+	}
+	
+	public Date getData_final() {
+	      return this.data_final;
+	}
+	
+	public void setData_final(Date data_final) {
+	    this.data_final = data_final;
 	}
 	
 	public Membro getPessoa() {

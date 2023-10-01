@@ -125,7 +125,7 @@ public class ItemBiblioteca<T> {
     		//Membro ainda nao tem reserva no item
     		//Cria a reserva
     		Date data = new Date();
-    		Reserva reserva = new Reserva(data, membro, item);
+    		Reserva reserva = new Reserva(data, data, membro, item);
     		
     		//Adiciona na lista
     		BibliotecaStatic.getReservas().add(reserva);
@@ -186,7 +186,7 @@ public class ItemBiblioteca<T> {
     			
     			//Cria a reserva
         		Date data = new Date();
-        		Reserva reserva = new Reserva(data, membro, item);
+        		Reserva reserva = new Reserva(data,data, membro, item);
         		
         		//Adiciona na lista
         		BibliotecaStatic.getReservas().add(reserva);
@@ -279,7 +279,7 @@ public class ItemBiblioteca<T> {
     	//Primeiramente, independente do status do item, ele sempre poderá ser reservado, portanto, criando a reserva
     	//Cria a reserva
 		Date data = new Date();
-		Reserva reserva_nova = new Reserva(data,membro,item);
+		Reserva reserva_nova = new Reserva(data,data,membro,item);
 		
 		if(status_item.equals(StatusItem.EMPRESTADO)) {
 			//Altera status para emprestado e reservado
