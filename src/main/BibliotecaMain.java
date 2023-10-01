@@ -1699,6 +1699,11 @@ public class BibliotecaMain {
 				    
 		        }
 		        
+		        System.out.print("Usuario de Acesso:");
+		        String usuario3 = scanner.nextLine();
+		        System.out.print("Senha de Acesso:");
+		        String senha3 = scanner.nextLine();
+		        
 		        // Cria objeto
 		        Funcionario funcionario = new Funcionario(
 		        		nome3,
@@ -1707,7 +1712,9 @@ public class BibliotecaMain {
 		        		contato3,
 						data3,
 						nivel_acesso,
-						statusMembro3);
+						statusMembro3,
+						usuario3,
+						senha3);
 		        
 		        //Armazena na biblioteca
 		        BibliotecaStatic.getMembros().add(funcionario);

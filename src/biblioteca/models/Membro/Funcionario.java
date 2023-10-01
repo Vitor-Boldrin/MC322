@@ -5,6 +5,8 @@ import java.util.Date;
 public class Funcionario extends Membro {
 	
 	private Nivel_acesso nivel_acesso;
+	private String senha;
+	private String usuario;
 
 	public Funcionario(
 		   String nome, 
@@ -13,7 +15,9 @@ public class Funcionario extends Membro {
 		   String contato,
 		   Date data_registro,
 		   Nivel_acesso nivel_acesso,
-		   boolean bloqueado) {
+		   boolean bloqueado,
+		   String usuario,
+		   String senha) {
 			
 			super(nome, 
 			id_faculdade, 
@@ -26,9 +30,21 @@ public class Funcionario extends Membro {
 			this.setPrazo_emprestimo((short)20);
 			this.setMulta_por_atraso((float)0.75);
 			this.nivel_acesso = nivel_acesso;
+			this.usuario = usuario;
+			this.senha = senha;
 		
 	}
 	
+	//métodos
+	public boolean login(String usuario, String senha) {
+		if(this.usuario.equals(usuario) && this.senha.equals(senha)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//geters e seters
 	public Nivel_acesso getNivel_acesso() {
 	      return this.nivel_acesso;
 	 }
