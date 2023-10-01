@@ -9,6 +9,11 @@ import java.util.Set;
 
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
+import biblioteca.models.Excecao.ExcecaoDevolucaoItemEmMauEstado;
+import biblioteca.models.Excecao.ExcecaoEmprestimoMembroBloqueado;
+import biblioteca.models.Excecao.ExcecaoNumeroDeEmprestimoExcedido;
+import biblioteca.models.Excecao.ExcecaoReservaSalaConflitoHorario;
+import biblioteca.models.Excecao.ExecaoDevolucaoItemNaoEmprestado;
 import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.EstadoItemMultimidia;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
@@ -238,15 +243,15 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	public boolean emprestarItem(Membro membro, T item) throws IllegalAccessException {
+	public boolean emprestarItem(Membro membro, T item) throws ExcecaoNumeroDeEmprestimoExcedido, ExcecaoEmprestimoMembroBloqueado {
 		//Checa se o membro está bloqueado
     	if(membro.getBloqueado()) {
-    		throw new IllegalAccessException("Membro está bloqueado e não pode realizar emprestimos.");
+    		throw new ExcecaoEmprestimoMembroBloqueado("Membro está bloqueado e não pode realizar emprestimos.");
     	}
     	
     	//Checa se membro não passou do limite de livros emprestados
     	if(membro.getNumEmprestimo() >= membro.getLimite_emprestimo()) {
-    		throw new IllegalAccessException("Membro excedeu o número de livros emprestados e não pode realizar emprestimos.");
+    		throw new ExcecaoNumeroDeEmprestimoExcedido("Membro excedeu o número de livros emprestados e não pode realizar emprestimos.");
     	}
 		
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
@@ -309,7 +314,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	private static void devolverItemReservaEmprestimo(Membro membro, Item item) throws NullPointerException {
+	private static void devolverItemReservaEmprestimo(Membro membro, Item item) throws ExecaoDevolucaoItemNaoEmprestado {
     	
 		//Procurando o emprestimo
     	Set<Emprestimo> emprestimos = BibliotecaStatic.getEmprestimos();
@@ -323,9 +328,9 @@ public class ItemBiblioteca<T> {
     	    		try {
 			    		if(itemMultimidia.getEstado_conservacao().equals(EstadoItemMultimidia.MAU)) {
 			    			System.out.println("");
-			        		throw new IllegalStateException("O item multimidia está em MAU estado de conservação e portanto não pode ser devolvido nesse estado.");
+			        		throw new ExcecaoDevolucaoItemEmMauEstado("O item multimidia está em MAU estado de conservação e portanto não pode ser devolvido nesse estado.");
 			    		}
-    	    		} catch(IllegalStateException e) {
+    	    		} catch(ExcecaoDevolucaoItemEmMauEstado e) {
     	    			System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
                 		System.err.println(e.getMessage());
                 		System.err.println("(Procure a Manutenção!)");
@@ -387,10 +392,10 @@ public class ItemBiblioteca<T> {
     		}
     	}
     	
-    	throw new NullPointerException("Membro não possui o emprestimo para ser devolvido.");
+    	throw new ExecaoDevolucaoItemNaoEmprestado("Membro não possui o emprestimo para ser devolvido.");
     }
 	
-	public boolean devolverItem(Membro membro, T item) throws NullPointerException {
+	public boolean devolverItem(Membro membro, T item) throws ExecaoDevolucaoItemNaoEmprestado {
 		//Primeiro, devolve o livro, trata os objetos emprestimos e reservas e o status do item
 		devolverItemReservaEmprestimo(membro, (Item) item);
 		
@@ -399,7 +404,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	private boolean reservarSalaReservaEmprestimo(Membro membro, Item item,  LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws InstantiationException {
+	private boolean reservarSalaReservaEmprestimo(Membro membro, Item item,  LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws ExcecaoReservaSalaConflitoHorario {
 		//Primeiro, checar se a sala está indisponível
     	StatusItem status_item = item.getStatusItem();
     	
@@ -431,13 +436,11 @@ public class ItemBiblioteca<T> {
     				reserva.getData_inicial().isAfter(dateTimeFinal)
     				& reserva.getData_inicial().isAfter(dateTimeInicio)
     				) {
-    				System.out.println("ENTREI NO 1");
     			} else if ( 
     				dateTimeInicio.isAfter(reserva.getData_final())
     				) {
-    				System.out.println("ENTREI NO 2");
     			} else {
-    				throw new InstantiationException("O horário da reserva entra em conflito com uma reserva já existente.");
+    				throw new ExcecaoReservaSalaConflitoHorario("O horário da reserva entra em conflito com uma reserva já existente.");
     			}
     		}
     	}
@@ -465,7 +468,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	public boolean reservarSala(Membro membro, T item, LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws InstantiationException {
+	public boolean reservarSala(Membro membro, T item, LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws ExcecaoReservaSalaConflitoHorario {
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
 		reservarSalaReservaEmprestimo(membro, (Item) item, dateTimeInicio, dateTimeFinal);
 		

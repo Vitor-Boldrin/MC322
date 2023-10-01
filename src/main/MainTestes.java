@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.BibliotecaStatic.ListaReservas;
+import biblioteca.models.Excecao.ExcecaoEmprestimo;
+import biblioteca.models.Excecao.ExcecaoNumeroDeEmprestimoExcedido;
 import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.ItemMultimidia.StatusItem;
@@ -45,15 +47,12 @@ public class MainTestes {
 		LocalDateTime data1 = LocalDateTime.parse("2023-10-01T06:30:04");
 		
 		try {
-			LocalDateTime data2 = LocalDateTime.parse("2023-10-01T07:30:00");
-		} catch(DateTimeParseException e) {
-			System.out.println("Formato inválido");
+			throw new ExcecaoNumeroDeEmprestimoExcedido("nao");
+		} catch(ExcecaoEmprestimo e) {
+			System.out.println("AAAAAAAAAAA");
 		}
 		
-		if(data1.isBefore(data1) || data1.isEqual(data1)) {
-			System.out.println(data1);
-		}
-		
+
 	}
 
 }

@@ -5,6 +5,11 @@ import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.BibliotecaStatic.ItemBiblioteca;
 import biblioteca.models.Controle_livros.Emprestimo;
 import biblioteca.models.Controle_livros.Reserva;
+import biblioteca.models.Excecao.ExcecaoEmprestimo;
+import biblioteca.models.Excecao.ExcecaoIdJaCadastrado;
+import biblioteca.models.Excecao.ExcecaoReservaSala;
+import biblioteca.models.Excecao.ExcecaoUsuarioeouSenhaInvalido;
+import biblioteca.models.Excecao.ExecaoDevolucaoItemNaoEmprestado;
 import biblioteca.models.Item.Item;
 import biblioteca.models.ItemMultimidia.CD_de_audio;
 import biblioteca.models.ItemMultimidia.DVD_de_video;
@@ -42,11 +47,11 @@ public class BibliotecaMain {
     private static RelatorioController relatorioController;
     private static ItemBiblioteca<Item> bibliotecaItemBiblioteca;
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         bibliotecaController = new BibliotecaControllerImpl();
         membroController = new MembroControllerImpl();
         relatorioController = new RelatorioControllerImpl();
-        bibliotecaItemBiblioteca = new ItemBiblioteca();
+        bibliotecaItemBiblioteca = new ItemBiblioteca<Item>();
 
         BibliotecaView bibliotecaView = new BibliotecaViewImpl(bibliotecaController);
         MembroView membroView = new MembroViewImpl(membroController);
@@ -96,7 +101,7 @@ public class BibliotecaMain {
         }
     }
 
-    private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) throws IllegalAccessException {
+    private static void menuGerenciamentoItens(Scanner scanner, BibliotecaView bibliotecaView) {
         while (true) {
             System.out.println("---- Menu Gerenciamento de Itens ----");
             System.out.println();
@@ -144,9 +149,8 @@ public class BibliotecaMain {
                 	try{
                 		devolverMainItem(scanner);
                 	}
-                	catch(NullPointerException e) {
+                	catch(ExecaoDevolucaoItemNaoEmprestado e) {
                 		System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
-                		System.err.println("Algum comando tentou acessar algo inexistente.");
                 		System.err.println(e.getMessage());
                 	}
                 case 9:
@@ -282,11 +286,11 @@ public class BibliotecaMain {
     	
     	try {
     		if(funcionario == null) {
-	    		throw new SecurityException("Usuário ou senha inválido.");
+	    		throw new ExcecaoUsuarioeouSenhaInvalido("Usuário ou senha inválido.");
     		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.ADMINISTRADOR)) {
-    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    			throw new ExcecaoUsuarioeouSenhaInvalido("Usuário sem permissão para acessar o menu selecionado.");
     		}
-	    } catch(SecurityException e) {
+	    } catch(ExcecaoUsuarioeouSenhaInvalido e) {
 	    		System.err.println(e.getMessage());
 	    		System.out.println("Retornando.");
     	}
@@ -302,11 +306,11 @@ public class BibliotecaMain {
     	
     	try {
     		if(funcionario == null) {
-	    		throw new SecurityException("Usuário ou senha inválido.");
+	    		throw new ExcecaoUsuarioeouSenhaInvalido("Usuário ou senha inválido.");
     		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.ATENDETE)) {
-    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    			throw new ExcecaoUsuarioeouSenhaInvalido("Usuário sem permissão para acessar o menu selecionado.");
     		}
-	    } catch(SecurityException e) {
+	    } catch(ExcecaoUsuarioeouSenhaInvalido e) {
 	    		System.err.println(e.getMessage());
 	    		System.out.println("Retornando.");
     	}
@@ -320,11 +324,11 @@ public class BibliotecaMain {
     	
     	try {
     		if(funcionario == null) {
-	    		throw new SecurityException("Usuário ou senha inválido.");
+	    		throw new ExcecaoUsuarioeouSenhaInvalido("Usuário ou senha inválido.");
     		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.GERENTE)) {
-    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    			throw new ExcecaoUsuarioeouSenhaInvalido("Usuário sem permissão para acessar o menu selecionado.");
     		}
-	    } catch(SecurityException e) {
+	    } catch(ExcecaoUsuarioeouSenhaInvalido e) {
 	    		System.err.println(e.getMessage());
 	    		System.out.println("Retornando.");
     	}
@@ -350,7 +354,7 @@ public class BibliotecaMain {
     	// Joga na função e boa
     	try {
     		bibliotecaItemBiblioteca.emprestarItem(membro, item);
-    	} catch (IllegalAccessException e) {
+    	} catch (ExcecaoEmprestimo e) {
     		System.err.println("----- A OPERAÇÃO FOI BLOQUEADA -----");
     		System.err.println("Alguma regra para o emprestimo do item foi violada");
     		System.err.println(e.getMessage());
@@ -491,7 +495,7 @@ public class BibliotecaMain {
                 	bibliotecaItemBiblioteca.reservarSala(membro2, sala, dateTimeInicio, dateTimeFinal);
                 	System.out.println("Sala reservada com sucesso.");
                 	return;
-                } catch(InstantiationException e) {
+                } catch(ExcecaoReservaSala e) {
                 	System.err.println("A reserva não pode ser criada.");
                 	System.err.println(e.getMessage());
                 	System.out.println("A operação foi cancelada.");
@@ -503,7 +507,7 @@ public class BibliotecaMain {
     	
     }
     
-    private static void devolverMainItem(Scanner scanner) throws NullPointerException {
+    private static void devolverMainItem(Scanner scanner) throws ExecaoDevolucaoItemNaoEmprestado {
     	
     	//Primeiro, colentado os objetos, ITEM e MEMBRO
         System.out.print("Insira o ID do membro que está devolvendo o item:");
@@ -591,9 +595,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id1)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -711,9 +715,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id2)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -794,9 +798,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id3)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -910,9 +914,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id4)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -1036,9 +1040,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id5)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -1163,9 +1167,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id1)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -1231,9 +1235,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id2)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
@@ -1299,9 +1303,9 @@ public class BibliotecaMain {
 			        //Checa se o ID já existe na biblioteca para evitar duplicidades
 			        try {
 				        if(BibliotecaStatic.getItens_id().contains(id3)) {
-				        	throw new IllegalArgumentException("ERRO: ID já cadastrado.");
+				        	throw new ExcecaoIdJaCadastrado("ERRO: ID já cadastrado.");
 				        }
-			        } catch(IllegalArgumentException e) {
+			        } catch(ExcecaoIdJaCadastrado e) {
 			        	System.err.println(e.getMessage());
 			        	System.out.println("Tente outro ID.");
 			        	continue;
