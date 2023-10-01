@@ -52,5 +52,13 @@ public class Funcionario extends Membro {
 	 public void setNivel_acesso(Nivel_acesso nivel_acesso) {
 	    this.nivel_acesso = nivel_acesso;
 	 }
+	 
+	 public String getUsuario() {
+		 return this.usuario;
+	 }
+	 
+	 public String getSenha() {
+		 return this.senha;
+	 }
 
 }

@@ -278,14 +278,58 @@ public class BibliotecaMain {
 
     private static void menuAdministradores(Scanner scanner) {
         // Lógica para administração de administradores
+    	Funcionario funcionario = (Funcionario) membroController.efetuaLogin(scanner);
+    	
+    	try {
+    		if(funcionario == null) {
+	    		throw new SecurityException("Usuário ou senha inválido.");
+    		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.ADMINISTRADOR)) {
+    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    		}
+	    } catch(SecurityException e) {
+	    		System.err.println(e.getMessage());
+	    		System.out.println("Retornando.");
+    	}
+    	
+    	System.out.println("Login realizado com sucesso.");
+    	
+    	
     }
 
     private static void menuAtendentes(Scanner scanner) {
         // Lógica para administração de atendentes
+    	Funcionario funcionario = (Funcionario) membroController.efetuaLogin(scanner);
+    	
+    	try {
+    		if(funcionario == null) {
+	    		throw new SecurityException("Usuário ou senha inválido.");
+    		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.ATENDETE)) {
+    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    		}
+	    } catch(SecurityException e) {
+	    		System.err.println(e.getMessage());
+	    		System.out.println("Retornando.");
+    	}
+    	
+    	System.out.println("Login realizado com sucesso.");
     }
 
     private static void menuGerentes(Scanner scanner) {
         // Lógica para administração de gerentes
+    	Funcionario funcionario = (Funcionario) membroController.efetuaLogin(scanner);
+    	
+    	try {
+    		if(funcionario == null) {
+	    		throw new SecurityException("Usuário ou senha inválido.");
+    		} else if(! funcionario.getNivel_acesso().equals(Nivel_acesso.GERENTE)) {
+    			throw new SecurityException("Usuário sem permissão para acessar o menu selecionado.");
+    		}
+	    } catch(SecurityException e) {
+	    		System.err.println(e.getMessage());
+	    		System.out.println("Retornando.");
+    	}
+    	
+    	System.out.println("Login realizado com sucesso.");
     }
 
     // Métodos para realizar empréstimo, renovação e reserva
