@@ -35,7 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class BibliotecaMain {
     private static BibliotecaController bibliotecaController;
@@ -410,6 +409,40 @@ public class BibliotecaMain {
                     	
                     	break;
                 	}
+                	
+                	boolean auxAddItem1 = true;
+    			    int numPessoas = 1;
+    			    do {
+    			        System.out.print("Número de pessoas que utilizaram a sala:");
+    			        
+    			        try {
+    			        	numPessoas = scanner.nextInt();
+    			        	scanner.nextLine();
+    			        } catch(InputMismatchException e) {
+    			        	System.out.println("Deve ser um número");
+    			        	scanner.next();
+    			        	continue;
+    			        }
+    			        if (numPessoas <= 0) {
+    			        	System.out.println("O número de pessoas deve ser maior do que zero.");
+    			        }
+    			        
+    			        auxAddItem1 = false;
+    		        }while(auxAddItem1) ;
+    			    
+    			    if(sala instanceof SalaGrupo) {
+    			    	if( ((SalaGrupo) sala).getCapacidade_maxima() <= numPessoas) {
+    			    		System.out.println("O número de pessoas é maior que a capacidade máxima da sala.");
+    			    		System.out.println("Operação cancelada.");
+    			    		return;
+    			    	}
+    			    } else if(sala instanceof SalaIndividual) {
+    			    	if(numPessoas != 1) {
+    			    		System.out.println("A sala individual aceita apenas uma pessoa.");
+    			    		System.out.println("Operação cancelada.");
+    			    	}
+    			    }
+                	
                 try {
                 	bibliotecaItemBiblioteca.reservarSala(membro2, sala, dateTimeInicio, dateTimeFinal);
                 	System.out.println("Sala reservada com sucesso.");
