@@ -399,4 +399,55 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
+	private boolean reservarSalaReservaEmprestimo(Membro membro, Item item,  LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) {
+		//Primeiro, checar se a sala está indisponível
+    	StatusItem status_item = item.getStatusItem();
+    	
+    	if(status_item.equals(StatusItem.INDISPONIVEL)) {
+    		System.out.println("Sala está indisponível e portanto não pode ser reservado.");
+    	}
+    	
+    	//Checa se o membro já tem essa sala reservado
+    	LinkedList<Reserva> reservas = BibliotecaStatic.getReservasSalas();
+    	
+    	for( Reserva reserva : reservas) {
+    		if(reserva.getPessoa().equals(membro) && reserva.getItem().equals(item)) {
+    			System.out.println("Membro já tem essa sala reservado.");
+    			System.out.println("Operação encerrada.");
+    			return false;
+    		}
+    	}
+    	
+    	//Checa o status da sala e faz o tratamento de acordo
+    	//Primeiramente, independente do status da sala, ele sempre poderá ser reservado, portanto, criando a reserva
+    	//Cria a reserva
+		Reserva reserva_nova = new Reserva(dateTimeInicio,dateTimeFinal,membro,item);
+		
+		if(status_item.equals(StatusItem.EMPRESTADO)) {
+			//Altera status para emprestado e reservado
+			
+			item.setStatusItem(StatusItem.EMPRESTADO_E_RESERVADO);
+			
+		} else if (status_item.equals(StatusItem.DISPONIVEL)) {
+			//Altera status para reservado
+			
+			item.setStatusItem(StatusItem.RESERVADO);
+		}
+		//Qualquer outro status se manterá o mesmo
+		//Adicionando a reserva
+		
+		BibliotecaStatic.getReservasSalas().add(reserva_nova);
+    	
+		return true;
+	}
+	
+	public boolean reservarSala(Membro membro, T item, LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) {
+		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
+		reservarSalaReservaEmprestimo(membro, (Item) item, dateTimeInicio, dateTimeFinal);
+		
+		//Realiza o manejo nos set's emprestados e reservados
+		itemCheckItemStatus(membro, (Item) item);
+		return true;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package main;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -42,7 +43,12 @@ public class MainTestes {
 
 		
 		LocalDateTime data1 = LocalDateTime.parse("2023-10-01T06:30:00");
-		LocalDateTime data2 = LocalDateTime.parse("2023-10-01T07:30:00");
+		
+		try {
+			LocalDateTime data2 = LocalDateTime.parse("2023-10-01 T07:30:00");
+		} catch(DateTimeParseException e) {
+			System.out.println("Formato inválido");
+		}
 		
 		if(data1.isBefore(data1) || data1.isEqual(data1)) {
 			System.out.println("AAAA");

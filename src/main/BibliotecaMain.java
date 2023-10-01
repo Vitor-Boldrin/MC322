@@ -27,6 +27,8 @@ import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaMultimidia;
 import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.SalaSilenciosa;
 import biblioteca.views.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
@@ -355,9 +357,9 @@ public class BibliotecaMain {
                 	
                     bibliotecaItemBiblioteca.reservarItem(membro, item);
                 case 2:
-                	// Lógica para fazer uma reserva de item
+                	// Lógica para fazer uma reserva de sala
                     System.out.println("Operação de Reserva de Itens");
-                    //Primeiro, colentado os objetos, ITEM e MEMBRO
+                    //Primeiro, colentado os objetos, SALA e MEMBRO
                     System.out.print("Insira o ID do membro que está reservando o item:");
                 	String id_membro2 = scanner.nextLine();
                 	Membro membro2 = membroController.buscarMembroPorIdentificacao(id_membro2);
@@ -374,9 +376,36 @@ public class BibliotecaMain {
                 		return;
                 	}
                 	
-                	
+                	LocalDateTime dateTimeFinal;LocalDateTime dateTimeInicio;
+                	while(true) {
+                		System.out.print("Insira o dia do inicio da reserva (YYYY-MM-DD):");
+                    	String dataInicio = scanner.nextLine();
+                    	System.out.print("Insira o horário o inicio da reserva (HH:MM):");
+                    	String horaInicio = scanner.nextLine();
+                    	try {
+                    		dateTimeInicio = LocalDateTime.parse(dataInicio + "T" + horaInicio + ":00");
+                    	} catch(DateTimeParseException e) {
+                    		System.out.println("As datas inseridas estão no formado errado.");
+                    		System.out.println("Tente novamente.");
+                    		continue;
+                    	}
+                    	
+                    	System.out.print("Insira o dia do inicio da reserva (YYYY-MM-DD):");
+                    	String dataFinal = scanner.nextLine();
+                    	System.out.print("Insira o horário o inicio da reserva (HH:MM):");
+                    	String horaFinal = scanner.nextLine();
+                    	try {
+                    		dateTimeFinal = LocalDateTime.parse(dataFinal + "T" + horaFinal + ":00");
+                    	} catch(DateTimeParseException e) {
+                    		System.out.println("As datas inseridas estão no formado errado.");
+                    		System.out.println("Tente novamente.");
+                    		continue;
+                    	}
+                    	
+                    	break;
+                	}
                     
-                    bibliotecaItemBiblioteca.reservarItem(membro2, sala);
+				bibliotecaItemBiblioteca.reservarSala(membro2, sala, dateTimeFinal, dateTimeInicio);
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
             }

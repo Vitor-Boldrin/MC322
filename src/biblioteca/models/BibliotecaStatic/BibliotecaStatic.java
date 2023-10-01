@@ -22,6 +22,7 @@ public class BibliotecaStatic {
 	//Controle itens
 	static private Set<Emprestimo> emprestimos = new HashSet<>();
 	static private LinkedList<Reserva> reservas = new LinkedList<>();
+	static private LinkedList<Reserva> reservasSalas = new LinkedList<>();
 	
 	//Categorias
 	static private Set<String> categorias = new HashSet<>();
@@ -64,6 +65,14 @@ public class BibliotecaStatic {
 	
 	static public void setReserva(LinkedList<Reserva> reservas_novo) {
 		reservas = reservas_novo;
+	}
+	
+	static public LinkedList<Reserva> getReservasSalas() {
+		return reservasSalas;
+	}
+	
+	static public void setReservaSalas(LinkedList<Reserva> reservasSalas_novo) {
+		reservasSalas = reservasSalas_novo;
 	}
 	
 	static public Set<Emprestimo> getEmprestimos() {
