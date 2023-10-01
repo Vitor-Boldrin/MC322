@@ -7,14 +7,14 @@ import biblioteca.models.Membro.Membro;
 
 public class Reserva {
 
-	private LocalDateTime data_reserva;
+	private LocalDateTime data_inicial;
 	private LocalDateTime data_final;
 	private Membro membro;
 	private Item item;
 	
 	// Construtor
 	public Reserva(LocalDateTime data_reserva, LocalDateTime data_final, Membro membro, Item itemMultimidia) {
-		this.data_reserva = data_reserva;
+		this.data_inicial = data_reserva;
 		this.data_final = data_final;
 		this.membro = membro;
 		this.item = itemMultimidia;
@@ -22,12 +22,12 @@ public class Reserva {
 	
 	
 	// Geter e Seters
-	public LocalDateTime getData_reserva() {
-	      return this.data_reserva;
+	public LocalDateTime getData_inicial() {
+	      return this.data_inicial;
 	}
 	
 	public void setData_reserva(LocalDateTime data_reserva) {
-	    this.data_reserva = data_reserva;
+	    this.data_inicial = data_reserva;
 	}
 	
 	public LocalDateTime getData_final() {

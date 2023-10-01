@@ -390,9 +390,9 @@ public class BibliotecaMain {
                     		continue;
                     	}
                     	
-                    	System.out.print("Insira o dia do inicio da reserva (YYYY-MM-DD):");
+                    	System.out.print("Insira o dia do final da reserva (YYYY-MM-DD):");
                     	String dataFinal = scanner.nextLine();
-                    	System.out.print("Insira o horário o inicio da reserva (HH:MM):");
+                    	System.out.print("Insira o horário o final da reserva (HH:MM):");
                     	String horaFinal = scanner.nextLine();
                     	try {
                     		dateTimeFinal = LocalDateTime.parse(dataFinal + "T" + horaFinal + ":00");
@@ -402,10 +402,23 @@ public class BibliotecaMain {
                     		continue;
                     	}
                     	
+                    	if(dateTimeInicio.isAfter(dateTimeFinal)) {
+                    		System.out.println("A data inicial não deve ser depois da data final.");
+                    		System.out.println("Tente novamente");
+                    		continue;
+                    	}
+                    	
                     	break;
                 	}
-                    
-				bibliotecaItemBiblioteca.reservarSala(membro2, sala, dateTimeFinal, dateTimeInicio);
+                try {
+                	bibliotecaItemBiblioteca.reservarSala(membro2, sala, dateTimeInicio, dateTimeFinal);
+                	System.out.println("Sala reservada com sucesso.");
+                	return;
+                } catch(InstantiationException e) {
+                	System.err.println("A reserva não pode ser criada.");
+                	System.err.println(e.getMessage());
+                	System.out.println("A operação foi cancelada.");
+                }
                 default:
                     System.out.println("Opção inválida. Por favor, escolha novamente.");
             }

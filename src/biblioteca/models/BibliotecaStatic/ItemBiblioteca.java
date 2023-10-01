@@ -399,7 +399,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	private boolean reservarSalaReservaEmprestimo(Membro membro, Item item,  LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) {
+	private boolean reservarSalaReservaEmprestimo(Membro membro, Item item,  LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws InstantiationException {
 		//Primeiro, checar se a sala está indisponível
     	StatusItem status_item = item.getStatusItem();
     	
@@ -415,6 +415,30 @@ public class ItemBiblioteca<T> {
     			System.out.println("Membro já tem essa sala reservado.");
     			System.out.println("Operação encerrada.");
     			return false;
+    		}
+    	}
+    	
+    	//Checa se a sala tem o horário liberado
+    	//Primeiro, iterando e achando todas as salas do ID selecionado
+    	//Então, comparamos se o horário é valido
+    	for( Reserva reserva : reservas) {
+    		if(reserva.getItem().equals(item)) {
+    			System.out.println(reserva.getData_inicial());
+    			System.out.println(reserva.getData_final());
+    			System.out.println(dateTimeInicio);
+    			System.out.println(dateTimeFinal);
+    			if( 
+    				reserva.getData_inicial().isAfter(dateTimeFinal)
+    				& reserva.getData_inicial().isAfter(dateTimeInicio)
+    				) {
+    				System.out.println("ENTREI NO 1");
+    			} else if ( 
+    				dateTimeInicio.isAfter(reserva.getData_final())
+    				) {
+    				System.out.println("ENTREI NO 2");
+    			} else {
+    				throw new InstantiationException("O horário da reserva entra em conflito com uma reserva já existente.");
+    			}
     		}
     	}
     	
@@ -441,7 +465,7 @@ public class ItemBiblioteca<T> {
 		return true;
 	}
 	
-	public boolean reservarSala(Membro membro, T item, LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) {
+	public boolean reservarSala(Membro membro, T item, LocalDateTime dateTimeInicio, LocalDateTime dateTimeFinal) throws InstantiationException {
 		//Primeiro, realiza o emprestimo, trata os objetos emprestimos e reservas e o status do item
 		reservarSalaReservaEmprestimo(membro, (Item) item, dateTimeInicio, dateTimeFinal);
 		

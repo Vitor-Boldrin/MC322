@@ -42,16 +42,16 @@ public class MainTestes {
 		//Recurso.Video recursoEmprestimo1 = recurso1.new Video("opa","não");
 
 		
-		LocalDateTime data1 = LocalDateTime.parse("2023-10-01T06:30:00");
+		LocalDateTime data1 = LocalDateTime.parse("2023-10-01T06:30:04");
 		
 		try {
-			LocalDateTime data2 = LocalDateTime.parse("2023-10-01 T07:30:00");
+			LocalDateTime data2 = LocalDateTime.parse("2023-10-01T07:30:00");
 		} catch(DateTimeParseException e) {
 			System.out.println("Formato inválido");
 		}
 		
 		if(data1.isBefore(data1) || data1.isEqual(data1)) {
-			System.out.println("AAAA");
+			System.out.println(data1);
 		}
 		
 	}
