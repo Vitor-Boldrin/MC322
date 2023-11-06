@@ -1,6 +1,7 @@
 package main;
 
 import biblioteca.controllers.*;
+import biblioteca.metadados.CReflection;
 import biblioteca.models.BibliotecaStatic.BibliotecaStatic;
 import biblioteca.models.BibliotecaStatic.ItemBiblioteca;
 import biblioteca.models.Controle_livros.Emprestimo;
@@ -297,7 +298,51 @@ public class BibliotecaMain {
     	
     	System.out.println("Login realizado com sucesso.");
     	
+    	while (true) {
+            System.out.println("---- Menu Adminstração ----");
+            System.out.println();
+            System.out.println("1. Metadados - Atributos Membros e Itens Multimidia");
+            System.out.println("2. Metadados - Métodos Membros e Itens Multimidia");
+            System.out.println("4. Voltar");
+            System.out.println();
+            System.out.println();
+            System.out.print("Escolha uma opção: ");
+
+            int opcaoFuncionarios = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcaoFuncionarios) {
+                case 1:
+                    // Menu de Administração de Administradores
+                	menuAdministradoresMetadadosAtributos(scanner);
+                    break;
+                case 2:
+                    // Menu de Administração de Atendentes
+                	menuAdministradoresMetadadosMetodos(scanner);
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha novamente.");
+            }
+        }
     	
+    	
+    }
+    
+    private static void menuAdministradoresMetadadosMetodos(Scanner scanner) {
+    	CReflection ref = new CReflection();
+		ref.ImprimeMetodos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
+    }
+    
+    private static void menuAdministradoresMetadadosAtributos(Scanner scanner) {
+    	CReflection ref = new CReflection();
+	    try {
+			ref.ImprimiAtributos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private static void menuAtendentes(Scanner scanner) {

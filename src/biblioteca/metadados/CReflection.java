@@ -136,20 +136,6 @@ public class CReflection {
 			//Checa o que tem na lista
 			System.out.println("Da classe:");
 			System.out.println(((List<?>) lista).get(0).getClass());
-			
-			System.out.println("Invoka toString (caso tenha)");
-			//Printa o toString:
-			Iterator<((List<?>) lista).get(0).getClass()> namesIterator = lista.iterator();
-			while(namesIterator.hasNext()) {
-				   System.out.println(namesIterator.next().getClass());
-				   try {
-						Method method = namesIterator.next().getClass().getMethod("toString");
-						System.out.println(method.invoke(namesIterator.next()));
-						
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-				}
 	
 		} else if (lista instanceof Queue<?>) {
 			System.out.println("E uma fila.");
@@ -158,19 +144,6 @@ public class CReflection {
 			System.out.println("Da classe:");
 			System.out.println ( ((Queue<?>) lista).element().getClass() );
 			
-			System.out.println("Invoka toString (caso tenha)");
-			//Printa o toString:
-			Iterator<String> namesIterator = lista.iterator();
-			while(namesIterator.hasNext()) {
-				   System.out.println(namesIterator.next().getClass());
-				   try {
-						Method method = namesIterator.next().getClass().getMethod("toString");
-						System.out.println(method.invoke(namesIterator.next()));
-						
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-				}
 		}
 		else if (lista instanceof Set<?>) {
 			System.out.println("E um set.");
@@ -184,18 +157,6 @@ public class CReflection {
 				   break;
 				}
 			
-			System.out.println("Invoka toString (caso tenha)");
-			//Printa o toString:
-			while(namesIterator.hasNext()) {
-				   System.out.println(namesIterator.next().getClass());
-				   try {
-						Method method = namesIterator.next().getClass().getMethod("toString");
-						System.out.println(method.invoke(namesIterator.next()));
-						
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-				}
 			
 		}
 	}
