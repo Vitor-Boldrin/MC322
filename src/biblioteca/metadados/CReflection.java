@@ -44,21 +44,25 @@ public class CReflection {
 		
 		System.out.println("Lista de Membros e seus atributos:\n");
 		
-		for( Membro membro : membros) {
-			for (Field field : membro.getClass().getSuperclass().getDeclaredFields()) {
-		        field.setAccessible(true);
-		        String name = field.getName();
-		        Object value = field.get(membro);
-		        System.out.printf("%s: %s%n", name, value);
-		    }
-		
-			for (Field field : membro.getClass().getDeclaredFields()) {
-		        field.setAccessible(true);
-		        String name = field.getName();
-		        Object value = field.get(membro);
-		        System.out.printf("%s: %s%n", name, value);
-		    }
-			System.out.println("\n");
+		if (!membros.isEmpty()) {
+			for( Membro membro : membros) {
+				for (Field field : membro.getClass().getSuperclass().getDeclaredFields()) {
+			        field.setAccessible(true);
+			        String name = field.getName();
+			        Object value = field.get(membro);
+			        System.out.printf("%s: %s%n", name, value);
+			    }
+			
+				for (Field field : membro.getClass().getDeclaredFields()) {
+			        field.setAccessible(true);
+			        String name = field.getName();
+			        Object value = field.get(membro);
+			        System.out.printf("%s: %s%n", name, value);
+			    }
+				System.out.println("\n");
+			} 
+		} else {
+			System.out.println("Lista de membros está vazia.");
 		}
 			
 		
@@ -67,24 +71,29 @@ public class CReflection {
 		
 		System.out.println("Lista de Itens Multimidia e seus atributos:\n");
 		
-		for( Item item : itens) {
-			for (Field field : item.getClass().getSuperclass().getDeclaredFields()) {
-		        field.setAccessible(true);
-		        String name = field.getName();
-		        Object value = field.get(item);
-		        System.out.printf("%s: %s%n", name, value);
-		    }
-		
-			for (Field field : item.getClass().getDeclaredFields()) {
-		        field.setAccessible(true);
-		        String name = field.getName();
-		        Object value = field.get(item);
-		        System.out.printf("%s: %s%n", name, value);
-		    }
-			System.out.println("\n");
-		
+		if (!itens.isEmpty()) {
+			for( Item item : itens) {
+				for (Field field : item.getClass().getSuperclass().getDeclaredFields()) {
+			        field.setAccessible(true);
+			        String name = field.getName();
+			        Object value = field.get(item);
+			        System.out.printf("%s: %s%n", name, value);
+			    }
+			
+				for (Field field : item.getClass().getDeclaredFields()) {
+			        field.setAccessible(true);
+			        String name = field.getName();
+			        Object value = field.get(item);
+			        System.out.printf("%s: %s%n", name, value);
+			    }
+				System.out.println("\n");
+			
+			}
+		} else {
+			System.out.println("Lista de itens está vazia.");
 		}
-    	}
+		
+	    }
 	
 	public void ImprimeMetodos(LinkedList<Membro> membros, LinkedList<Item> itens) {
 		System.out.println("Membro e seus métodos:\n");
