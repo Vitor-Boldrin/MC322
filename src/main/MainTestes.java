@@ -78,23 +78,8 @@ public class MainTestes {
 		
 		BibliotecaStatic.getItens().add(livro2);
 		
-		/*
 		
-		try {
-			Method method = livro2.getClass().getMethod("toString");
-			System.out.println(method.invoke(livro2));
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 		
-		Method[] methods = livro2.getClass().getMethods();
-	      System.out.println("The public methods of the java.lang.Thread class are:");
-	      for (int i = 0; i < methods.length; i++) {
-	         System.out.println(methods[i]);
-	      }
-		
-		*/
 		
 		Date dat1 = new Date();
 		
@@ -121,24 +106,8 @@ public class MainTestes {
 		
 	    CReflection ref = new CReflection();
 	    
-	    ref.ImprimiAtributos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
-	    
-	    /*StringBuffer buffer = new StringBuffer();
-	    Field[] fields = aluno2.getClass().getDeclaredFields();
-	    for (Field f : fields) {
-	      if (!Modifier.isStatic(f.getModifiers())) {
-	        f.setAccessible(true);
-	        Object value = f.get(aluno2);
-	        buffer.append(f.getType().getName());
-	        buffer.append(" ");
-	        buffer.append(f.getName());
-	        buffer.append("=");
-	        buffer.append("" + value);
-	        buffer.append("\n");
-	      }
-	    }
-	    
-	    System.out.println(buffer.toString()); */
+	    ref.ImprimeMetodos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
+
 	    
 	    
 	}

@@ -1,13 +1,10 @@
 package biblioteca.metadados;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import biblioteca.models.Item.Item;
-import biblioteca.models.ItemMultimidia.ItemMultimidia;
 import biblioteca.models.Membro.Membro;
 
 public class CReflection {
@@ -83,7 +80,45 @@ public class CReflection {
 		}
     	}
 	
-	public void ImprimeMetodos() {
+	public void ImprimeMetodos(LinkedList<Membro> membros, LinkedList<Item> itens) {
+		System.out.println("Membro e seus métodos:\n");
+		
+		Membro membro = membros.getFirst();
+			try {
+				Method method = membro.getClass().getMethod("toString");
+				System.out.println(method.invoke(membro));
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			Method[] methods = membro.getClass().getMethods();
+		      System.out.println("The public methods of the java.lang.Thread class are:");
+		      for (int i = 0; i < methods.length; i++) {
+		         System.out.println(methods[i]);
+		      }
+			
+		
+		
+		System.out.println("\n");
+		
+		System.out.println("Item Multimidia e seus métodos:\n");
+		
+		Item item = itens.getFirst();		
+			try {
+				Method method2 = item.getClass().getMethod("toString");
+				System.out.println(method2.invoke(item));
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			Method[] methods2 = item.getClass().getMethods();
+		      System.out.println("The public methods of the java.lang.Thread class are:");
+		      for (int i = 0; i < methods2.length; i++) {
+		         System.out.println(methods2[i]);
+		      }
+			
 		
 	}
 	
