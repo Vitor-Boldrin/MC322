@@ -27,11 +27,12 @@ import biblioteca.models.Recursos_Biblioteca.Recurso;
 import biblioteca.models.Recursos_Biblioteca.Recurso.Video;
 import biblioteca.models.Recursos_Biblioteca.SalaBiblioteca.Sala;
 import java.lang.reflect.*;
+import biblioteca.metadados.*;
 
 
 public class MainTestes {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
 
 
@@ -75,6 +76,10 @@ public class MainTestes {
 		
 		System.out.println(livro2.toString());
 		
+		BibliotecaStatic.getItens().add(livro2);
+		
+		/*
+		
 		try {
 			Method method = livro2.getClass().getMethod("toString");
 			System.out.println(method.invoke(livro2));
@@ -88,7 +93,54 @@ public class MainTestes {
 	      for (int i = 0; i < methods.length; i++) {
 	         System.out.println(methods[i]);
 	      }
-
+		
+		*/
+		
+		Date dat1 = new Date();
+		
+		Estudante_graduacao aluno1 = new Estudante_graduacao(
+        		"oie",
+        		"id_faculdade1",
+        		"endereco1",
+        		"contato1",
+				dat1,
+				true);
+		
+		BibliotecaStatic.getMembros().add(aluno1);
+		
+		Estudante_graduacao aluno2 = new Estudante_graduacao(
+        		"oie",
+        		"id_facadsuldade1",
+        		"enderecasdasdaso1",
+        		"contatAAAAAAAo1",
+				dat1,
+				true);
+		
+		BibliotecaStatic.getMembros().add(aluno2);
+		
+		
+	    CReflection ref = new CReflection();
+	    
+	    ref.ImprimiAtributos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
+	    
+	    /*StringBuffer buffer = new StringBuffer();
+	    Field[] fields = aluno2.getClass().getDeclaredFields();
+	    for (Field f : fields) {
+	      if (!Modifier.isStatic(f.getModifiers())) {
+	        f.setAccessible(true);
+	        Object value = f.get(aluno2);
+	        buffer.append(f.getType().getName());
+	        buffer.append(" ");
+	        buffer.append(f.getName());
+	        buffer.append("=");
+	        buffer.append("" + value);
+	        buffer.append("\n");
+	      }
+	    }
+	    
+	    System.out.println(buffer.toString()); */
+	    
+	    
 	}
 
 }
