@@ -106,7 +106,7 @@ public class MainTestes {
 		
 	    CReflection ref = new CReflection();
 	    
-	    ref.ImprimeMetodos(BibliotecaStatic.getMembros(), BibliotecaStatic.getItens());
+	    ref.MetadadosLista(BibliotecaStatic.getMembros());
 
 	    
 	    
